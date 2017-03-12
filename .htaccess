@@ -1,0 +1,7 @@
+#Turn on the Rewrite Engine
+ 
+RewriteEngine On
+
+#home rewrite rule
+RewriteRule ^home$ index.php
+

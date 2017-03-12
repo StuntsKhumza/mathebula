@@ -1,0 +1,35 @@
+<blockquote ng-if="chatsObj.length > 0" class="border-primary">
+    <ul >
+        <li ng-repeat="chats in chatsObj" style="list-style: none;">
+
+            <section class="comment-list">
+                <!-- First Comment -->
+                <article class="row">
+                    <div class="col-md-2 col-sm-2 hidden-xs">
+                        <figure class="thumbnail">
+                            <img class="img-responsive" height="50" ng-src="{{chats.imgsrc}}" />
+                            <figcaption class="text-center">{{chats.firstname}}</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <div class="col-md-10 col-sm-10">
+                        <div class="panel panel-warning arrow left">
+                            <div class="panel-body">
+                                <header class="text-left">
+                                    <div class="comment-user"><i class="fa fa-user"></i> {{chats.firstname}}</div>
+                                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> {{chats.date}}</time>
+                                </header>
+                                <div class="comment-post">
+                                    <p>
+                                        <i>{{chats.comment}}</i>
+                                    </p>
+                                </div>
+                                <p style="display: none" class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </li>
+    </ul>
+</blockquote>

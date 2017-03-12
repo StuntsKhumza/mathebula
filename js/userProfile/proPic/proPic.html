@@ -1,0 +1,43 @@
+<div class="profile-header-container">
+{{imgtwo}}
+    <img ng-src="{{imgtwo}}" class="img-circle img-responsive">
+    <div class="rank-label-container">
+        <span class="label label-default rank-label" ng-if="imgtwo != ''"><a href="#editProPic" ng-click="x()">{{action}}</a></span>
+    </div>
+
+</div>
+
+<div class="alert alert-warning" role="alert" id="editProPic" ng-if="showEdit == 'yes'" style="overflow: hidden">
+        <!--  -->
+    <form action="uploadimg.php" method="POST" enctype="multipart/form-data">
+       <input type="file" name="uploadprofile" class="form-control" multiple accept='image/*'>
+    <hr>
+        <input type="submit" value="submit" class="btn btn-md btn-default">
+    </form>
+
+</div>
+
+<!-- 
+
+<div class="profile-header-container">
+
+    <img ng-src="{{imgtwo}}" class="img-circle img-responsive">
+    <div class="rank-label-container">
+        <span class="label label-default rank-label" ng-if="imgtwo != ''"><a href="#editProPic" ng-click="x()">{{action}}</a></span>
+    </div>
+
+</div>
+
+<div class="alert alert-warning" role="alert" id="editProPic" ng-if="showEdit == 'yes'" style="overflow: hidden">
+    <form action="uploadimg.php" method="POST" enctype="multipart/form-data">
+        <input type="file" name="uploadprofile" file-model = "myFile" class="form-control">
+
+        <hr>
+        <input type="submit" value="submit" class="btn btn-md btn-default">
+    </form>
+
+    
+</div>
+
+
+-->

@@ -1,0 +1,95 @@
+<style>
+    #search-client {}
+</style>
+
+<div class="container">
+    <div class="search-container">
+        <div class="search-header">
+            <h3>Search for a patient:</h3>
+            <hr class="colorgraph"><br>
+        </div>
+
+        <div class="search-body">
+            <div class="row" ng-if="searching">
+                <div class="col-md-12">
+                    <img src="img/Searching.gif" alt="searching gif"><br>
+                    <h4>...please wait</h4>
+                </div>
+            </div>
+            <div ng-show="!searching">
+                <div class="row add-padding" ng-if="!searchCtr.search_complete">
+                    <div class="alert alert-danger" ng-show="searchCtr.showmsg.length > 0">{{searchCtr.showmsg}}</div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="">
+                                    <label class="search-body-lable">File Number:</label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" placeholder="file number" class="form-control simplebox remove-radius" ng-model="searchCtr.searchObj.file_number">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="">
+                                    <label class="search-body-lable">ID Number(14 digit):</label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" placeholder="id number" onkeypress="return isNumberKey(event)" class="form-control simplebox remove-radius"
+                                    ng-model="searchCtr.searchObj.id_number">
+                            </div> 
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="alert alert-success" ng-show="searchCtr.showmsg2.length > 0">{{searchCtr.showmsg2}}
+
+                        </div><br>
+
+                        <input type="button" ng-if="!searchCtr.search_complete" value="Search" class="btn btn-md btn-c-primary pull-right" ng-click="search(135823354)"
+                            id="search-client">
+                        <input type="button" ng-if="searchCtr.search_complete" value="Clear Search" class="btn btn-md btn-danger pull-right" ng-click="searchCtr.clear_search()"
+                            id="clear_search">
+
+
+                        <br><br>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-hover">
+                                <tr ng-repeat="result in results">
+                                    <td>{{1 + $index}}</td>
+                                    <td>{{result.name}}</td>
+                                    <td> <input type="button" value="open" class="btn btn-md btn-c-success" ng-click="setClient(result.id)"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="search-footer">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

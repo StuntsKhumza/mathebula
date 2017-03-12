@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="wrappers">
+        <br><br>
+        <div class="row" ng-if="loginController.searching">
+                <div class="col-md-12">
+                   <img src="img/Searching.gif" alt="searching gif"> <h4>...please wait</h4>
+                </div>
+         </div>
+        <form class="form-signin" ng-if="!loginController.searching">
+            <h3 class="form-signin-heading">Please Sign In</h3>
+            <hr class="colorgraph"><br>
+
+            <div class="alert alert-danger" ng-if="loginController.loginObj.message.length > 0">
+                <p>{{loginController.loginObj.message}}</p>
+            </div>
+
+            <div class="alert" ng-if="resetPassword">
+                <p>Please provide email address below:</p>
+            </div>
+
+            <input type="text" class="form-control remove-radius simplebox add-margin-sm" name="Username" placeholder="Username" ng-model="loginController.loginObj.username"
+                required="" autofocus="" />
+
+            <input type="password" class="form-control remove-radius remove-radius simplebox add-margin-sm" ng-if="!resetPassword" name="Password"
+                ng-model="loginController.loginObj.password" placeholder="Password" required="" ng-keyup="loginController.login_keyup($event)" />
+
+            <button class="btn btn-lg btn-primary btn-block remove-radius add-margin-sm" ng-disabled="loginObj.username.length == 0 || (!resetPassword && (loginObj.password.length == 0))"
+                ng-click="loginController.login()" name="Submit" type="button">Login</button>
+            <div class="pull-right">
+                <a href="#" ng-click="password_reset()">reset password?</a>
+            </div>
+        </form>
+    </div>
+
+</div>
