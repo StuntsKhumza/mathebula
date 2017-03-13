@@ -33,6 +33,27 @@ angular.module('session-app', [])
 
         }
 
+        //searching
+        this.search_profile = function(data){
+
+            var formData = new FormData();
+            formData.append('q', "searchProfile");
+            formData.append("search_key", data.search_key);
+           
+            return $http.post(this.uploadUrl, formData, {
+                transformRequest: angular.identity
+                , headers: {
+                    'Content-Type': undefined
+                }
+            }).
+            
+             then(function(res){
+             
+               return res.data;
+            })
+
+        }
+
          this.getActiveProfile = function(){
 
             var formData = new FormData();

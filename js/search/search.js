@@ -1,11 +1,11 @@
-angular.module('search-app', [])
+angular.module('search-app', ['session-app'])
     .directive(
     'search', function () {
         return {
             restrict: 'E',
             templateUrl: "js/search/search.html",
             controllerAs: 'searchCtr',
-            controller: function ($scope, $http) {
+            controller: function ($scope, $http, serviceSession) {
                 //searchCtr.searchObj
                 //  $scope.userObj.search_done = false;
                 $scope.searching = false;
@@ -29,11 +29,7 @@ angular.module('search-app', [])
                      {id:13584354, name:"Nkosinathi Khumalo"}, */
                 ]
                 //ng-if="!loginObj.clientSelected"
-                var obj = [
-
-                    { id: 135823354, name: "Nkosinathi Khumalo" },
-                    { id: 135154, name: "Zamani Gumede" },
-                    { id: 135434354, name: "Mduduzi Memela" } /*
+                var obj = [{ id: 135823354, name: "Nkosinathi Khumalo" }, { id: 135154, name: "Zamani Gumede" }, { id: 135434354, name: "Mduduzi Memela" }/*
                     { id: 135845454, name: "Nkosinathi Khumalo" },
                     { id: 133341554, name: "Nkosinathi Khumalo" },
                     { id: 13584356734, name: "Nkosinathi Khumalo" } */,
@@ -41,48 +37,62 @@ angular.module('search-app', [])
                 ];
 
                 //load search 
-                $http.get('data/search.json')
-                    .then(function (res) {
-
-                    }) //success
-                    .then(function (res) {
-                      
-                    }) //errors
 
                 $scope.search = function (id) {
                     var searchV = "";
+                    var search_key_data;
                     if (self.searchObj.file_number.length == 0 && self.searchObj.id_number.length == 0) {
 
                         self.showmsg = "Please ensure that you provide a File or ID Number below";
 
                         return;
                     } else {
-                        self.showmsg = "";
+
+
+                        if (self.searchObj.file_number.length > 0) {
+
+                            searchV = "file number: '" + self.searchObj.file_number + "'";
+                            search_key_data = self.searchObj.file_number;
+                        } else if (self.searchObj.id_number.length > 0) {
+
+                            searchV = "id number: '" + self.searchObj.id_number + "'";
+                            search_key_data = self.searchObj.id_number;
+                        }
+                        
+                        $scope.searching = true;
+                        self.search_complete = false;
+
+                        var search_data = { search_key: search_key_data }
+                        var search_call = serviceSession.search_profile(search_data);
+                        
+                        search_call.then(function (res) {
+
+                            self.showmsg2 = "Showing results for " + searchV;
+                           $scope.results = res.data;
+                            
+                            self.searchObj.file_number = "";
+                            self.searchObj.id_number = "";
+                            self.search_complete = true;
+                            $scope.searching = false;
+                        });
+
                     }
 
-                    $scope.searching = true;
 
+return;
                     $http.get('php/service.php?q=test')
                         .then(function () {
 
                             $scope.searching = false;
 
-                            if (self.searchObj.file_number.length > 0) {
 
-                                searchV = "file number: '" + self.searchObj.file_number + "'";
-
-                            } else if (self.searchObj.id_number.length > 0) {
-
-                                searchV = "id number: '" + self.searchObj.id_number + "'";
-
-                            }
 
                             self.showmsg2 = "Showing results for " + searchV;
 
                             self.searchObj.file_number = "";
                             self.searchObj.id_number = "";
 
-                            self.search_complete  = true;
+                            self.search_complete = true;
                         })
 
                     $scope.results = obj;
@@ -107,8 +117,8 @@ angular.module('search-app', [])
 
                 }
 
-                self.clear_search = function(){
-                    self.search_complete  = false;
+                self.clear_search = function () {
+                    self.search_complete = false;
                     self.showmsg2 = "";
                     $scope.results = {};
                 }
@@ -140,5 +150,4 @@ angular.module('search-app', [])
             }
 
         }
-    }
-    )
+    })
