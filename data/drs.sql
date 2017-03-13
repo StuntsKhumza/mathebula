@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2017 at 08:33 PM
+-- Generation Time: Mar 13, 2017 at 01:14 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -39,7 +39,8 @@ CREATE TABLE `logins` (
 --
 
 INSERT INTO `logins` (`ID`, `USERID`, `USERNAME`, `PASSWORD`, `TYPE`) VALUES
-(16545, 2147483647, 'nkosi', 'test', '');
+(16545, 2147483647, 'nkosi', 'test', ''),
+(16562, 2147483000, 'zama', 'test', '');
 
 -- --------------------------------------------------------
 
@@ -77,7 +78,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `FIRSTNAME`, `LASTNAME`, `AGE`, `IDNUMBER`, `ADDRESS1`, `ADDRESS2`, `ADDRESS3`, `LOGIN`, `CARDNUMBER`) VALUES
-(648646, 'Nkosinathi', 'Khumalo', 26, 900323538, '49/614 Lulonga Crescent Ave', 'Cosmo Creek', '2169', 2147483647, 'C-2468');
+(648646, 'Nkosinathi', 'Khumalo', 26, 900323538, '49/614 Lulonga Crescent Ave', 'Cosmo Creek', '2169', 2147483647, 'C-2468'),
+(6482324, 'Zama', 'Gumede', 27, 890301538, '49/614 Lulonga Crescent Ave', 'Cosmo Creek', '2169', 2147483000, 'C-2456');
 
 --
 -- Indexes for dumped tables

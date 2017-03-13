@@ -34,10 +34,6 @@ class sqlClass {
 		
 		
 		
-		/*   $servername = "154.0.173.140";
-          $username = "webdenpp_admin";
-          $password = "Bhung@ne002";
-          $dbname = "webdenpp_leecakes"; */
 		
 		$s = "";
 		

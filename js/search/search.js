@@ -123,6 +123,7 @@ return;
                 self.clear_search = function () {
                     self.search_complete = false;
                     self.showmsg2 = "";
+                     self.showmsg = "";
                     $scope.results = {};
                 }
 
