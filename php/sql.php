@@ -96,6 +96,7 @@ class sqlClass {
 			
 			
 			case "searchProfile":
+            
 			$query = "SELECT * FROM `users` WHERE (CONVERT(`CARDNUMBER` USING utf8) LIKE ? " ." '%') OR (CONVERT(`CARDNUMBER` USING utf8) LIKE ?". "'%')"; //OR (CONVERT(`IDNUMBER` USING utf8) LIKE '?')";
 
             //(CONVERT(`CARDNUMBER` USING utf8) LIKE '%?%') OR (CONVERT(`IDNUMBER` USING utf8) LIKE '%?%')
