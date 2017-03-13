@@ -39,6 +39,7 @@ angular.module('session-app', [])
             var formData = new FormData();
             formData.append('q', "searchProfile");
             formData.append("search_key", data.search_key);
+            formData.append("search_type", data.search_type);
            
             return $http.post(this.uploadUrl, formData, {
                 transformRequest: angular.identity

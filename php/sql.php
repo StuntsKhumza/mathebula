@@ -95,14 +95,17 @@ class sqlClass {
 			break;
 			
 			
-			case "searchProfile":
+			case "searchProfile_card":
             
-			$query = "SELECT * FROM `users` WHERE (CONVERT(`CARDNUMBER` USING utf8) LIKE ? " ." '%') OR (CONVERT(`CARDNUMBER` USING utf8) LIKE ?". "'%')"; //OR (CONVERT(`IDNUMBER` USING utf8) LIKE '?')";
-
-            //(CONVERT(`CARDNUMBER` USING utf8) LIKE '%?%') OR (CONVERT(`IDNUMBER` USING utf8) LIKE '%?%')
+			$query = "SELECT * FROM `users` WHERE (CONVERT(`CARDNUMBER` USING utf8) LIKE ? " ." '%')";           
 			
 			break;
 			
+            case "searchProfile_id":
+            
+			$query = "SELECT * FROM `users` WHERE (CONVERT(`IDNUMBER` USING utf8) LIKE ? " ." '%')";           
+			
+			break;
 		}
 		
 		
@@ -319,27 +322,33 @@ class sqlClass {
 
         $connect = $this->connectPDO();
         $userKey = $data['search_key'];
+       
         
         //check connection
         if ($connect != null) {
-
-            $query = $this->query_read('searchProfile');
-
+            $query = "";
+            
+            if($data['search_type'] == 'card'){
+                $query = $this->query_read('searchProfile_card');
+            } else {
+                $query = $this->query_read('searchProfile_id');
+            }
+            
             $stmt = $connect->prepare($query);
 
             $stmt->bindParam(1, $userKey , PDO::PARAM_STR);
-            $stmt->bindParam(2,$userKey, PDO::PARAM_STR);
-
+            
             $stmt->execute();
 
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if ($stmt->rowCount() > 0) {
-
-                
+    
                 return json_encode(array("status" => 200, 'message' => 'success', 'data' => $result));
+
             } else {
-return json_encode(array("status" => 400, 'message' => 'fail', 'data' => null));
+
+                    return json_encode(array("status" => 400, 'message' => 'fail', 'data' => null));
             }
         } else {
 

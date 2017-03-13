@@ -41,6 +41,7 @@ angular.module('search-app', ['session-app'])
                 $scope.search = function (id) {
                     var searchV = "";
                     var search_key_data;
+                    var search_type = '';
                     if (self.searchObj.file_number.length == 0 && self.searchObj.id_number.length == 0) {
 
                         self.showmsg = "Please ensure that you provide a File or ID Number below";
@@ -53,16 +54,18 @@ angular.module('search-app', ['session-app'])
 
                             searchV = "file number: '" + self.searchObj.file_number + "'";
                             search_key_data = self.searchObj.file_number;
+                            search_type = "card";
                         } else if (self.searchObj.id_number.length > 0) {
 
                             searchV = "id number: '" + self.searchObj.id_number + "'";
                             search_key_data = self.searchObj.id_number;
+                            search_type = "id";
                         }
                         
                         $scope.searching = true;
                         self.search_complete = false;
 
-                        var search_data = { search_key: search_key_data }
+                        var search_data = { search_key: search_key_data, "search_type": search_type }
                         var search_call = serviceSession.search_profile(search_data);
                         
                         search_call.then(function (res) {
