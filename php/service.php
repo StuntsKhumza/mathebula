@@ -48,6 +48,12 @@ $i = 0;
 
     case "getSession":
 
+$i = 0;
+
+        while($i < 10050000){
+            $i++;
+        }
+
         $result = 'false'; 
 
         if (isset($_SESSION)) {
