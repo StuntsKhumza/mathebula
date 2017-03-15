@@ -61,7 +61,7 @@ angular.module('search-app', ['session-app'])
 
                             self.showmsg2 = "Showing results for " + searchV;
                             $scope.results = res.data;
-
+                            console.log($scope.results);
                             self.searchObj.file_number = "";
                             self.searchObj.id_number = "";
                             self.search_complete = true;
@@ -101,9 +101,9 @@ angular.module('search-app', ['session-app'])
 
                     if (self.searchObj.id_number.length > 0 && result.status == true){
 
-                        if(self.searchObj.id_number.length < 13){
+                        if(self.searchObj.id_number.length < 6){
                             result.status = false;
-                            result.msg = "Please ensure you provide 14 digit ID Number";
+                            result.msg = "Please ensure you provide 6 digit ID Number";
                         }
 
                     }
@@ -122,7 +122,7 @@ angular.module('search-app', ['session-app'])
 
                 $scope.setClient = function (id) {
 
-                    var o = find_Item(obj, id);
+                    var o = find_Item($scope.results, id);
 
                     //$scope.loginObj.clientSelected = true;
 
@@ -130,14 +130,14 @@ angular.module('search-app', ['session-app'])
                         $scope.userObj.client = o;
                         $scope.userObj.clientSet = true;
                     }
-                    console.log($scope.userObj);
+                    console.log(o);
 
                 }
 
                 function find_Item(list, query) {
 
                     var result = _.find(list, function (o) {
-                        return o.id == query;
+                        return o.ID == query;
                     });
 
                     return result;
