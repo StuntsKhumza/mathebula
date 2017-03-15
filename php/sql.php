@@ -204,7 +204,7 @@ class sqlClass {
                     $_SESSION['USERID'] = $result[0]['USERID'];
                     $_SESSION['active'] = "true";
                     
-                    echo json_encode(array("status" => 200, 'message' => 'success', 'data' => array('userid'=>$result[0]['USERID'])));
+                    echo json_encode(array("status" => 200, 'message' => 'success', 'data' => array('userid'=>base64_encode($result[0]['USERID']))));
                 } else {
 
                     echo json_encode(array("status" => 404, 'message' => 'Incorrect username/password. Please try again'));

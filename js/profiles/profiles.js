@@ -1,4 +1,4 @@
-angular.module('profiles-app', ['ui.router', 'search-app', 'userProfile-app', 'addUserProfile-app', 'session-app'])
+angular.module('profiles-app', ['ui.router', 'search-app', 'userProfile-app', 'addUserProfile-app', 'session-app', 'ngCookies'])
 
     .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -7,11 +7,22 @@ angular.module('profiles-app', ['ui.router', 'search-app', 'userProfile-app', 'a
                 controllerAs: 'profilesController',
                 templateUrl: "js/profiles/profiles.html",
                 url: '/profiles',
-                controller: function ($scope, $state, session, $http, $anchorScroll, serviceSession) {
+                controller: function ($scope, $state, $http, $anchorScroll, serviceSession, $cookies) {
 
                     var self = this;
                     self.activeuser = "";
                     self.activeuser_firstname = "";
+
+                    var user_cookie = $cookies.get('m_userid');
+
+                    if(user_cookie == null){
+
+                        $http.get('php/service.php?q=logOff');
+
+                        $state.go('login');
+                        return;
+                    }
+
                     var currentUser = serviceSession.getActiveProfile();
 
                     currentUser.then(function(res){
@@ -21,6 +32,7 @@ angular.module('profiles-app', ['ui.router', 'search-app', 'userProfile-app', 'a
                     })
 
 
+
                     $scope.userObj = {
                         search_done: false,
                         client: {},
@@ -28,14 +40,9 @@ angular.module('profiles-app', ['ui.router', 'search-app', 'userProfile-app', 'a
                         activeProfileTab: 1
                     }
 
-                    if (session.status != 'true') {
-
-                        $state.go('login');
-
-                    }
-
                     $scope.logOff = function () {
                         console.log('test');
+                        $cookies.remove('m_userid');
                         $http.get('php/service.php?q=logOff');
 
                         $state.go('login');
@@ -55,14 +62,6 @@ angular.module('profiles-app', ['ui.router', 'search-app', 'userProfile-app', 'a
 
                     }
 
-                },
-                resolve: {
-                    session: function ($http) {
-                        return $http.get('php/service.php?q=getSession')
-                            .then(function (response) {
-                                return response.data;
-                            })
-                    }
                 }
             })
     })

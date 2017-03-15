@@ -1,4 +1,4 @@
-angular.module('login-app', ['ui.router', 'session-app'])
+angular.module('login-app', ['ui.router', 'session-app',  'ngCookies'])
 
     .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -7,27 +7,23 @@ angular.module('login-app', ['ui.router', 'session-app'])
                 controllerAs: 'loginController',
                 templateUrl: "js/login/login.html",
                 url: '/login',
-                controller: function ($scope, $state, $http, serviceSession) {
+                controller: function ($scope, $state, $http, serviceSession, $cookies) {
 
                     var self = this;
-                    self.searching = true;
+                    self.searching = false;
                     self.loginObj = {
                         username: '',
                         userpassword: '',
                         message: ''
                     }
 
-                    var data = serviceSession.getSession();
+                    var user_cookie = $cookies.get('m_userid');
 
-                    data.then(function (res) {
-                        if (res.status == "true") {
-                            $state.go('profiles');
-                            return;
-                        } else {
-                            self.searching = false;
-                        }
+                    if(user_cookie != null){
 
-                    })
+                        $state.go('profiles');
+                        return;
+                    }
                     /*if (session == "true") {
     
                         $state.go('profiles');
@@ -38,7 +34,7 @@ angular.module('login-app', ['ui.router', 'session-app'])
                         //    $state.go('profiles');       
                         //   return;
                         self.searching = true;
-
+  
                         var data = serviceSession.login(self.loginObj);
 
                         data.then(function (res) {
@@ -47,7 +43,11 @@ angular.module('login-app', ['ui.router', 'session-app'])
                                 self.loginObj.message = res.message;
                                 self.loginObj.username = "";
                                 self.loginObj.password = "";
+                                
                             } else {
+                                console.log(res);
+                                $cookies.put("m_userid", res.data.userid);
+
                                 $state.go('profiles');
                             }
 

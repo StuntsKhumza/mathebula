@@ -202,7 +202,9 @@ margin: 5px;
 
 }
 /*user profile*/
-
+  .c-nav-link{
+        color: #f8f8f8;
+    }
 
 @media all and (max-width: 370px){
     
