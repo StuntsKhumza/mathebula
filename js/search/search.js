@@ -21,35 +21,24 @@ angular.module('search-app', ['session-app'])
                 self.search_complete = false;
 
                 $scope.results = [
-                    /*   {id:13584354, name:"Nkosinathi Khumalo"},
-                     {id:13584354, name:"Nkosinathi Khumalo"},
-                     {id:13584354, name:"Nkosinathi Khumalo"},
-                     {id:13584354, name:"Nkosinathi Khumalo"},
-                     {id:13584354, name:"Nkosinathi Khumalo"},
-                     {id:13584354, name:"Nkosinathi Khumalo"}, */
                 ]
-                //ng-if="!loginObj.clientSelected"
-                var obj = [{ id: 135823354, name: "Nkosinathi Khumalo" }, { id: 135154, name: "Zamani Gumede" }, { id: 135434354, name: "Mduduzi Memela" }/*
-                    { id: 135845454, name: "Nkosinathi Khumalo" },
-                    { id: 133341554, name: "Nkosinathi Khumalo" },
-                    { id: 13584356734, name: "Nkosinathi Khumalo" } */,
-
-                ];
-
+      
                 //load search 
 
                 $scope.search = function (id) {
+                    var validate = validate_input();
+
+                    if (!validate.status){
+                        self.showmsg = validate.msg;
+                        return;
+                    } else {
+                        self.showmsg = "";
+                    }
+                   
                     var searchV = "";
                     var search_key_data;
                     var search_type = '';
-                    if (self.searchObj.file_number.length == 0 && self.searchObj.id_number.length == 0) {
-
-                        self.showmsg = "Please ensure that you provide a File or ID Number below";
-
-                        return;
-                    } else {
-
-
+                  
                         if (self.searchObj.file_number.length > 0) {
 
                             searchV = "file number: '" + self.searchObj.file_number + "'";
@@ -61,69 +50,73 @@ angular.module('search-app', ['session-app'])
                             search_key_data = self.searchObj.id_number;
                             search_type = "id";
                         }
-                        
+
                         $scope.searching = true;
                         self.search_complete = false;
 
                         var search_data = { search_key: search_key_data, "search_type": search_type }
                         var search_call = serviceSession.search_profile(search_data);
-                        
+
                         search_call.then(function (res) {
 
                             self.showmsg2 = "Showing results for " + searchV;
-                           $scope.results = res.data;
-                            
+                            $scope.results = res.data;
+
                             self.searchObj.file_number = "";
                             self.searchObj.id_number = "";
                             self.search_complete = true;
                             $scope.searching = false;
                         });
 
+                    
+
+
+                    return;
+                   
+
+                }
+
+                function validate_input(){
+
+                    var result = {
+                        status: true,
+                        msg: ''
+                    };
+
+                    //check if filled in
+                    if(self.searchObj.file_number.length == 0 && self.searchObj.id_number.length == 0){
+                            result.status = false;
+                            result.msg = "Please ensure that you provide a File or ID Number below";
                     }
 
+                    
+                    if (self.searchObj.file_number.length > 0 && result.status == true){
 
-return;
-                    $http.get('php/service.php?q=test')
-                        .then(function () {
-
-                            $scope.searching = false;
-
-
-
-                            self.showmsg2 = "Showing results for " + searchV;
-
-                            self.searchObj.file_number = "";
-                            self.searchObj.id_number = "";
-
-                            self.search_complete = true;
-                        })
-
-                    $scope.results = obj;
-
-                    var o = find_Item(obj, id);
-
-                    if (o != null) {
-
-                        var x = find_Item($scope.results, id);
-
-                        if (x == null) {
-                            $scope.results.push(o);
-
+                        if(self.searchObj.file_number.length < 5){
+                            result.status = false;
+                            result.msg = "Please ensure you provide at least 5 characters for File Search";
                         }
 
+                    }
 
-                    } else {
+                    if (self.searchObj.id_number.length > 0 && result.status == true){
 
-                        console.log("unable to find object");
+                        if(self.searchObj.id_number.length < 13){
+                            result.status = false;
+                            result.msg = "Please ensure you provide 14 digit ID Number";
+                        }
 
                     }
+
+
+                    return result;
 
                 }
 
                 self.clear_search = function () {
                     self.search_complete = false;
                     self.showmsg2 = "";
-                     self.showmsg = "";
+                    self.showmsg = "";
                     $scope.results = {};
                 }
 

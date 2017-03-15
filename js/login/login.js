@@ -10,12 +10,16 @@ angular.module('login-app', ['ui.router', 'session-app',  'ngCookies'])
                 controller: function ($scope, $state, $http, serviceSession, $cookies) {
 
                     var self = this;
+
                     self.searching = false;
+
                     self.loginObj = {
                         username: '',
                         userpassword: '',
                         message: ''
                     }
+
+                    self.btnText = "Login";
 
                     var user_cookie = $cookies.get('m_userid');
 
@@ -33,8 +37,8 @@ angular.module('login-app', ['ui.router', 'session-app',  'ngCookies'])
                     self.login = function () {
                         //    $state.go('profiles');       
                         //   return;
-                        self.searching = true;
-  
+                        //self.searching = true;
+                        self.btnText = "please wait...";
                         var data = serviceSession.login(self.loginObj);
 
                         data.then(function (res) {
@@ -43,7 +47,7 @@ angular.module('login-app', ['ui.router', 'session-app',  'ngCookies'])
                                 self.loginObj.message = res.message;
                                 self.loginObj.username = "";
                                 self.loginObj.password = "";
-                                
+                                self.btnText = "Login";
                             } else {
                                 console.log(res);
                                 $cookies.put("m_userid", res.data.userid);
@@ -51,7 +55,7 @@ angular.module('login-app', ['ui.router', 'session-app',  'ngCookies'])
                                 $state.go('profiles');
                             }
 
-                            self.searching = false;
+                           // self.searching = false;
 
                         });
 

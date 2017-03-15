@@ -31,6 +31,7 @@ and open the template in the editor.
 
         <script src="js/main.js" type="text/javascript"></script>
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
+        <link href="css/utils.css" rel="stylesheet" type="text/css"/>
         <link href="css/user-profile.css" rel="stylesheet" type="text/css"/>
         <link rel="icon" href="img/1477676379_icon-57.png">
 
@@ -43,7 +44,7 @@ and open the template in the editor.
         <!--User profile-->
         <script src="js/profiles/profiles.js"></script>
 
-        <!--<script src="js/navigation\nav.js"></script> -->
+        <script src="js/nav/nav.js"></script> 
 
         <!--user profile mod-->
         <script src="js/userProfile/userProfile.js" type="text/javascript"></script>
@@ -80,6 +81,8 @@ and open the template in the editor.
 
           return true;
        }
+
+      
     </script>
 
     </head>

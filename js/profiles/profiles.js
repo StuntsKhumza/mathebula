@@ -1,4 +1,4 @@
-angular.module('profiles-app', ['ui.router', 'search-app', 'userProfile-app', 'addUserProfile-app', 'session-app', 'ngCookies'])
+angular.module('profiles-app', ['ui.router', 'search-app', 'userProfile-app', 'addUserProfile-app', 'session-app', 'ngCookies', 'nav-app'])
 
     .config(function ($stateProvider, $urlRouterProvider) {
 

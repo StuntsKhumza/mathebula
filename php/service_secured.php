@@ -1,7 +1,7 @@
 <?php
 
 session_start(); 
-sleep(10);
+sleep(1);
 require 'sql.php'; 
 
 $query = "";
@@ -15,13 +15,7 @@ $query = $_POST['q'];
 switch ($query) {
 
     case "test":
-        $i = 0;
-
-        while($i < 100000){
-            $i++;
-        }
-
-        echo $i;
+       
     break;
 
     case "authenticate":
@@ -74,14 +68,3 @@ echo json_encode(array('status' => $result));
         break;
     
 }
-
-
-
-
-/*
- * INSERT INTO `users` VALUES (1231354, 'Nkosinathi', 'Khumalo', 26, 9003235383085);
-
-INSERT INTO `logins` VALUES (16545, 9003235383085, 'nkosi', '123abc');
- * 
- * SELECT `PASSWORD` FROM `logins` WHERE `USERNAME` = 'NKOSI'
- */

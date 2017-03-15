@@ -18,7 +18,15 @@
         color: #f8f8f8;
     }
 </style>
-<div class="nav-main" style="border-bottom: 1px #ccc solid">
+
+<div class="background-color-dark" style="position: fixed;width: 100%; z-index: 1">
+    <div class="container">
+<navigation-nav username="Nathi"></navigation-nav>
+    </div>
+</div>
+
+
+<div class="nav-main" style="border-bottom: 1px #ccc solid" ng-if="false">
     <div class="container">
         <nav class="navbar navbar-light remove-radius">
         <ul class="nav navbar-nav">
@@ -41,7 +49,12 @@
 </div>
 
 <div id="wrapper">
-    <div class="pull-right add-padding">{{profilesController.activeuser}}</div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div ng-if="false" class="pull-right add-padding">{{profilesController.activeuser}}</div>
     <div class="overlay" ng-if="false"></div>
 
     <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation" ng-if="false">

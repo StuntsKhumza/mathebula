@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" placeholder="file number" class="form-control simplebox remove-radius" ng-model="searchCtr.searchObj.file_number">
+                                <input type="text" placeholder="file number" ng-disabled="searchCtr.searchObj.id_number.length > 0" class="form-control simplebox remove-radius" ng-model="searchCtr.searchObj.file_number">
                             </div>
                         </div>
                     </div>
@@ -35,12 +35,12 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="">
-                                    <label class="search-body-lable">ID Number(14 digit):</label>
+                                    <label class="search-body-lable">ID Number:</label>
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" placeholder="id number" onkeypress="return isNumberKey(event)" class="form-control simplebox remove-radius"
-                                    ng-model="searchCtr.searchObj.id_number">
+                                <input type="text" placeholder="id number" onkeypress="return isNumberKey(event)" ng-disabled="searchCtr.searchObj.file_number.length > 0" class="form-control simplebox remove-radius"
+                                    ng-model="searchCtr.searchObj.id_number" >
                             </div> 
                         </div>
                     </div>
