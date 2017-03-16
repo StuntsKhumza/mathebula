@@ -33,6 +33,7 @@ and open the template in the editor.
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
         <link href="css/utils.css" rel="stylesheet" type="text/css"/>
         <link href="css/user-profile.css" rel="stylesheet" type="text/css"/>
+        
         <link rel="icon" href="img/1477676379_icon-57.png">
 
         <!--session-->
@@ -63,6 +64,7 @@ and open the template in the editor.
 
         <!--comments-->  
         <script src="js\userProfile\comments\comments.js"></script>
+        
         
 
         <script>
