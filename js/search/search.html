@@ -48,10 +48,12 @@
                 <br>
                 <div class="row">
                     <div class="col-md-12">
-
+                       
                         <div class="alert alert-success" ng-show="searchCtr.showmsg2.length > 0">{{searchCtr.showmsg2}}
 
-                        </div><br>
+                        </div>
+
+                        <br>
 
                         <input type="button" ng-if="!searching && !searchCtr.search_complete" value="Search" class="btn btn-md btn-c-primary pull-right" ng-click="search()"
                             id="search-client">
@@ -63,7 +65,8 @@
                         <br><br>
                     </div>
                 </div>
-
+ <p><h5>Search history:</h5>
+                        </p>
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table">
