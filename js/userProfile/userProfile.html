@@ -7,29 +7,47 @@
     .nav-tabs .nav-item.open .nav-link:hover, .nav-tabs .nav-link.active, .nav-tabs 
     .nav-link.active:focus, .nav-tabs .nav-link.active:hover .nav-item{
 
-        border-color: #3A4149;
+        background-color: #3A4149;
+        color: aliceblue;
+        border: 0px;
 
     }
 
+    
+.nav-tabs .nav-link{
+    background-color: #3A4149;
+    color: aliceblue;
+}
+    
     .nav-tabs {
         border-color: #3A4149;
     }
+
+    .nav-tabs .nav-link.active,
+    .nav-tabs .nav-link.active:focus,
+    .nav-link.active:hover
+    {
+        border: 0px;
+        background-color: #5CB85C;
+    }
+
+   
 </style>
 
 <div class="container">
 
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <button class="nav-link active">General Information</button>
+            <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 1}" ng-click="userProfileController.setTab(1)">General Information</button>
         </li>
         <li class="nav-item">
-            <button class="nav-link">Address</button>
+            <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 2}" ng-click="userProfileController.setTab(2)">Address</button>
         </li>
         <li class="nav-item">
-            <button class="nav-link">Past Medical History</button>
+            <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 3}" ng-click="userProfileController.setTab(3)">Past Medical History</button>
         </li>
         <li class="nav-item">
-            <button class="nav-link">Past Medical History</button>
+            <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 4}" ng-click="userProfileController.setTab(4)">Past Medical History</button>
         </li>
     </ul>
 

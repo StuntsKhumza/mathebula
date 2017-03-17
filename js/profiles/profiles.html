@@ -1,19 +1,18 @@
 <link href="css/side-nav.css" rel="stylesheet" type="text/css" />
 <script src="js/side-nav.js" type="text/javascript"></script>
 <style>
-    .nav-main{
-       
+    .nav-main {
         width: 100%;
         position: fixed;
-        border-bottom: 1px solid #ccc; 
+        border-bottom: 1px solid #ccc;
         background-color: white;
         z-index: 1;
     }
-
-    .c-nav-link{
+    
+    .c-nav-link {
         color: #f8f8f8;
     }
-
+    
     navbar-light .navbar-nav .nav-link {
         color: #f8f8f8;
     }
@@ -21,30 +20,7 @@
 
 <div class="background-color-dark" style="position: fixed;width: 100%; z-index: 1">
     <div class="container">
-<navigation-nav username="Nathi"></navigation-nav>
-    </div>
-</div>
-
-
-<div class="nav-main" style="border-bottom: 1px #ccc solid" ng-if="false">
-    <div class="container">
-        <nav class="navbar navbar-light remove-radius">
-        <ul class="nav navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link c-nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link c-nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link c-nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link c-nav-link" href="#">About</a>
-            </li>
-        </ul>
-    </nav>
-
+        <navigation-nav username="Nathi"></navigation-nav>
     </div>
 </div>
 
@@ -54,103 +30,15 @@
     <br>
     <br>
     <br>
-    <div ng-if="false" class="pull-right add-padding">{{profilesController.activeuser}}</div>
-    <div class="overlay" ng-if="false"></div>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation" ng-if="false">
-        <ul class="nav sidebar-nav">
-            <li class="sidebar-brand">
-                <a href="#">{{profilesController.activeuser_firstname}}</a>
-            </li>
-            <li>
-                <a href="#"><span class="glyphicon glyphicon-home"></span> Home</a>
-            </li>
-            <li>
-                <a href="#"><span class="glyphicon glyphicon-info-sign"></span> About</a>
-            </li>
-            <li>
-                <a href="#"><span class="glyphicon glyphicon-calendar"></span> Events</a>
-            </li>
-            <li>
-                <a ui-sref="adduserprofile"><span class="glyphicon glyphicon-file"></span> Add <Client></Client></a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Dropdown heading</li>
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">Services</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
-            <li>
-                <a ng-click="logOff()" href="#">Log Off</a>
-            </li>
-        </ul>
-    </nav>
+    <div id="page-content-wrapper">
 
-    <div id="page-content-wrapper" >
 
-        <button ng-if="false" type="button" class="hamburger is-closed" data-toggle="offcanvas">
-                        <span class="hamb-top"></span>
-                        <span class="hamb-middle"></span>
-                        <span class="hamb-bottom"></span>
-                    </button>
-
-        <!--put content here-->
-        <add-user-profile ng-if="false"></add-user-profile>
         <search ng-if="!userObj.clientSet"></search>
         <div class="container">
 
             <div ng-if="userObj.clientSet">
 
-                <nav class="navbar navbar-light bg-faded remove-radius" ng-if="false">
-                    <ul class="nav navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">General <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Address</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Past Med History</a>
-                        </li>
-
-                    </ul>
-                </nav>
-
-                <nav ng-if="false" class="navbar navbar-default navbar-profile remove-radius remove-border">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
-      </button>
-
-                        </div>
-                        <div ng-show="false" class="collapse navbar-collapse" id="myNavbar">
-                            <ul class="nav navbar-nav navbar-nav-c">
-                                <li class="active">
-                                    <input type="button" value="Information" ng-click="navTo('generalInfo')" class="btn btn-lg btn-c-primary"
-                                        ng-class="{'btn-c-primary-active': userObj.activeProfileTab == 1}"></li>
-                                <li><input type="button" value="Medical History" ng-click="navTo('medicalHistory')" class="btn btn-lg btn-c-primary"></li>
-                                <li><input type="button" value="Passed Visists" ng-click="navTo('passedVisists')" class="btn btn-lg btn-c-primary"></li>
-                                <li><input type="button" value="Back to search" class="btn btn-lg btn-c-success" ng-click="back_to_search()"></li>
-                            </ul>
-
-
-                        </div>
-                    </div>
-                </nav>
                 <div class="add-padding">
                     <user-profile></user-profile>
                 </div>

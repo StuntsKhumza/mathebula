@@ -5,8 +5,11 @@ angular.module('userProfile-app', ['comments-app', 'profilePicture'])
             return {
                 restrict: "E",
                 templateUrl: "js/userProfile/userProfile.html",
+                controllerAs: 'userProfileController',
                 controller: function ($scope) {
 
+                    var self = this;
+                    self.activeTab = 1;
                     $scope.userObj = [
                         {DATE: '12/10/2015', DOCTOR: 'Mathebula', TYPE: 'GP', PRICE: '1520'},
                         {DATE: '12/10/2015', DOCTOR: 'Mathebula', TYPE: 'GP', PRICE: '1520'},
@@ -37,6 +40,14 @@ angular.module('userProfile-app', ['comments-app', 'profilePicture'])
                                 txt_beenVaxinated: "Yes"
                             }
                         }
+
+                        self.setTab = function(id){
+
+                            self.activeTab = id;
+
+                        }
+
+                    
                     
 
                 }
