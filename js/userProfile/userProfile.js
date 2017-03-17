@@ -15,13 +15,7 @@ angular.module('userProfile-app', ['comments-app',
 
                     var self = this;
                     self.activeTab = 1;
-                    $scope.userObj = [
-                        {DATE: '12/10/2015', DOCTOR: 'Mathebula', TYPE: 'GP', PRICE: '1520'},
-                        {DATE: '12/10/2015', DOCTOR: 'Mathebula', TYPE: 'GP', PRICE: '1520'},
-                        {DATE: '12/10/2015', DOCTOR: 'Mathebula', TYPE: 'GP', PRICE: '1520'},
-                        {DATE: '12/10/2015', DOCTOR: 'Mathebula', TYPE: 'GP', PRICE: '1520'},
-                        {DATE: '12/10/2015', DOCTOR: 'Mathebula', TYPE: 'GP', PRICE: '1520'}
-                    ]
+                    
 
                     $scope.userDataObj = 
                         {
@@ -44,6 +38,11 @@ angular.module('userProfile-app', ['comments-app',
                                 txt_testedForHapititsB: "No",
                                 txt_beenVaxinated: "Yes"
                             }
+                        }
+
+                        self.return_to_search = function(){
+                            $scope.userObj.client = null;
+                            $scope.userObj.clientSet = false;
                         }
 
                         self.setTab = function(id){

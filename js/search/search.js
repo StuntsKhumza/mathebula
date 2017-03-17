@@ -25,7 +25,7 @@ angular.module('search-app', ['session-app'])
       
                 //load search 
 
-                $scope.search = function (id) {
+                $scope.search = function () {
                     var validate = validate_input();
 
                     if (!validate.status){

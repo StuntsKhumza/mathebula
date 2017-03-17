@@ -1,15 +1,11 @@
-<style>
-
-</style>
-
 <div class="container">
- <h3>Nkosinathi Khumalo</h3>
-      <hr class="colorgraph">
+    <h3>Nkosinathi Khumalo</h3>
+    <hr class="colorgraph">
 
     <div class="pull-right">
-        <input type="button" class="btn btn-default" value="click to return to search">
+        <input type="button" class="btn btn-default" value="click to return to search" ng-click="userProfileController.return_to_search()">
     </div>
-    
+
     <br><br><br>
     <div class="row">
         <div class="col-md-3">
@@ -38,276 +34,19 @@
 
             </ul>
 
-    
-<hr>
+
+            <hr>
             <general-tab ng-if="userProfileController.activeTab == 1"></general-tab>
             <address-tab ng-if="userProfileController.activeTab == 2"></address-tab>
+            <past-medical-history-tab ng-if="userProfileController.activeTab == 3"></past-medical-history-tab>
         </div>
     </div>
 
 
     <br>
 
-
-
-    <div class="row" ng-if="false">
-        <div class="col-md-2">
-            <img ng-if="false" src="img/icons/userProfilePicturesbusinessman.png" height="150">
-            <hr>
-            <proPic proPic="img/icons/userProfilePicturesbusinessman.png"></proPic>
-            <br>
-            <p>
-                <h4>Nkosinathi Khumalo</h4>
-            </p>
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-9">
-            <div class="row">
-                <div class="col-md-12">
-
-                    <div class="thumb-container">
-                        <div class="thumb-header">
-                            <div id="generalInfo">
-                                <img src="img/icons/medical/stethoscope.png" height="50"><b> General Information:</b>
-                            </div>
-                        </div>
-                        <div class="thumb-body">
-
-                            <div class="row add-border-bottom">
-                                <div class="col-md-6">
-                                    <label>Name:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    {{userDataObj.general.txt_name}}
-                                </div>
-
-                            </div>
-
-                            <div class="row add-border-bottom">
-                                <div class="col-md-6">
-                                    <label>Surname:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    {{userDataObj.general.txt_surname}}
-                                </div>
-                            </div>
-
-                            <div class="row add-border-bottom">
-                                <div class="col-md-6">
-                                    <label>Date of birth:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    {{userDataObj.general.txt_dateofbirth}}
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="thumb-footer">
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <br><br>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="thumb-container">
-                        <div class="thumb-header">
-                            <div id="medicalHistory">
-                                <img src="img/icons/address/pin-33.png" height="50"> <b> Address:</b>
-                            </div>
-                        </div>
-                        <div class="thumb-body">
-                            <div class="row add-border-bottom">
-                                <div class="col-md-6">
-                                    <label>Line 1:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    {{userDataObj.address.txt_line1}}
-                                </div>
-
-                            </div>
-                            <div class="row add-border-bottom">
-                                <div class="col-md-6">
-                                    <label>Line 2:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    {{userDataObj.address.txt_line2}}
-                                </div>
-
-                            </div>
-                            <div class="row add-border-bottom">
-                                <div class="col-md-6">
-                                    <label>Line 3:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    {{userDataObj.address.txt_line3}}
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="thumb-footer">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br><br>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="thumb-container">
-                        <div class="thumb-header">
-                            <div id="medicalHistory">
-                                <img src="img/icons/medical/report.png" height="50"><b>Past Medical History:</b>
-                            </div>
-                        </div>
-                        <div class="thumb-body">
-
-                            <div class="row add-border-bottom">
-                                <div class="col-md-6">
-                                    <div class="row">
-
-                                        <div class="col-md-6">
-                                            <label>Previous Physician’s name:</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            {{userDataObj.history.txt_previusPhycName}}
-                                        </div>
-                                    </div>
-
-                                    <div class="row add-border-bottom">
-                                        <div class="col-md-6">
-                                            <label>Have you ever been hospitalized?:</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            {{userDataObj.history.txt_hospitalizedBefore}}
-                                        </div>
-                                    </div>
-
-                                    <div class="row add-border-bottom">
-                                        <div class="col-md-6">
-                                            <label>Have you ever been tested for hepatitis A, B or C?:</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            {{userDataObj.history.txt_testedForHapititsB}}
-                                        </div>
-                                    </div>
-
-                                    <div class="row add-border-bottom">
-                                        <div class="col-md-6">
-                                            <label>Have you been vaccinated for hepatitis B?:</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            {{userDataObj.history.txt_beenVaxinated}}
-                                        </div>
-                                    </div>
-
-                                    <div class="row add-border-bottom">
-                                        <div class="col-md-6">
-                                            <label>Have you been vaccinated for hepatitis A?:</label>
-                                        </div>
-                                        <div class="col-md-6">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="row add-border-bottom">
-                                        <div class="col-md-6">
-                                            <label>Last Tuberculosis (TB) Screening</label>
-                                        </div>
-                                        <div class="col-md-6">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="row add-border-bottom">
-                                        <div class="col-md-6">
-                                            <label>If positive TB screen, date of last chest x-ray</label>
-                                        </div>
-                                        <div class="col-md-6">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row add-border-bottom">
-
-                                        <div class="col-md-6">
-                                            <label>Date of last exam:</label>
-                                        </div>
-                                        <div class="col-md-6">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="row add-border-bottom">
-                                        <div class="col-md-6">
-                                            <label>If yes, what for?:</label>
-                                        </div>
-                                        <div class="col-md-6">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="row add-border-bottom">
-                                        <div class="col-md-6">
-                                            <label>Which hepatitis virus?:</label>
-                                        </div>
-                                        <div class="col-md-6">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="row add-border-bottom">
-                                        <div class="col-md-6">
-                                            <label>If yes, date vaccine series completed?:</label>
-                                        </div>
-                                        <div class="col-md-6">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="row add-border-bottom">
-                                        <div class="col-md-6">
-                                            <label>If yes, date vaccine series completed?:</label>
-                                        </div>
-                                        <div class="col-md-6">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="row add-border-bottom">
-                                        <div class="col-md-6">
-                                            <label>Result of TB screening?:</label>
-                                        </div>
-                                        <div class="col-md-6">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="row add-border-bottom">
-                                        <div class="col-md-6">
-                                            <label>Result of chest x-ray</label>
-                                        </div>
-                                        <div class="col-md-6">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                        </div>
-                        <div class="thumb-footer">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
+    <!-- 
+        <div class="row">
                 <div class="col-md-12">
                     <div class="thumb-container">
                         <div class="thumb-header">
@@ -344,5 +83,4 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+    -->

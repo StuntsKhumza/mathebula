@@ -10,13 +10,13 @@
         </div>
 
         <div class="search-body">
-            <div class="row" ng-if="searching">
+            <div class="row" ng-if="false">
                 <div class="col-md-12">
                     <img src="img/Searching.gif" alt="searching gif"><br>
                     <h4>...please wait</h4>
                 </div>
             </div>
-            <div ng-show="!searching">
+            <div >
                 <div class="row add-padding" ng-if="!searchCtr.search_complete">
                     <div class="alert alert-danger" ng-show="searchCtr.showmsg.length > 0">{{searchCtr.showmsg}}</div>
                     <div class="col-md-6">
@@ -54,8 +54,9 @@
 
                         </div><br>
 
-                        <input type="button" ng-if="!searchCtr.search_complete" value="Search" class="btn btn-md btn-c-primary pull-right" ng-click="search(135823354)"
+                        <input type="button" ng-if="!searching && !searchCtr.search_complete" value="Search" class="btn btn-md btn-c-primary pull-right" ng-click="search()"
                             id="search-client">
+                            <img src="img/Searching.gif" class="pull-right" ng-if="searching" alt="searching gif">
                         <input type="button" ng-if="searchCtr.search_complete" value="Clear Search" class="btn btn-md btn-danger pull-right" ng-click="searchCtr.clear_search()"
                             id="clear_search">
 
