@@ -1,10 +1,10 @@
-angular.module('userProfile-General-app', [])
+angular.module('userProfile-Address-app', [])
 
-    .directive('generalTab', function () {
+    .directive('addressTab', function () {
 
         return {
             restrict: "E",
-            templateUrl: "js/userProfile/general/general.html",
+            templateUrl: "js/userProfile/address/address.html",
             controllerAs: function(){},
             controller: function ($scope) {
 

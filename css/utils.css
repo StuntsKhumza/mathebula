@@ -11,7 +11,9 @@
 .c-pull-right {
     float: right;
 }
-
+.border-add-left{
+    border-left: 1px solid #ccc;
+}
 .background-color-dark{
     background-color: #3A4149;
     color:#D3D5CB;

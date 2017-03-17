@@ -1,4 +1,9 @@
-angular.module('userProfile-app', ['comments-app', 'profilePicture'])
+angular.module('userProfile-app', ['comments-app', 
+'profilePicture',
+'userProfile-General-app',
+'userProfile-Address-app',
+'userProfile-pastMedicalHistory-app'
+])
 
         .directive('userProfile', function () {
 

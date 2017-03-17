@@ -1,68 +1,53 @@
 <style>
-    .nav-tabs .nav-link {
-        border-radius: 0px;
-    }
 
-    .nav-tabs .nav-item.open .nav-link, .nav-tabs .nav-item.open .nav-link:focus, 
-    .nav-tabs .nav-item.open .nav-link:hover, .nav-tabs .nav-link.active, .nav-tabs 
-    .nav-link.active:focus, .nav-tabs .nav-link.active:hover .nav-item{
-
-        background-color: #3A4149;
-        color: aliceblue;
-        border: 0px;
-
-    }
-
-    
-.nav-tabs .nav-link{
-    background-color: #3A4149;
-    color: aliceblue;
-}
-    
-    .nav-tabs {
-        border-color: #3A4149;
-    }
-
-    .nav-tabs .nav-link.active,
-    .nav-tabs .nav-link.active:focus,
-    .nav-link.active:hover
-    {
-        border: 0px;
-        background-color: #5CB85C;
-    }
-
-   @media all and (max-width: 780px){
-       .nav-link-btn-text { display: none}
-   }
 </style>
 
 <div class="container">
+ <h3>Nkosinathi Khumalo</h3>
+      <hr class="colorgraph">
 
-<pro-pic imgtwo="img/patients/rsz_1rsz_blank-profile-picture-973460_960_720.png"></pro-pic>
-
-<br>
-
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 1}" ng-click="userProfileController.setTab(1)">
+    <div class="pull-right">
+        <input type="button" class="btn btn-default" value="click to return to search">
+    </div>
+    
+    <br><br><br>
+    <div class="row">
+        <div class="col-md-3">
+            <pro-pic imgtwo="img/patients/rsz_1rsz_blank-profile-picture-973460_960_720.png"></pro-pic>
+        </div>
+        <div class="col-md-9 ">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 1}" ng-click="userProfileController.setTab(1)">
                 
                 <img src="img/icons/medical/report-1.png" height="40">
                 <span class="nav-link-btn-text">General Information<span>
 
                 </button>
-        </li>
-        <li class="nav-item">
-            <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 2}" ng-click="userProfileController.setTab(2)">
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 2}" ng-click="userProfileController.setTab(2)">
                 <img src="img/icons/address/placeholder-26.png" height="40">
                 <span class="nav-link-btn-text">Address<span></button>
-        </li>
-        <li class="nav-item">
-            <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 3}" ng-click="userProfileController.setTab(3)">
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 3}" ng-click="userProfileController.setTab(3)">
                 <img src="img/icons/medical/folder.png" height="40">
                 <span class="nav-link-btn-text">Past Medical History<span></button>
-        </li>
-       
-    </ul>
+                </li>
+
+            </ul>
+
+    
+<hr>
+            <general-tab ng-if="userProfileController.activeTab == 1"></general-tab>
+            <address-tab ng-if="userProfileController.activeTab == 2"></address-tab>
+        </div>
+    </div>
+
+
+    <br>
+
 
 
     <div class="row" ng-if="false">
@@ -361,297 +346,3 @@
             </div>
         </div>
     </div>
-
-    <!--
-    <div class="col-md-6">
-        <div class="thumb-container">
-            <div class="thumb-header">
-                <div class="alert alert-success">
-                    Address:
-                </div>
-            </div>
-            <div class="thumb-body">
-                <div class="row add-border-bottom">
-                    <div class="col-md-6">
-                        <label>Line 1:</label>
-                    </div>
-                    <div class="col-md-6">
-                         {{userDataObj.address.txt_line1}}
-                    </div>
-
-                </div>
-                <div class="row add-border-bottom">
-                    <div class="col-md-6">
-                        <label>Line 2:</label>
-                    </div>
-                    <div class="col-md-6">
-{{userDataObj.address.txt_line2}}
-                    </div>
-
-                </div>
-                <div class="row add-border-bottom">
-                    <div class="col-md-6">
-                        <label>Line 3:</label>
-                    </div>
-                    <div class="col-md-6">
-{{userDataObj.address.txt_line3}}
-                    </div>
-
-                </div>
-            </div>
-            <div class="thumb-footer">
-
-            </div>
-        </div>  
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="thumb-container">
-            <div class="thumb-header">
-                <div class="alert alert-success">
-                    Past Medical History:
-                </div>
-            </div>
-            <div class="thumb-body">
-
-                <div class="row add-border-bottom">
-                    <div class="col-md-6">
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <label>Previous Physician’s name:</label>
-                            </div>
-                            <div class="col-md-6">
-                                  {{userDataObj.history.txt_previusPhycName}}
-                            </div>
-                        </div>
-
-                        <div class="row add-border-bottom">
-                            <div class="col-md-6">
-                                <label>Have you ever been hospitalized?:</label>
-                            </div>
-                            <div class="col-md-6">
-{{userDataObj.history.txt_hospitalizedBefore}}
-                            </div>
-                        </div>
-
-                        <div class="row add-border-bottom">
-                            <div class="col-md-6">
-                                <label>Have you ever been tested for hepatitis A, B or C?:</label>
-                            </div>
-                            <div class="col-md-6">
-{{userDataObj.history.txt_testedForHapititsB}}
-                            </div>
-                        </div>
-
-                        <div class="row add-border-bottom">
-                            <div class="col-md-6">
-                                <label>Have you been vaccinated for hepatitis B?:</label>
-                            </div>
-                            <div class="col-md-6">
-{{userDataObj.history.txt_beenVaxinated}}
-                            </div>
-                        </div>
-
-                        <div class="row add-border-bottom">
-                            <div class="col-md-6">
-                                <label>Have you been vaccinated for hepatitis A?:</label>
-                            </div>
-                            <div class="col-md-6">
-
-                            </div>
-                        </div>
-
-                        <div class="row add-border-bottom">
-                            <div class="col-md-6">
-                                <label>Last Tuberculosis (TB) Screening</label>
-                            </div>
-                            <div class="col-md-6">
-
-                            </div>
-                        </div>
-
-                        <div class="row add-border-bottom">
-                            <div class="col-md-6">
-                                <label>If positive TB screen, date of last chest x-ray</label>
-                            </div>
-                            <div class="col-md-6">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row add-border-bottom">
-
-                            <div class="col-md-6">
-                                <label>Date of last exam:</label>
-                            </div>
-                            <div class="col-md-6">
-
-                            </div>
-                        </div>
-
-                        <div class="row add-border-bottom">
-                            <div class="col-md-6">
-                                <label>If yes, what for?:</label>
-                            </div>
-                            <div class="col-md-6">
-
-                            </div>
-                        </div>
-
-                        <div class="row add-border-bottom">
-                            <div class="col-md-6">
-                                <label>Which hepatitis virus?:</label>
-                            </div>
-                            <div class="col-md-6">
-
-                            </div>
-                        </div>
-
-                        <div class="row add-border-bottom">
-                            <div class="col-md-6">
-                                <label>If yes, date vaccine series completed?:</label>
-                            </div>
-                            <div class="col-md-6">
-
-                            </div>
-                        </div>
-
-                        <div class="row add-border-bottom">
-                            <div class="col-md-6">
-                                <label>If yes, date vaccine series completed?:</label>
-                            </div>
-                            <div class="col-md-6">
-
-                            </div>
-                        </div>
-
-                        <div class="row add-border-bottom">
-                            <div class="col-md-6">
-                                <label>Result of TB screening?:</label>
-                            </div>
-                            <div class="col-md-6">
-
-                            </div>
-                        </div>
-
-                        <div class="row add-border-bottom">
-                            <div class="col-md-6">
-                                <label>Result of chest x-ray</label>
-                            </div>
-                            <div class="col-md-6">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
-            <div class="thumb-footer">
-
-            </div>
-        </div>  
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="thumb-container">
-            <div class="thumb-header">
-                <div class="alert alert-success">
-                    Passed Visits:
-                </div>
-            </div>
-            <div class="thumb-body">
-                <table class="table">
-                    <thead>
-                    <th>Date:</th>
-                    <th>Doctor:</th>
-                    <th>Type:</th>
-                    <th>Price:</th>
-                    </thead>
-
-                    <tr ng-repeat="visit in userObj">
-                        <td>{{visit.DATE}}</td>
-                        <td>{{visit.DOCTOR}}</td>
-                        <td>{{visit.TYPE}}</td>
-                        <td>{{visit.PRICE}}</td>
-                    </tr>
-
-
-                </table>
-            </div>
-            <div class="thumb-footer">
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="thumb-container">
-            <div class="thumb-header">
-                <div class="alert alert-success">
-                    Dr's Notes:
-                </div>
-            </div>
-            <div class="thumb-body">
-                <table class="table">
-                    <thead>
-                    <th>Date:</th>
-                    <th>Doctor:</th>
-                    <th>Type:</th>
-                    <th>Comment</th>
-                    </thead>
-
-                    <tr ng-repeat="visit in userObj">
-                        <td>{{visit.DATE}}</td>
-                        <td>{{visit.DOCTOR}}</td>
-                        <td>{{visit.TYPE}}</td>
-                        <td>{{visit.PRICE}}</td>
-                    </tr>
-
-
-                </table>
-            </div>
-            <div class="thumb-footer">
-
-            </div>
-        </div>
-    </div>
-</div>
-
-</div>
-<div class="landing-wrapper" ng-if="false">
-
-</div>
-<div ng-if="false">
-<div class="jumbotron">
-    hello world
-</div> -->
-</div>
-
-
-<!--
-<div class="thumb-container">
-    <div class="thumb-header">
-        <div class="alert alert-success">
-            General Information:
-        </div>
-    </div>
-    <div class="thumb-body">
-
-
-    </div>
-    <div class="thumb-footer">
-
-    </div>
-</div>
-
--->

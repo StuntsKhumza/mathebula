@@ -44,7 +44,10 @@ and open the template in the editor.
 
         <!--User profile-->
         <script src="js/profiles/profiles.js"></script>
-
+        <script src="js/userProfile/general/general.js"></script>
+        <script src="js/userProfile/address/address.js"></script>
+        <script src="js/userProfile/past medical history/pastMedicalHistory.js"></script>
+        
         <script src="js/nav/nav.js"></script> 
 
         <!--user profile mod-->
@@ -64,8 +67,7 @@ and open the template in the editor.
 
         <!--comments-->  
         <script src="js\userProfile\comments\comments.js"></script>
-        
-        
+               
 
         <script>
         /*    window.onbeforeunload = function(){
