@@ -1,13 +1,12 @@
-angular.module('search-app', ['session-app'])
+angular.module('search-app', ['session-app', 'ngCookies'])
     .directive(
     'search', function () {
         return {
             restrict: 'E',
             templateUrl: "js/search/search.html",
             controllerAs: 'searchCtr',
-            controller: function ($scope, $http, serviceSession) {
-                //searchCtr.searchObj
-                //  $scope.userObj.search_done = false;
+            controller: function ($scope, $http, serviceSession, $cookies) {
+
                 $scope.searching = false;
                 var self = this;
 
@@ -22,7 +21,16 @@ angular.module('search-app', ['session-app'])
 
                 $scope.results = [
                 ]
-      
+
+                var getHistory = $cookies.get('dr_search_history');
+
+                if(getHistory != null){
+
+                    getHistory = b64DecodeUnicode(getHistory);
+
+                    $scope.results = JSON.parse(getHistory);
+                }
+
                 //load search 
 
                 $scope.search = function () {
@@ -61,7 +69,10 @@ angular.module('search-app', ['session-app'])
 
                             self.showmsg2 = "Showing results for " + searchV;
                             $scope.results = res.data;
-                          
+                      
+                            var str = b64EncodeUnicode(JSON.stringify(res.data));
+                            $cookies.put('dr_search_history', str);
+                         
                             self.searchObj.file_number = "";
                             self.searchObj.id_number = "";
                             self.search_complete = true;
@@ -92,9 +103,9 @@ angular.module('search-app', ['session-app'])
                     
                     if (self.searchObj.file_number.length > 0 && result.status == true){
 
-                        if(self.searchObj.file_number.length < 5){
+                        if(self.searchObj.file_number.length < 2){
                             result.status = false;
-                            result.msg = "Please ensure you provide at least 5 characters for File Search";
+                            result.msg = "Please ensure you provide at least 2 characters for File Search";
                         }
 
                     }
@@ -143,6 +154,18 @@ angular.module('search-app', ['session-app'])
                     return result;
 
                 }
+
+                function b64EncodeUnicode(str) {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+        return String.fromCharCode('0x' + p1);
+    }));
+}
+
+function b64DecodeUnicode(str) {
+    return decodeURIComponent(atob(str).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+}
 
             }
 
