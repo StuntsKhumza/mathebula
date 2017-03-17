@@ -29,6 +29,15 @@ and open the template in the editor.
         <script src="configs/angular-ui-router.js"></script>
         <script src="configs/angular-cookie.js"></script>
 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ 
+<script>
+    jQuery(function () {
+        jQuery("#sortable").sortable();
+        jQuery("#sortable").disableSelection();
+    });
+</script>
+
         <script src="js/main.js" type="text/javascript"></script>
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
         <link href="css/utils.css" rel="stylesheet" type="text/css"/>

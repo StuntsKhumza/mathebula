@@ -1,9 +1,46 @@
 <style>
-    #search-client {}
+
+  #sortable {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 60%;
+        }
+        
+        #sortable li {
+            margin: 0 3px 3px 3px;
+            padding: 0.4em;
+            padding-left: 1.5em;
+            font-size: 1.4em;
+            height: 18px;
+        }
+        
+        #sortable li span {
+            position: absolute;
+            margin-left: -1.3em;
+        }
+
+
+    @media all and (max-width: 400px) {
+        #btnQueue {
+            width: 100%;
+        }
+    }
 </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 <div class="container">
+
     <div class="search-container">
+
+
+
+        <div class="pull-right">
+
+            <input type="button" id="btnQueue" data-toggle="modal" data-target="#queueModal" value="Queue" class="btn btn-default">
+        </div>
+        <br><br>
+
         <div class="search-header">
             <h3>Search for a patient:</h3>
             <hr class="colorgraph"><br>
@@ -15,7 +52,7 @@
                     <h4>...please wait</h4>
                 </div>
             </div>
-            <div >
+            <div>
                 <div class="row add-padding" ng-if="!searchCtr.search_complete">
                     <div class="alert alert-danger" ng-show="searchCtr.showmsg.length > 0">{{searchCtr.showmsg}}</div>
                     <div class="col-md-6">
@@ -26,7 +63,8 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" placeholder="file number" ng-disabled="searchCtr.searchObj.id_number.length > 0" class="form-control simplebox remove-radius" ng-model="searchCtr.searchObj.file_number">
+                                <input type="text" placeholder="file number" ng-disabled="searchCtr.searchObj.id_number.length > 0" class="form-control simplebox remove-radius"
+                                    ng-model="searchCtr.searchObj.file_number">
                             </div>
                         </div>
                     </div>
@@ -38,9 +76,9 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" placeholder="id number" onkeypress="return isNumberKey(event)" ng-disabled="searchCtr.searchObj.file_number.length > 0" class="form-control simplebox remove-radius"
-                                    ng-model="searchCtr.searchObj.id_number" >
-                            </div> 
+                                <input type="text" placeholder="id number" onkeypress="return isNumberKey(event)" ng-disabled="searchCtr.searchObj.file_number.length > 0"
+                                    class="form-control simplebox remove-radius" ng-model="searchCtr.searchObj.id_number">
+                            </div>
                         </div>
                     </div>
 
@@ -48,16 +86,16 @@
                 <br>
                 <div class="row">
                     <div class="col-md-12">
-                       
+
                         <div class="alert alert-success" ng-show="searchCtr.showmsg2.length > 0">{{searchCtr.showmsg2}}
 
                         </div>
 
                         <br>
 
-                        <input type="button" ng-if="!searching && !searchCtr.search_complete" value="Search" class="btn btn-md btn-c-primary pull-right" ng-click="search()"
-                            id="search-client">
-                            <img src="img/Searching.gif" class="pull-right" ng-if="searching" alt="searching gif">
+                        <input type="button" ng-if="!searching && !searchCtr.search_complete" value="Search" class="btn btn-md btn-c-primary pull-right"
+                            ng-click="search()" id="search-client">
+                        <img src="img/Searching.gif" class="pull-right" ng-if="searching" alt="searching gif">
                         <input type="button" ng-if="searchCtr.search_complete" value="Clear Search" class="btn btn-md btn-danger pull-right" ng-click="searchCtr.clear_search()"
                             id="clear_search">
 
@@ -65,8 +103,9 @@
                         <br><br>
                     </div>
                 </div>
- <p><h5>Search history:</h5>
-                        </p>
+                <p>
+                    <h5>Search history:</h5>
+                </p>
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table">
@@ -92,6 +131,68 @@
 
                 </div>
 
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="queueModal" tabindex="-1" role="dialog" aria-labelledby="queueModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Manage Patient Queue</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<style>
+        #sortable {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 60%;
+        }
+        
+        #sortable li {
+            margin: 0 3px 3px 3px;
+            padding: 0.4em;
+            padding-left: 1.5em;
+            font-size: 1.4em;
+            height: 18px;
+        }
+        
+        #sortable li span {
+            position: absolute;
+            margin-left: -1.3em;
+        }
+
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        jQuery(function() {
+            jQuery("#sortable").sortable();
+            jQuery("#sortable").disableSelection();
+        });
+
+    </script>
+
+                <ul id="sortable">
+                    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
+                    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+                    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+                    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+                    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
+                    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+                    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
