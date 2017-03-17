@@ -49,7 +49,7 @@ angular.module('login-app', ['ui.router', 'session-app',  'ngCookies'])
                                 self.loginObj.password = "";
                                 self.btnText = "Login";
                             } else {
-                                console.log(res);
+                             
                                 $cookies.put("m_userid", res.data.userid);
 
                                 $state.go('profiles');

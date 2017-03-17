@@ -61,7 +61,7 @@ angular.module('search-app', ['session-app'])
 
                             self.showmsg2 = "Showing results for " + searchV;
                             $scope.results = res.data;
-                            console.log($scope.results);
+                          
                             self.searchObj.file_number = "";
                             self.searchObj.id_number = "";
                             self.search_complete = true;
@@ -130,7 +130,7 @@ angular.module('search-app', ['session-app'])
                         $scope.userObj.client = o;
                         $scope.userObj.clientSet = true;
                     }
-                    console.log(o);
+                
 
                 }
 

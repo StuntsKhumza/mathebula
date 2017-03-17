@@ -24,7 +24,7 @@ angular.module('profilePicturev2', [])
                         transformRequest: angular.identity,
                         headers: {'Content-Type': undefined}
                     })
-                    console.log(fd);
+                   
                     return call;
                 }
             }]);

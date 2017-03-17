@@ -25,16 +25,14 @@ angular.module('nav-app', ['ngCookies'])
                 }
 
                 self.logOff = function () {
-                        console.log('test');
+                  
                         $cookies.remove('m_userid');
                         $http.get('php/service.php?q=logOff');
 
                         $state.go('login');
                     }
 
-                console.log('2');
-
-
+                
                 function getName() {
 
                     //    return mySession.UserObj;

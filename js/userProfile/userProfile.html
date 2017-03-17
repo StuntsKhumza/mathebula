@@ -31,24 +31,37 @@
         background-color: #5CB85C;
     }
 
-   
+   @media all and (max-width: 780px){
+       .nav-link-btn-text { display: none}
+   }
 </style>
 
 <div class="container">
 
+<pro-pic imgtwo="img/patients/rsz_1rsz_blank-profile-picture-973460_960_720.png"></pro-pic>
+
+<br>
+
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 1}" ng-click="userProfileController.setTab(1)">General Information</button>
+            <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 1}" ng-click="userProfileController.setTab(1)">
+                
+                <img src="img/icons/medical/report-1.png" height="40">
+                <span class="nav-link-btn-text">General Information<span>
+
+                </button>
         </li>
         <li class="nav-item">
-            <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 2}" ng-click="userProfileController.setTab(2)">Address</button>
+            <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 2}" ng-click="userProfileController.setTab(2)">
+                <img src="img/icons/address/placeholder-26.png" height="40">
+                <span class="nav-link-btn-text">Address<span></button>
         </li>
         <li class="nav-item">
-            <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 3}" ng-click="userProfileController.setTab(3)">Past Medical History</button>
+            <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 3}" ng-click="userProfileController.setTab(3)">
+                <img src="img/icons/medical/folder.png" height="40">
+                <span class="nav-link-btn-text">Past Medical History<span></button>
         </li>
-        <li class="nav-item">
-            <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 4}" ng-click="userProfileController.setTab(4)">Past Medical History</button>
-        </li>
+       
     </ul>
 
 

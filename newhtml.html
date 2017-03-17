@@ -34,9 +34,12 @@ and open the template in the editor.
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <link href="css/user-profile.css" rel="stylesheet" type="text/css" />
     <link rel="icon" href="img/1477676379_icon-57.png">
+    <script src="js/userProfile/propicv2/propicv2.js"></script>
+        
+        <script src="js/userProfile/proPic/proPic.js"></script>
 
     <script>
-        var app = angular.module('main-app', [])
+        var app = angular.module('main-app', ['profilePicture'])
         app.controller('contr', function ($scope, $http) {
             $scope.test = "test";
         })
@@ -44,18 +47,7 @@ and open the template in the editor.
 </head>
 
 <body ng-app="main-app">
-    <div ng-controller="contr">
-        <div class="container">
-            <div class="div-1" style="background: #ccc; height: 100px; width: 100px;">
-
-            </div>
-            <br>
-            <div class="div-2"style="background: #212121; height: 100px; width: 100px;">
-
-            </div>
-        </div>
-
-    </div>
+    <pro-pic imagetwo=""></pro-pic>
 </body>
 
 </html>

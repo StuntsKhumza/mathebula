@@ -1,4 +1,12 @@
-angular.module('profiles-app', ['ui.router', 'search-app', 'userProfile-app', 'addUserProfile-app', 'session-app', 'ngCookies', 'nav-app'])
+angular.module('profiles-app', [
+    'ui.router', 
+    'search-app', 
+    'userProfile-app', 
+    'addUserProfile-app', 
+    'session-app', 
+    'ngCookies', 
+    'nav-app'
+    ])
 
     .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -28,7 +36,7 @@ angular.module('profiles-app', ['ui.router', 'search-app', 'userProfile-app', 'a
                     currentUser.then(function(res){
                         self.activeuser = res.data[0].FIRSTNAME + " " + res.data[0].LASTNAME;
                         self.activeuser_firstname = res.data[0].FIRSTNAME;
-                        console.log(res.data[0]);
+                      
                     })
 
 
@@ -41,7 +49,7 @@ angular.module('profiles-app', ['ui.router', 'search-app', 'userProfile-app', 'a
                     }
 
                     $scope.logOff = function () {
-                        console.log('test');
+                     
                         $cookies.remove('m_userid');
                         $http.get('php/service.php?q=logOff');
 
