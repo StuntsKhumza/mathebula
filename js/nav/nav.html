@@ -26,8 +26,8 @@
         border-bottom: 3px #ccc solid;
     }
     
-    .nav-c ul li a {
-        height: 25px;
+    .nav-c ul li a, .nav-c-actions {
+        height: 30px;
         display: block;
         font-size: 14pt;
         text-decoration: none;
@@ -36,6 +36,10 @@
 
 .nav-c-brand {padding-right: 20px;
     margin-right: 20px; font-weight: bold;
+}
+
+.dropdown-menu li, .dropdown-menu li a {
+    z-index: 1;
 }
    
 </style>
@@ -49,7 +53,9 @@
         </li>
         <!--<li class="active-c"><a ui-sref="s-home">Home</a></li>-->
     </ul>
-    <div class="c-pull-right"><!-- Hi {{navCrt.sessionV.username}}--><span ng-click="navCtr.logOff()" style="color:#D3D5CB">logout</span></div>
+    <div class="c-pull-right" ><!-- Hi {{navCrt.sessionV.username}}--><span ng-click="navCtr.logOff()" class="nav-c-actions">logout</span>
+        
+    </div>
 </nav>
 
 <br>
