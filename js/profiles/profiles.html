@@ -24,7 +24,7 @@
     </div>
 </div>
 
-<div id="wrapper">
+<div id="main">
     <br>
     <br>
     <br>
@@ -32,11 +32,12 @@
     <br>
 
     <div id="page-content-wrapper">
-
-
+        <div class="container">
+            <input type="button" class="btn-warning btn btn-md" value="Waiting list" onclick="openNav()">
+        </div>
         <search ng-if="!userObj.clientSet"></search>
-        <div class="container-fluid">
-
+        <div class="container">
+ 
             <div ng-if="userObj.clientSet">
 
                 <div class="add-padding">

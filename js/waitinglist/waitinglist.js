@@ -5,19 +5,28 @@ angular.module('waitingList-app', [])
             controllerAs: 'waitinglistController',
             templateUrl: 'js/waitinglist/waitinglist.html',
             controller: function ($scope) {
- 
-                this.reloadObj = function(){
-                    console.log('test');
-                   // $scope.listdt = $scope.queue;
-                    
-                }
 
-               // $scope.listdt = [
-                    //  { title: 'Nkosinathi Khumalo'}
-                    //  { title: 'Zama Gumede'},
-                    //  { title: 'Sindi Hlao'},
-                    //  { title: 'Thandi Tlalo'}
-                //]
+            /*    $scope.queue = {
+                    obj: [
+                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
+                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
+                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
+                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
+                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
+                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
+                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
+                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
+                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
+                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
+                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
+                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
+                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
+                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
+                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
+                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' }
+                    ]
+                };*/
             }
+
         }
     })

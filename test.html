@@ -30,46 +30,60 @@ and open the template in the editor.
     <script src="configs/angular-ui-router.js"></script>
     <script src="configs/angular-cookie.js"></script>
     <script src="configs/jquery.transit.min.js"></script>
- 
+
     <script src="js/main.js" type="text/javascript"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <link href="css/waitinglist.css" rel="stylesheet" type="text/css" />
     <link href="css/user-profile.css" rel="stylesheet" type="text/css" />
     <link rel="icon" href="img/1477676379_icon-57.png">
     <link href="css/waitinglist.css" rel="stylesheet" type="text/css" />
-    <link href="css/BootSideMenu.css" rel="stylesheet" type="text/css" />
+
     <!--waiting list-->
     <script src="js/waitinglist/waitinglist.js"></script>
-     <script src="configs/BootSideMenu.js"></script>
+    <link rel="stylesheet" href="css/sidemenu.css">
+    <script src="configs/slideMenu.js"></script>
     <script>
         angular.module('app', ['waitingList-app'])
-            .controller('contr', function ($scope) {
-                $scope.obj = [
-                    { title: 'Nkosinathi Khumalo'},
-                    { title: 'Zama Gumede'},
-                    { title: 'Sindi Hlao'},
-                    { title: 'Thandi Tlalo'}
-                    
-                ]
-            })
+            .controller(
+            'contr', function ($scope) {
+                //waitingList
+            }
+            )
     </script>
-
-   
-
 </head>
 
+
+
+
+
+
 <body ng-app="app" ng-controller="contr">
-
-    <div class="wrapper">
-        <div class="container" ng-controller="contr">
-
+<waiting-list></waiting-list>
+<div id="main">
+    <div class="container">
+        <div class="jumbotron">
+            <h4>This will be moved</h4>
+            <input type="button" class="btn-warning btn btn-md" value="menu" onclick="openNav()">
         </div>
     </div>
+</div>
 
 
-   
-<waiting-list listdt="obj"></waiting-list>
 
+    <!--
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<span onclick="openNav()">open</span>
+
+<div id="main" style="background: #eceff1">
+    <div class="container">body here</div>
+</div>-->
 </body>
 
 </html>

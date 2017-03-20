@@ -1,13 +1,13 @@
 angular.module('profiles-app', [
-    'ui.router', 
-    'search-app', 
-    'userProfile-app', 
-    'addUserProfile-app', 
-    'session-app', 
-    'ngCookies', 
+    'ui.router',
+    'search-app',
+    'userProfile-app',
+    'addUserProfile-app',
+    'session-app',
+    'ngCookies',
     'nav-app',
     'waitingList-app'
-    ])
+])
 
     .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -21,12 +21,14 @@ angular.module('profiles-app', [
                     var self = this;
                     self.activeuser = "";
                     self.activeuser_firstname = "";
-                       $scope.queue = {
-                           obj: []
-                       };
+
+                    $scope.queue = {
+                        obj: []
+                    };
+                    
                     var user_cookie = $cookies.get('m_userid');
 
-                    if(user_cookie == null){
+                    if (user_cookie == null) {
 
                         $http.get('php/service.php?q=logOff');
 
@@ -36,10 +38,10 @@ angular.module('profiles-app', [
 
                     var currentUser = serviceSession.getActiveProfile();
 
-                    currentUser.then(function(res){
+                    currentUser.then(function (res) {
                         self.activeuser = res.data[0].FIRSTNAME + " " + res.data[0].LASTNAME;
                         self.activeuser_firstname = res.data[0].FIRSTNAME;
-                      
+
                     })
 
 
@@ -52,7 +54,7 @@ angular.module('profiles-app', [
                     }
 
                     $scope.logOff = function () {
-                     
+
                         $cookies.remove('m_userid');
                         $http.get('php/service.php?q=logOff');
 
@@ -60,7 +62,7 @@ angular.module('profiles-app', [
                     }
 
 
-                    $scope.navTo = function(id){
+                    $scope.navTo = function (id) {
 
                         $anchorScroll(id);
 
