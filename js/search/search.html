@@ -3,12 +3,11 @@
         border-top: 0px;
     }
     
-    .dspQueue{
+    .dspQueue {
         padding: 4px;
-        
         border-radius: 5px;
     }
-
+    
     @media all and (max-width: 400px) {
         #btnQueue {
             width: 100%;
@@ -17,17 +16,17 @@
 </style>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
-<div class="container-fluid">
+<div class="container">
 
     <div class="search-container">
 
         <div class="row">
             <div class="pull-right">
-                <input type="button" id="btnQueue" ng-if="!searchCtr.showQueue" ng-click="searchCtr.show_queue()" value="Queue" class="btn btn-default">
+                <input type="button" id="btnQueue" data-toggle="modal" data-target="#queueModal" value="Queue" class="btn btn-default">
             </div>
-             
 
-            <div style="height: 100%" ng-class="{'col-md-12': !searchCtr.showQueue, 'col-md-9':searchCtr.showQueue}" >
+
+            <div style="height: 100%" class="col-md-12">
 
                 <div class="pull-right">
 
@@ -133,31 +132,34 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3" ng-show="searchCtr.showQueue">
+            <div class="col-md-3" ng-if="false" >
                 <div class="dspQueue ">
- <h4>Patient waiting list ({{searchCtr.queue.length}}) - <input type="button" id="btnQueue" ng-if="searchCtr.showQueue" ng-click="searchCtr.show_queue()" value="Hide Queue" class="btn btn-sm btn-default"></h4>
+                    
+                    <h4>Patient waiting list ({{searchCtr.queue.length}}) - <input type="button" id="btnQueue" ng-if="searchCtr.showQueue"
+                            ng-click="searchCtr.show_queue()" value="Hide Queue" class="btn btn-sm btn-default"></h4>
 
-                <table class="table ">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
+                    <table class="table " ng-show="false">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
 
-                    <tbody class="table-hover ">
-                        <tr ng-repeat="qued in searchCtr.queue ">
-                            <td>{{1 + $index}}</td>
-                            <td>{{qued.FIRSTNAME}}</td>
-                            <td> <input type="button" value="remove " class="btn btn-sm btn-c-warning " ng-click="">
+                        <tbody class="table-hover ">
+                            <tr ng-repeat="qued in searchCtr.queue ">
+                                <td>{{1 + $index}}</td>
+                                <td>{{qued.FIRSTNAME}}</td>
+                                <td> <input type="button" value="remove " class="btn btn-sm btn-c-warning " ng-click="">
 
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -173,25 +175,8 @@
           <span aria-hidden="true ">&times;</span>
         </button>
             </div>
-            <div class="modal-body ">
-                <table class="table ">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-hover ">
-                        <tr ng-repeat="qued in searchCtr.queue ">
-                            <td>{{1 + $index}}</td>
-                            <td>{{qued.FIRSTNAME}}</td>
-                            <td> <input type="button " value="remove " class="btn btn-md btn-c-warning " ng-click=" ">
-                           
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="modal-body add-padding-all-min">
+                <waiting-list></waiting-list>
             </div>
             <div class="modal-footer ">
                 <button type="button " class="btn btn-secondary " data-dismises="modal ">Close</button>

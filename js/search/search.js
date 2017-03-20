@@ -1,4 +1,4 @@
-angular.module('search-app', ['session-app', 'ngCookies'])
+angular.module('search-app', ['session-app', 'ngCookies', 'waitingList-app'])
     .directive(
     'search', function () {
         return {

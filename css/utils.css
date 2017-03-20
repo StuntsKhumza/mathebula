@@ -2,6 +2,7 @@
 .border-left-green-md { border-left: 5px solid #4ca94f; }
 .add-padding-left-md { padding-left: 15px; }
 .add-padding-all {padding: 10px;}
+.add-padding-all-min {padding: 20px;}
 .add-margin-all { margin: 5px; }
 .btn-c-white {background: #fff; border: 0px;}
 .btn-c-success {background-color:#fff; color: #212121;border: 0px;border-bottom:#4ca94f 2px solid;  }

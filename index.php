@@ -28,6 +28,7 @@ and open the template in the editor.
 	    <script src="configs/angular.min.js"></script>
         <script src="configs/angular-ui-router.js"></script>
         <script src="configs/angular-cookie.js"></script>
+        <script src="configs/jquery.transit.min.js"></script>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  
@@ -42,6 +43,7 @@ and open the template in the editor.
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
         <link href="css/utils.css" rel="stylesheet" type="text/css"/>
         <link href="css/user-profile.css" rel="stylesheet" type="text/css"/>
+        <link href="css/waitinglist.css" rel="stylesheet" type="text/css"/>
         
         <link rel="icon" href="img/1477676379_icon-57.png">
 
@@ -77,6 +79,9 @@ and open the template in the editor.
         <!--comments-->  
         <script src="js\userProfile\comments\comments.js"></script>
                
+        <!--waiting list-->
+        <script src="js/waitinglist/waitinglist.js"></script>
+
 
         <script>
         /*    window.onbeforeunload = function(){
