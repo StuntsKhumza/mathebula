@@ -81,8 +81,11 @@ and open the template in the editor.
                
         <!--waiting list-->
         <script src="js/waitinglist/waitinglist.js"></script>
-
-
+        
+        <link href="css/BootSideMenu.css" rel="stylesheet" type="text/css" />
+        
+        <script src="js/waitinglist/waitinglist.js"></script>
+          <script src="configs/BootSideMenu.js"></script>
         <script>
         /*    window.onbeforeunload = function(){
     return "You are about to leave leave/reload this page. This will log you out. \n";

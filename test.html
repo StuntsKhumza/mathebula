@@ -30,26 +30,46 @@ and open the template in the editor.
     <script src="configs/angular-ui-router.js"></script>
     <script src="configs/angular-cookie.js"></script>
     <script src="configs/jquery.transit.min.js"></script>
-
+ 
     <script src="js/main.js" type="text/javascript"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <link href="css/waitinglist.css" rel="stylesheet" type="text/css" />
     <link href="css/user-profile.css" rel="stylesheet" type="text/css" />
     <link rel="icon" href="img/1477676379_icon-57.png">
-      <link href="css/waitinglist.css" rel="stylesheet" type="text/css"/>
- <!--waiting list-->
-        <script src="js/waitinglist/waitinglist.js"></script>
+    <link href="css/waitinglist.css" rel="stylesheet" type="text/css" />
+    <link href="css/BootSideMenu.css" rel="stylesheet" type="text/css" />
+    <!--waiting list-->
+    <script src="js/waitinglist/waitinglist.js"></script>
+     <script src="configs/BootSideMenu.js"></script>
     <script>
         angular.module('app', ['waitingList-app'])
-       
+            .controller('contr', function ($scope) {
+                $scope.obj = [
+                    { title: 'Nkosinathi Khumalo'},
+                    { title: 'Zama Gumede'},
+                    { title: 'Sindi Hlao'},
+                    { title: 'Thandi Tlalo'}
+                    
+                ]
+            })
     </script>
+
+   
 
 </head>
 
-<body ng-app="app" >
-    <div class="container">
-        <waiting-list></waiting-list>
+<body ng-app="app" ng-controller="contr">
+
+    <div class="wrapper">
+        <div class="container" ng-controller="contr">
+
+        </div>
     </div>
+
+
+   
+<waiting-list listdt="obj"></waiting-list>
+
 </body>
 
 </html>

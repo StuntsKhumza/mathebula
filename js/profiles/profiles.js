@@ -5,7 +5,8 @@ angular.module('profiles-app', [
     'addUserProfile-app', 
     'session-app', 
     'ngCookies', 
-    'nav-app'
+    'nav-app',
+    'waitingList-app'
     ])
 
     .config(function ($stateProvider, $urlRouterProvider) {
@@ -20,7 +21,9 @@ angular.module('profiles-app', [
                     var self = this;
                     self.activeuser = "";
                     self.activeuser_firstname = "";
-
+                       $scope.queue = {
+                           obj: []
+                       };
                     var user_cookie = $cookies.get('m_userid');
 
                     if(user_cookie == null){

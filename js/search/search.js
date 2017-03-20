@@ -1,4 +1,4 @@
-angular.module('search-app', ['session-app', 'ngCookies', 'waitingList-app'])
+angular.module('search-app', ['session-app', 'ngCookies'])
     .directive(
     'search', function () {
         return {
@@ -10,7 +10,7 @@ angular.module('search-app', ['session-app', 'ngCookies', 'waitingList-app'])
                 $scope.searching = false;
                 var self = this;
                 self.showQueue = false;
-                self.queue = []
+             
                 self.showmsg = "";
 
                 self.searchObj = {
@@ -20,26 +20,25 @@ angular.module('search-app', ['session-app', 'ngCookies', 'waitingList-app'])
 
                 self.search_complete = false;
 
-                $scope.results = [
-                ]
+                $scope.results = [];
 
-                var getHistory = getCookie_object('dr_search_history');//$cookies.get('dr_search_history');
+                var getHistory = getCookie_object('dr_search_history');
 
                 if (getHistory != null) {
                     $scope.results = getHistory;
                 }
 
-                var dr_query =  getCookie_object('dr_queue');//self.queue
+                var dr_query = getCookie_object('dr_queue');//$scope.queue
 
-                 if (dr_query != null) {
-                    self.queue = dr_query;
+                if (dr_query != null) {
+                    $scope.queue.obj = dr_query;
                 }
 
 
-                self.show_queue = function(){
+                self.show_queue = function () {
 
-                    if(self.showQueue){
-self.showQueue = false;
+                    if (self.showQueue) {
+                        self.showQueue = false;
                     } else {
                         self.showQueue = true;
                     }
@@ -164,7 +163,7 @@ self.showQueue = false;
                 self.addToQue = function (id) {
 
                     //check if added
-                    var o = find_Item(self.queue, id);
+                    var o = find_Item($scope.queue.obj, id);
 
                     if (o == null) {
 
@@ -172,12 +171,12 @@ self.showQueue = false;
                         var o = find_Item($scope.results, id);
 
                         if (o != null) {
-                            self.queue.push(o);
+                            $scope.queue.obj.push(o);
                         }
                     }
+                  
+                    writeCookie_object($scope.queue.obj, 'dr_queue');
 
-                     writeCookie_object(self.queue, 'dr_queue');
-                
                 }
 
                 function find_Item(list, query) {
