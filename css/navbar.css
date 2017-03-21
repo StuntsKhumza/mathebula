@@ -56,7 +56,7 @@
           float: right;
       }
 
-        @media all and (max-width:350px) {
+        @media all and (max-width:566px) {
             button.topnav-toggle {
                 display: block;
             }

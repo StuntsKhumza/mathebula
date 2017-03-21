@@ -46,8 +46,7 @@ and open the template in the editor.
         <!--session-->
         <script src="js/session.js"></script>
 
-        <!--nav-->
-<script src="js/navbar.js"></script>
+
         <!--LOGIN MOD-->
         <script src="js/login/login.js"></script>
 
@@ -58,7 +57,8 @@ and open the template in the editor.
         <script src="js/userProfile/past medical history/pastMedicalHistory.js"></script>
         
         <script src="js/nav/nav.js"></script> 
-
+        <!--nav-->
+<script src="configs/navbar.js"></script>
         <!--user profile mod-->
         <script src="js/userProfile/userProfile.js" type="text/javascript"></script>
 

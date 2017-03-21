@@ -1,3 +1,5 @@
+   var width_limit = 566;
+   
    var addEvent = function (object, type, callback) {
 
             if (object == null || typeof (object) == 'undefined') return;
@@ -18,14 +20,14 @@
         function test() {
             console.log(window.innerWidth);
 
-            if (window.innerWidth < 351) {
+            if (window.innerWidth < width_limit) {
 
                 if (getState() == 'block') {
                     document.getElementById("myTopnav").style.display = "none";
                 }
 
 
-            } else if (window.innerWidth > 351) {
+            } else if (window.innerWidth > width_limit + 1) {
                 if (getState() == 'none') {
                     document.getElementById("myTopnav").style.display = "block";
                 }
