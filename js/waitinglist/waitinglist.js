@@ -26,6 +26,10 @@ angular.module('waitingList-app', [])
                         { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' }
                     ]
                 };*/
+
+                $scope.action = function(){
+                    console.log('x');
+                }
             }
 
         }
