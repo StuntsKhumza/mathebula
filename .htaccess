@@ -5,3 +5,5 @@ RewriteEngine On
 #home rewrite rule
 RewriteRule ^home$ index.php
 
+#test rewrite rule
+RewriteRule ^test$ test.html

@@ -32,11 +32,7 @@ and open the template in the editor.
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  
-<script>
-    jQuery(function () {
-        jQuery("#sortable").sortable();
-        jQuery("#sortable").disableSelection();
-    });
+
 </script>
 
         <script src="js/main.js" type="text/javascript"></script>
@@ -44,12 +40,14 @@ and open the template in the editor.
         <link href="css/utils.css" rel="stylesheet" type="text/css"/>
         <link href="css/user-profile.css" rel="stylesheet" type="text/css"/>
         <link href="css/waitinglist.css" rel="stylesheet" type="text/css"/>
-        
+        <link href="css/navbar.css" rel="stylesheet" type="text/css"/>
         <link rel="icon" href="img/1477676379_icon-57.png">
 
         <!--session-->
         <script src="js/session.js"></script>
 
+        <!--nav-->
+<script src="js/navbar.js"></script>
         <!--LOGIN MOD-->
         <script src="js/login/login.js"></script>
 
