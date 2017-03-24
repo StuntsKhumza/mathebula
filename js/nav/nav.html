@@ -1,69 +1,9 @@
-<style>
-    /*   .nav-c {
-        
-        padding: 15px;
-        overflow: hidden;
-        display: block;
-       
-    }
-    
-    .nav-c ul {
-        margin: 0px;
-        padding: 0px;
-    }
-    
-    .nav-c ul li {
-        list-style: none;
-        float: left;
-        margin: 5px;
-    }
-    
-    .active-c {
-        border-bottom: 3px #5cb85c solid;
-    }
-
-    .active-c:hover{
-        border-bottom: 3px #ccc solid;
-    }
-    
-    .nav-c ul li a, .nav-c-actions {
-        height: 30px;
-        display: block;
-        font-size: 14pt;
-        text-decoration: none;
-        color:#D3D5CB;
-    }
-
-.nav-c-brand {padding-right: 20px;
-    margin-right: 20px; font-weight: bold;
-}
-
-.dropdown-menu li, .dropdown-menu li a {
-    z-index: 1;
-}
-   */
-</style>
-<!--
-<nav class="nav-c background-color-dark">
-
-    <ul>
-        <li class="nav-c-brand"><a href="#"><img ng-src="{{navCtr.linksObj.brand.img}}" height="50"></a></li>
-        <li ng-repeat="link in navCtr.linksObj.links"  ng-class="{'active-c': link.link_state == '1'}">
-            <a href="#">{{link.title}}</a>
-        </li> -->
-<!--<li class="active-c"><a ui-sref="s-home">Home</a></li>-->
-<!--   </ul>
-    <div class="c-pull-right" ><!-- Hi {{navCrt.sessionV.username}}-->
-<!--<span ng-click="navCtr.logOff()" class="nav-c-actions">logout</span> -->
-
-<!-- </div>
-</nav> -->
-
-<button type="button" class="topnav-toggle" onclick="showNav()" data-toggle="collapse" data-target="#myNavbar">
+<div class="topnav-toggle">
+    <button type="button" class="topnav-toggle" onclick="showNav()" data-toggle="collapse" data-target="#myNavbar">
       =
         <span class="icon-bar"></span> 
       </button>
-
+</div>
 <div class="topnav" id="myTopnav">
     <input type="button" value="Home" class="active">
     <input type="button" value="News" class="">
@@ -71,7 +11,6 @@
     <input type="button" value="About" class="">
     <div class="topNavRight">
         <input type="button" value="Queue" class="" onclick="openNav()">
-        <input type="button" value="Log out" class="" >
+        <input type="button" value="Log out" class="">
     </div>
 </div>
-

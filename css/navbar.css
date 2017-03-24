@@ -50,14 +50,18 @@
             width: 40px;
             border: 1px solid #ccc;
         }
-        
+        div.topnav-toggle{
+            background-color: #3A4149;
+            padding: 10px;
+            display: none;
+        }
 
       .topnav  .topNavRight{
           float: right;
       }
 
         @media all and (max-width:566px) {
-            button.topnav-toggle {
+            button.topnav-toggle,  div.topnav-toggle  {
                 display: block;
             }
             .topnav {
