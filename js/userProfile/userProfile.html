@@ -9,11 +9,13 @@
     <br><br><br>
     <div class="row">
         <div class="col-md-3">
-            <pro-pic imgtwo="img/patients/rsz_1rsz_blank-profile-picture-973460_960_720.png"></pro-pic>
+            
+           <profile-picture></profile-picture>
+
             <br>
         </div>
         <div class="col-md-9 ">
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs nav-user-profile" ng-show="false">
                 <li class="nav-item">
                     <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 1}" ng-click="userProfileController.setTab(1)">
                 
@@ -35,10 +37,28 @@
 
             </ul>
 
-
-            <general-tab ng-if="userProfileController.activeTab == 1"></general-tab>
-            <address-tab ng-if="userProfileController.activeTab == 2"></address-tab>
-            <past-medical-history-tab ng-if="userProfileController.activeTab == 3"></past-medical-history-tab>
+            <ul class="nav nav-tabs" ng-init="tab_count = 1">
+                
+                <li class="nav-item">
+                    <input type="button" value="General" class="nav-link" ng-class="{'active': tab_count == 1}" ng-click="tab_count = 1">
+                    
+                </li>
+                <li class="nav-item">
+                    
+                    <input type="button" value="Address" class="nav-link" ng-class="{'active': tab_count == 2}" ng-click="tab_count = 2">
+                </li>
+                <li class="nav-item">
+                    
+                    <input type="button" value="Medical History" class="nav-link"ng-class="{'active': tab_count == 3}" ng-click="tab_count = 3">
+                </li>
+                <li class="nav-item">
+                    
+                    <input type="button" value="Notes" class="nav-link"ng-class="{'active': tab_count == 4}" ng-click="tab_count = 4">
+                </li>
+            </ul>
+            <general-tab ng-if="tab_count == 1"></general-tab>
+            <address-tab ng-if="tab_count == 2"></address-tab>
+            <past-medical-history-tab ng-if="tab_count == 3"></past-medical-history-tab>
         </div>
     </div>
 
@@ -84,6 +104,4 @@
                 </div>
             </div>
     -->
-    </div>
-
-   
+</div>

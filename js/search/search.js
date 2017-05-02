@@ -160,6 +160,13 @@ angular.module('search-app', ['session-app', 'ngCookies'])
 
                 }
 
+                self.search_key = function(evt){
+
+                    if (evt.keyCode == 13)
+                    $scope.search();
+                    
+                }
+
                 self.addToQue = function (id) {
 
                     //check if added

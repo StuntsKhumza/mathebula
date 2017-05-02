@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <input type="text" placeholder="file number" ng-disabled="searchCtr.searchObj.id_number.length > 0" class="form-control simplebox remove-radius"
-                                            ng-model="searchCtr.searchObj.file_number">
+                                            ng-model="searchCtr.searchObj.file_number" ng-keyup="searchCtr.search_key($event)">
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <input type="text" placeholder="id number" onkeypress="return isNumberKey(event)" ng-disabled="searchCtr.searchObj.file_number.length > 0"
-                                            class="form-control simplebox remove-radius" ng-model="searchCtr.searchObj.id_number">
+                                            class="form-control simplebox remove-radius" ng-model="searchCtr.searchObj.id_number" ng-keyup="searchCtr.search_key($event)">
                                     </div>
                                 </div>
                             </div>
