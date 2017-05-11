@@ -27,8 +27,8 @@ angular.module('waitingList-app', [])
                     ]
                 };*/
 
-                $scope.action = function(){
-                    console.log('x');
+                this.action = function(index){
+                    $scope.queue.obj.splice(index,1);
                 }
             }
 

@@ -2,7 +2,7 @@
 
 
 //require __DIR__ . '/img-resize.php';
-
+sleep(5);
 $connection = 1;//connectPDO();
 //check request
 

@@ -16,8 +16,8 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp'])
         .config(function ($stateProvider, $urlRouterProvider) {
 
         $stateProvider
-            .state('adduserprofile', {
-                controllerAs: 'adduserprofileController',
+            .state('addMedcine', {
+                controllerAs: 'addMedcineController',
                 templateUrl: "js/addUser/addUser.html",
                 url: '/adduserprofile',
                 controller: function ($scope, $state, session, $http, $anchorScroll) {

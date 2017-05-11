@@ -3,6 +3,12 @@
         border-top: 0px;
     }
     
+    .row-data{
+    
+        margin: 3px;
+    }
+
+
     .dspQueue {
         padding: 4px;
         border-radius: 5px;
@@ -54,7 +60,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <input type="text" placeholder="file number" ng-disabled="searchCtr.searchObj.id_number.length > 0" class="form-control simplebox remove-radius"
-                                            ng-model="searchCtr.searchObj.file_number" ng-keyup="searchCtr.search_key($event)">
+                                            ng-model="searchCtr.searchObj.file_number" ng-keyup="searchCtr.search_key($event)" name="search_cardNo">
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +73,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <input type="text" placeholder="id number" onkeypress="return isNumberKey(event)" ng-disabled="searchCtr.searchObj.file_number.length > 0"
-                                            class="form-control simplebox remove-radius" ng-model="searchCtr.searchObj.id_number" ng-keyup="searchCtr.search_key($event)">
+                                            class="form-control simplebox remove-radius" ng-model="searchCtr.searchObj.id_number" ng-keyup="searchCtr.search_key($event)" name="search_IDNo">
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +90,7 @@
                                 <br>
 
                                 <input type="button" ng-if="!searching && !searchCtr.search_complete" value="Search" class="btn btn-md btn-c-primary pull-right"
-                                    ng-click="search()" id="search-client">
+                                    ng-click="search()" id="search_client">
                                 <img src="img/Searching.gif" class="pull-right" ng-if="searching" alt="searching gif">
                                 <input type="button" ng-if="searchCtr.search_complete" value="Clear Search" class="btn btn-md btn-danger pull-right" ng-click="searchCtr.clear_search()"
                                     id="clear_search">
@@ -92,6 +98,7 @@
                                 <br><br>
                             </div>
                         </div>
+                        <hr>
                         <p>
                             <h5>Search history:</h5>
                         </p>
@@ -102,16 +109,17 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Name</th>
+                                            <th>Card #</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-hover">
-                                        <tr ng-repeat="result in results">
-                                            <td>{{1 + $index}}</td>
-                                            <td>{{result.FIRSTNAME}}</td>
+                                        <tr ng-repeat="result in results" >
+                                            <td class="row-data-td">{{1 + $index}}</td>
+                                            <td>{{result.FIRSTNAME +" " + result.LASTNAME}}</td>
+                                              <td>{{result.CARDNUMBER}}</td>
                                             <td>
-
-                                                <input type="button" value="open" class="btn btn-md btn-c-success" ng-click="setClient(result.ID)">
+                                                <input type="button" value="open" class="btn btn-md btn-c-success" ng-click="setClient(result.ID)" name="{{'btnOpen_' + $index}}">
                                                 <input type="button" value="queue" class="btn btn-md btn-c-success" ng-click="searchCtr.addToQue(result.ID)" onclick="openNav()">
                                             </td>
                                         </tr>

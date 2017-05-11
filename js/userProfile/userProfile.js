@@ -15,21 +15,23 @@ angular.module('userProfile-app', ['comments-app',
 
                     var self = this;
                     self.activeTab = 1;
-                    
+                    self.setUser = $scope.userObj.client;
+
+                     
 
                     $scope.userDataObj = 
                         {
                             //general
                             general: {
-                                txt_name: "Nkosinathi",
-                                txt_surname: "Khumalo",
+                                txt_name: self.setUser.FIRSTNAME,
+                                txt_surname: self.setUser.LASTNAME,
                                 txt_dateofbirth: "1990/03/23",
                             },
                             
                             address: {
-                                txt_line1:"49/614 Lulonga Crescent Ave",
-                                txt_line2:"Zandspruit",
-                                txt_line3:"2169"
+                                txt_line1:self.setUser.ADDRESS1,
+                                txt_line2:self.setUser.ADDRESS2,
+                                txt_line3:self.setUser.ADDRESS3
                             },
                             
                             history: {

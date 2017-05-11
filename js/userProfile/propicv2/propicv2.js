@@ -5,14 +5,21 @@ angular.module('profilePictureApp', [])
             templateUrl: 'js/userProfile/propicv2/propicv2.html',
             controller: function ($scope, fileUpload) {
                 $scope.imgPath = "";
+
+                $scope.uploading = false;
                 $scope.submit = function () {
+
+                     $scope.uploading = true;
+
                     //php/FileUpload.php
                     var file = $scope.myFile;
                     var response = fileUpload.uploadFileToUrl(file, 'php/FileUpload.php');
 
                     response.then(function (res) {
 
-                        console.log(res.data);
+                        //console.log(res.data);
+                         $scope.uploading = false;
+
                         $scope.imgPath = res.data.path;
 
                     })//success response
