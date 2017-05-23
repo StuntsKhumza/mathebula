@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/mathebula/.vscode/launch.json</file>
+            <file>file:/C:/wamp/www/mathebula/index.php</file>
+            <file>file:/C:/wamp/www/mathebula/viewBookings.php</file>
+            <file>file:/C:/wamp/www/mathebula/php/PHPMailer/_lib/phpmailer-fe.php</file>
+            <file>file:/C:/wamp/www/mathebula/bookings.php</file>
+            <file>file:/C:/wamp/www/mathebula/bookingsservice.php</file>
+            <file>file:/C:/wamp/www/mathebula/php/PHPMailer/_lib/sampleform/sampleform.config.php</file>
+            <file>file:/C:/wamp/www/mathebula/php/sql.php</file>
         </group>
     </open-files>
 </project-private>
