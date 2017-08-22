@@ -9,7 +9,7 @@ and open the template in the editor.
 <html>
 
     <head>
-        <title>TODO supply a title</title>
+        <title>View Bookings</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi"
@@ -35,7 +35,7 @@ and open the template in the editor.
             angular.module('main', [])
 
                     .controller('booking', function ($scope, $http) {
-
+                        $scope.data = [];
                         $scope.peopleObj = [
                             {
                                 name: "Nkosinathi",
@@ -76,22 +76,63 @@ and open the template in the editor.
                             {time: "05:00 pm"}
 
                         ]
-
-                        $http.get("bookingsservice.php?q=get")
+                        var reqData = {
+                            q: "getBookings"
+                        }
+                        
+                       loadData();
+                                
+                                function loadData(){
+                                     //load bookings
+                        $http.post("bookingservice.php", reqData)
 
                                 .then(function (response) {
-
-                                    $scope.data = response.data;
-
-                                    console.log(response.data);
+                                    
+                                    if (response.status == 200){
+                                        $scope.data = response.data;
+                               // console.log($scope.data);
+                                    } else {
+                                        $scope.message = response.data.message
+                                        console.log($scope.data);
+                                    }
+                                    
+                                    
 
                                 })
+                                }
+                                //
+                                $scope.reply = function(id, action, actionToTake, object){
+                                    
+                                    var request = {
+                                        action: action,
+                                        id: id,
+                                        q: "actionBooking",
+                                        actionToTake: actionToTake,
+                                        object: object
+                                    }
+                                    
+                                  $http.post("bookingservice.php", request)
+                                          .then(function(response){
+                                              if(response.status == 200)
+                                                   loadData();
+                                           
+                                          })
+                                    
+                                    
+                                }
+                                
+                              
 
                     }
                     )
 
 
         </script>
+        <style>
+            .declined {
+                color:red;
+            }
+        </style>
 
     </head>
 
@@ -100,7 +141,7 @@ and open the template in the editor.
         <div class="container" ng-controller="booking">
             <br>
 
-            <h4>Today's appointments:</h4>
+            <h4>Today's appointments ({{data.length}}):</h4>
 
             <br>
 
@@ -116,18 +157,22 @@ and open the template in the editor.
                         <th>Time:</th>
 
                         <th>Name:</th>
+                        <th>Status:</th>
  <th></th>
                         </thead>
 
-                        <tr ng-repeat="booking in data">
+                        <tr ng-repeat="booking in data" ng-if="data.length > 0">
 
-                            <td><b>{{booking.DATE}}</b></td>
+                            <td>{{booking.DATE}}</td>
                             <td>{{booking.TIME}}</td>
 
                             <td>{{booking.FIRSTNAME + " " + booking.LASTNAME}}</td>
                             <td>
-                                <input type="button" class="btn btn-success btn-sm" value="Approve">
-                                <input type="button" class="btn btn-danger btn-sm" value="Decline">
+                                <span ng-class="{'declined':booking.STATUS == 'DECLINED'}">{{booking.STATUS}}</span>
+                                </td>
+                            <td>
+                                <input type="button" ng-hide="booking.STATUS != 'NEW'" class="btn btn-success btn-sm" value="Approve" ng-click="reply(booking.ID, 'accept', 'ACCEPTED', booking)">
+                                <input type="button" ng-hide="booking.STATUS != 'NEW'" class="btn btn-danger btn-sm" value="Decline" ng-click="reply(booking.ID, 'decline', 'DECLINED', booking)">
                             </td>
 
                         </tr>

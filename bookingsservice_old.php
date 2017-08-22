@@ -1,9 +1,8 @@
-<?php
+ <?php
 
 require "php/PHPMailer-master/PHPMailerAutoload.php";
 //Create connection
-        $connection = connect();
-
+        $connection = null;//connect();
 
 $q = $_GET;
 
@@ -40,22 +39,22 @@ function makeBookings($data) {
     
     $mail = new PHPMailer;
     $mail->IsSMTP();
-    $mail->Host = "";
+    $mail->Host = "mail.web-demos.co.za";
     $mail->Port = 25;
     $mail->SMTPSecure = 'tls';
-    //$mail->SMTPAuth = true;
-    $mail->Username = "";
-    $mail->Password = "";
+    $mail->SMTPAuth = true;
+    $mail->Username = "Nkosinathi.Khumalo@web-demos.co.za";
+    $mail->Password = "Bhung@ne002";
     
     
 //Set who the message is to be sent from
-    $mail->setFrom('', 'Nkosinathi Khumalo');
+    $mail->setFrom('Nkosinathi.Khumalo@web-demos.co.za', 'Nkosinathi Khumalo');
 //Set an alternative reply-to address
-    $mail->addReplyTo('', 'Nkosinathi Khumalo');
+    $mail->addReplyTo('Nkosinathi.Khumalo@web-demos.co.za', 'Nkosinathi Khumalo');
 //Set who the message is to be sent to
-    $mail->addAddress('', 'Nkosinathi Khumalo');
+    $mail->addAddress('Nkosinathi.Khumalo@investec.co.za', 'Nkosinathi Khumalo');
 //Set the subject line
-    $mail->Subject = 'PHPMailer mail() test';
+    $mail->Subject = 'Dr Mathebula - Booking';
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
    $mail->msgHTML(file_get_contents('contents.html'), dirname(__FILE__));

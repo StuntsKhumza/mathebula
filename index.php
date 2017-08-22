@@ -33,7 +33,7 @@ and open the template in the editor.
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
-</script>
+
 
         <script src="js/main.js" type="text/javascript"></script>
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
@@ -107,6 +107,5 @@ and open the template in the editor.
     </head>
     <body ng-app="main-app">
          <ui-view></ui-view>
-         
     </body>
 </html>

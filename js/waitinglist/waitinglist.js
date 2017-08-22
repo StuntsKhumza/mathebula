@@ -6,30 +6,11 @@ angular.module('waitingList-app', [])
             templateUrl: 'js/waitinglist/waitinglist.html',
             controller: function ($scope) {
 
-            /*    $scope.queue = {
-                    obj: [
-                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
-                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
-                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
-                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
-                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
-                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
-                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
-                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
-                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
-                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
-                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
-                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
-                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
-                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
-                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' },
-                        { FIRSTNAME: 'Nkosinathi', LASTNAME: 'Khumalo' }
-                    ]
-                };*/
-
                 this.action = function(index){
                     $scope.queue.obj.splice(index,1);
+                     console.log($scope.queue.obj);
                 }
+                
             }
 
         }

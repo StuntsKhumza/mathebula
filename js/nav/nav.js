@@ -9,7 +9,7 @@ angular.module('nav-app', ['ngCookies'])
                 linksObj: '='
             }
             ,
-            controller: function ($scope, $state, $http, $cookies) {
+            controller: function ($state, $http, $cookies) {
 
                 var self = this;
 
@@ -38,11 +38,7 @@ angular.module('nav-app', ['ngCookies'])
                     //    return mySession.UserObj;
 
                 }
-                self.logout = function () {
-
-
-                    $state.go('login');
-                }
+              
 
             }
         }
