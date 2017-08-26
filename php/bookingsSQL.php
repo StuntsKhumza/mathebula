@@ -35,13 +35,13 @@ class bookingsSQL {
     }
 
     public function makeBooking($data) {
-        
+
         $query = "INSERT INTO `bookings` VALUES (?,?,?,?,?,?,?,?,?)";
-        
+
         $id = mt_rand(1101102, 1249647);
         $new_time = date('G:i', strtotime($data['bookedTime']));
-        $new_date = date('Y-m-d', strtotime(str_replace('/','-',$data['bookedDate'])));
-       
+        $new_date = date('Y-m-d', strtotime(str_replace('/', '-', $data['bookedDate'])));
+
         $stmt = $this->sqlConnection->prepare($query);
         $status = "NEW";
         $stmt->bindParam(1, $id, PDO::PARAM_INT);
@@ -57,54 +57,52 @@ class bookingsSQL {
         $stmt->execute();
 
         if (!$stmt) {
-            return json_encode(array('status'=>501, 'message'=> $stmt->errorInfo()));
+            return json_encode(array('status' => 501, 'message' => $stmt->errorInfo()));
         } else {
             return json_encode(array("status" => 200, "message" => "Booking made sccessfully"));
         }
     }
-    
+
     public function getBookings() {
 
-    //get all bookings from today going forward
-    //$query = "SELECT * FROM BOOKINGS WHERE (`DATE` >= CURDATE() AND `DRID` = 648646) ";
-    //$query = "SELECT * FROM BOOKINGS WHERE (STR_TO_DATE(`Date`,'%Y-%m-%d') BETWEEN '2013-05-01' AND '2013-05-03' AND `DRID` = 648646 AND TIME = ?) ";
-    $query = "SELECT * FROM `bookings` ORDER BY `DATE`, `TIME`";
-    $stmt = $this->sqlConnection->prepare($query);
+        //get all bookings from today going forward
+        //$query = "SELECT * FROM `bookings` WHERE `DATE` = CURDATE() ORDER BY `DATE`, `TIME`";
+        $query = "SELECT * FROM `bookings` ";
 
-    /* $stmt->bindParam(1, $data['date'], PDO::PARAM_STR);
-      $stmt->bindParam(2, $data['time'], PDO::PARAM_STR); */
+        $stmt = $this->sqlConnection->prepare($query);
 
-    $stmt->execute();
+        $stmt->execute();
 
-    if ($stmt->rowCount() > 0) {
+        if ($stmt->rowCount() > 0) {
 
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+            return json_encode($result);
+        } else {
 
-        return json_encode($result);
-       
-    } else {
-        
-        echo json_encode(array("status" => 201, 'message' => 'No bookings made yet..'));
+            echo json_encode(array("status" => 201, 'message' => 'No bookings made yet..'));
+        }
     }
-}
 
-public function actionBooking($data){
-        
+    public function actionBooking($data) {
+
         $query = "UPDATE `bookings` SET `STATUS`=? WHERE `ID` = ?";
-        
+
         $stmt = $this->sqlConnection->prepare($query);
 
         $stmt->bindParam(1, $data['actionToTake'], PDO::PARAM_STR);
+
         $stmt->bindParam(2, $data['id'], PDO::PARAM_INT);
 
         $stmt->execute();
 
         if (!$stmt) {
-            return json_encode(array("status"=>500, "message"=>$stmt->errorInfo()));
+
+            return json_encode(array("status" => 500, "message" => $stmt->errorInfo()));
         } else {
-            return json_encode(array("status" => 200, "message" => "Booking " .$data['actionToTake']. " sccessfully"));
+
+            return json_encode(array("status" => 200, "message" => "Booking " . $data['actionToTake'] . " sccessfully"));
         }
-}
+    }
 
 }

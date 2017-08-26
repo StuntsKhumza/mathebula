@@ -1,9 +1,6 @@
 #Turn on the Rewrite Engine
- 
 RewriteEngine On
-
-#home rewrite rule
 RewriteRule ^home$ index.php
-
-#test rewrite rule
-RewriteRule ^test$ test.html
+RewriteRule ^viewBookings$ bookings.php
+RewriteRule ^makebooking$ makebooking.php
+RewriteRule ^bookings$ bookings.php

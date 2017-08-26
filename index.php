@@ -30,7 +30,7 @@ and open the template in the editor.
         <script src="configs/angular-cookie.js"></script>
         <script src="configs/jquery.transit.min.js"></script>
 
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 
 
@@ -89,6 +89,8 @@ and open the template in the editor.
     return "You are about to leave leave/reload this page. This will log you out. \n";
 } */
         </script>
+        
+        <script src="js/utils.js"></script>
 
  <script>
         function isNumberKey(evt)

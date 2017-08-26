@@ -2,7 +2,7 @@
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-require "php/PHPMailer-master/PHPMailerAutoload.php";
+require "PHPMailer-master/PHPMailerAutoload.php";
 require "bookingsSQL.php";
 
 $mailObj = new Mailer();

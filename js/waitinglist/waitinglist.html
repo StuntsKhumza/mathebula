@@ -8,7 +8,8 @@
                 <li class="list-group-item" ng-repeat="list in queue.obj">
                     
                     <b>{{$index + 1}}</b>. {{list.FIRSTNAME}} {{list.LASTNAME}}
-                    <input type="button" value="remove" class="btn btn-sm btn-primary" ng-click="waitinglistController.action($index)">
+                    <input type="button" value="remove" class="btn btn-sm btn-primary" ng-click="waitinglistController.action(list.ID)">
+                    <br><span style="font: 8pt;">- for Dr N Khumalo</span>
                 </li>
 
             </ul>
