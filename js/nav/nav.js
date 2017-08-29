@@ -12,7 +12,15 @@ angular.module('nav-app', ['ngCookies'])
                 controller: function ($state, $http, $cookies) {
 
                     var self = this;
-
+                    self.userName = "";
+                    self.spinner = true;
+                    
+                    $http.get('php/service.php?q=getUserName')
+                            .then(function(response){
+                                self.userName = response.data.username;
+                        self.spinner = false;
+                            })
+                    
                     self.linksObj = {
                         brand: {
                             title: "Dr's Co",
@@ -30,6 +38,12 @@ angular.module('nav-app', ['ngCookies'])
                         $http.get('php/service.php?q=logOff');
 
                         $state.go('login');
+                    }
+                    
+                    
+
+                    self.addPatient = function(){
+                        $state.go('adduserprofile');
                     }
 
 

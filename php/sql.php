@@ -66,15 +66,13 @@ class sqlClass {
 		
 		
 		$query = "";
-		
-		
+                
 		switch ($q) {
-			
 			
 			case "authenticate":
 			
-			$query = "SELECT `PASSWORD`, `USERID`, `USERNAME` FROM `logins` WHERE `USERNAME` = ?";
-			
+                            //$query = "SELECT * FROM sysusers inner join sysasignedroles on sysusers.ID = sysasignedroles.USERID WHERE sysusers.USERNAME = ?";
+                            $query = "select * from sysusers su, sysasignedroles sar, sysroles sr where su.USERNAME = ? and sar.USERID = su.ID and sar.ROLEID = sr.ID";
 			
 			break;
 			
@@ -198,13 +196,28 @@ class sqlClass {
             if ($stmt->rowCount() > 0) {
 
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+                
+                //get roles
+                //$stmt_roles = $connect->prepare("SELECT * FROM sysasignedroles WHERE USERID = ?");
+                // . $result[0]['ID']);
+                
+                
+                
                 if ($result[0]['PASSWORD'] == $password) {
 
-                    $_SESSION['USERID'] = $result[0]['USERID'];
+                    $_SESSION['USERID'] = $result[0]['SESSIONID'];
                     $_SESSION['active'] = "true";
-                    
-                    echo json_encode(array("status" => 200, 'message' => 'success', 'data' => array('userid'=>base64_encode($result[0]['USERID']))));
+                   
+                    for($i = 0; $i < count($result); $i++){
+                        
+                        //$
+                        $role[$i] = array("ROLEID"=>$result[$i]['ROLEID'], "ROLE"=>$result[$i]['ROLE']);
+                        
+                    }
+                     $_SESSION['roles'] = json_encode($role);
+                    $_SESSION['username'] = $result[0]['NAME'];
+               
+                    echo json_encode(array("status" => 200, 'message' => 'success', 'data' => array('userid'=>base64_encode($result[0]['SESSIONID']), 'roles'=>$role)));
                 } else {
 
                     echo json_encode(array("status" => 404, 'message' => 'Incorrect username/password. Please try again'));
@@ -218,7 +231,7 @@ class sqlClass {
             return reportError();
         }
     }
-
+//insert into sysasignedroles values (46586, 19238, 1213, 'admin')
     public function authenticate_checkUser($data) {
 
         $connect = $this->connectPDO();

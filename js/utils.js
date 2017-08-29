@@ -52,3 +52,12 @@ function _writeCookie_object(obj, cookie_name, cookiesservice) {
     cookiesservice.put(cookie_name, str);
 }
 
+function _getCookie(cookie_name, cookieservice) {
+
+    var cookie = cookieservice.get(cookie_name);
+
+    cookie = _decodeCookieObject(cookie);
+
+    return cookie;
+
+}

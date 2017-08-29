@@ -5,13 +5,13 @@
             overflow: hidden;
         }
         
-        .topnav input {
+        .topnav input, button {
             border: 0px;
             background-color: #3A4149;
         }
         /* Style the links inside the navigation bar */
         
-        .topnav input {
+        .topnav input, button {
             float: left;
             display: block;
             color: #D3D5CB;
@@ -22,7 +22,7 @@
         }
         /* Change the color of links on hover */
         
-        .topnav input:hover {
+        .topnav input:hover,  .topnav button:hover{
             background-color: #212121;
             color: #D3D5CB;
             -webkit-transition: 0.5s;

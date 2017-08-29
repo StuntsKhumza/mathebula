@@ -27,7 +27,7 @@
             <button class="btn btn-lg btn-primary btn-block remove-radius add-margin-sm" 
                 ng-click="loginController.login()" name="Submit" type="button" ng-disabled="loginController.btnText != 'Login'">
                 
-                {{loginController.btnText}}</button>
+                <img src="img/spinner.gif" alt="spinner" ng-if="loginController.spinner" > {{loginController.btnText}}</button>
                  
             <div class="pull-right">
                 <a href="#" ng-click="password_reset()">reset password?</a>

@@ -45,13 +45,13 @@ and open the template in the editor.
 
                 try{
 
-               $dbname = "drs";
+               $dbname = "api";
 
                $servername = "localhost";
 
-                $db = new PDO("mysql:host=$servername;dbname=$dbname", 'nathi', 'hSv4YZmZjNcbQCLN');
+                $db = new PDO("mysql:host=$servername;dbname=$dbname", 'drsSuperUser', '3ap7WP7FEmC7Ss8H');
                 
-                $statement = $db->prepare("SELECT * FROM bookings");
+                $statement = $db->prepare("SELECT * FROM requestlog");
                 
                 $statement->execute();
                 

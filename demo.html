@@ -6,82 +6,45 @@ and open the template in the editor.
 -->
 <html>
 
-<head>
-    <title>TODO supply a title</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi"
-        crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7"
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi"
+              crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8"
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8"
         crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK"
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK"
         crossorigin="anonymous"></script>
-    <script src="configs/angular.min.js"></script>
-    <script>
-        angular.module('main', ['profilePictureApp']);
+        <script src="configs/angular.min.js"></script>
+        <script>
+            angular.module('main', [])
+                    .controller('cont', function ($scope, _serv) {
+                        
+                        _serv.me = "Test";
+                
+                        console.log(_serv.me);
+                
 
-        angular.module('profilePictureApp', [])
-            .directive('profilePicture', function () {
-                return {
-                    restrict: 'E',
-                    template: "",
-                    controller: function ($scope) {
+                    })
+                    .service('_serv', function () {
 
-                        $scope.submit = function () {
-                            //php/FileUpload.php
-                            console.log($scope.myFile);
-                        }
-
-                    }
-                }
-            })
-            .directive('fileModel', ['$parse', function ($parse) {
-                return {
-                    restrict: 'A',
-                    link: function (scope, element, attrs) {
-                        var model = $parse(attrs.fileModel);
-                        var modelSetter = model.assign;
-
-                        element.bind('change', function () {
-                            scope.$apply(function () {
-                                modelSetter(scope, element[0].files[0]);
-                            });
-                        });
-                    }
-                };
-            }])
-            .service('fileUpload', ['$https', function ($https) {
-                this.uploadFileToUrl = function (file, uploadUrl) {
-                    var fd = new FormData();
-                    fd.append('file', file);
-
-                    $https.post(uploadUrl, fd, {
-                        transformRequest: angular.identity,
-                        headers: { 'Content-Type': undefined }
+                       
+                       var self = this;
+               
+               self.me = "Nkosinahti";
+                       
                     })
 
-                        .success(function () {
-                        })
+        </script>
+    </head>
 
-                        .error(function () {
-                        });
-                }
-            }]);
-    </script>
-</head>
+    <body ng-app="main">
+        <div ng-controller="cont">
 
-<body ng-app="main">
-    <div class="header">
-
-    </div>
-    <div class="header-menu">
-        <div class="container">
-            <profile-picture></profile-picture>
         </div>
-
-    </div>
-</body>
+    </body>
 
 </html>

@@ -1,7 +1,7 @@
 <?php
 
 session_start(); 
-
+sleep(5);
 require 'sql.php'; 
 $query = "";
 
@@ -75,8 +75,17 @@ echo json_encode(array('status' => $result));
         break;
         case "logOff":
 
-            $_SESSION['active'] = 'false';
+            $_SESSION = array();
+            
             echo "Session set";
+        break;
+    
+    case "getUserName":
+        if(isset($_SESSION['username'])){
+            
+            echo json_encode(array("username"=>$_SESSION['username']));
+        }
+        
         break;
     
 }

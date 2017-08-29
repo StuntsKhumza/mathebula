@@ -22,6 +22,20 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp'])
                 url: '/adduserprofile',
                 controller: function ($scope, $state, session, $http, $anchorScroll) {
 
+                        $scope.genNumber = function(id){
+
+                            switch(id){
+                                case 1:
+                                     $scope.filenumber = "C1234";
+                                break;
+
+                                case 2:
+                                     $scope.filenumber = "M1234";
+                                break;
+                            }
+
+                           
+                        }
 
                 },
                 resolve: {

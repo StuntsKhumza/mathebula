@@ -11,10 +11,17 @@
             <file>file:/C:/wamp/www/mathebula/reset.php</file>
         </group>
         <group name="Current">
-            <file>file:/C:/wamp/www/mathebula/js/userProfile/comments/comments.html</file>
-            <file>file:/C:/wamp/www/mathebula/js/userProfile/userProfile.html</file>
-            <file>file:/C:/wamp/www/mathebula/addUser.php</file>
-            <file>file:/C:/wamp/www/mathebula/js/userProfile/past%20medical%20history/pastMedicalHistory.html</file>
+            <file>file:/C:/wamp/www/mathebula/js/nav/nav.js</file>
+            <file>file:/C:/wamp/www/mathebula/js/login/login.js</file>
+            <file>file:/C:/wamp/www/mathebula/js/search/search.html</file>
+            <file>file:/C:/wamp/www/mathebula/js/profiles/profiles.html</file>
+            <file>file:/C:/wamp/www/mathebula/js/login/login.html</file>
+            <file>file:/C:/wamp/www/mathebula/css/main.css</file>
+            <file>file:/C:/wamp/www/mathebula/js/search/search.js</file>
+            <file>file:/C:/wamp/www/mathebula/php/service.php</file>
+            <file>file:/C:/wamp/www/mathebula/js/session.js</file>
+            <file>file:/C:/wamp/www/mathebula/php/service_secured.php</file>
+            <file>file:/C:/wamp/www/mathebula/js/nav/nav.html</file>
             <file>file:/C:/wamp/www/mathebula/php/sql.php</file>
         </group>
     </open-files>

@@ -1,15 +1,34 @@
-angular.module('session-app', [])
-    .service('serviceSession', function ($http) {
-
+angular.module('session-app', ['ngCookies'])
+    .service('serviceSession', function ($http, $cookies) {
+        
         this.uploadUrl = "php/service_secured.php";
-
+        this.roles = "";
+        
         this.getSession = function () {
             var call = $http.get('php/service.php?q=getSession');
 
             return call.then(function (response) {
                 return data = response.data;
-            })
+            });
 
+        };
+        
+        this.get_roles = function(){
+            
+            //check if roles were set
+            
+            if (this.roles.length === 0){
+                
+                var d = _getCookie('roles', $cookies);
+                
+                return d;
+            }
+            
+            return this.roles;
+        }
+        
+        this.set_roles = function(data){
+            this.roles = data;
         }
 
         this.login = function(data){

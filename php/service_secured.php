@@ -1,7 +1,7 @@
 <?php
 
 session_start(); 
-sleep(1);
+sleep(5);
 require 'sql.php'; 
 
 $query = "";
