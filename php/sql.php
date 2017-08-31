@@ -214,10 +214,12 @@ class sqlClass {
                         $role[$i] = array("ROLEID"=>$result[$i]['ROLEID'], "ROLE"=>$result[$i]['ROLE']);
                         
                     }
-                     $_SESSION['roles'] = json_encode($role);
+                    
+                    $_SESSION['roles'] = json_encode($role);
                     $_SESSION['username'] = $result[0]['NAME'];
-               
-                    echo json_encode(array("status" => 200, 'message' => 'success', 'data' => array('userid'=>base64_encode($result[0]['SESSIONID']), 'roles'=>$role)));
+                    $additionalData = array('name'=>$result[0]['NAME']);
+                    
+                    echo json_encode(array("status" => 200, 'message' => 'success', 'data' => array('userid'=>base64_encode($result[0]['SESSIONID']), 'roles'=>$role, 'userdata'=>$additionalData)));
                 } else {
 
                     echo json_encode(array("status" => 404, 'message' => 'Incorrect username/password. Please try again'));

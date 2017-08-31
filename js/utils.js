@@ -56,8 +56,15 @@ function _getCookie(cookie_name, cookieservice) {
 
     var cookie = cookieservice.get(cookie_name);
 
-    cookie = _decodeCookieObject(cookie);
+    if (cookie !== null){
+
+        cookie = _decodeCookieObject(cookie);
+
+    }
+   
 
     return cookie;
 
 }
+
+/*directives*/

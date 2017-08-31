@@ -7,13 +7,34 @@
 <div class="topnav" id="myTopnav">
     <input type="button" value="Home" class="active">
     <input type="button" value="Bookings" ng-click="navCtr.openBookings()">
-     <input type="button" value="Add Patient" ng-click="navCtr.addPatient()">
-    
+    <input type="button" value="Add Patient" ng-click="navCtr.addPatient()">
+
     <div class="topNavRight">
-        <input ng-if="!navCtr.spinner" type="button" style="background-color: #212121" value="{{navCtr.userName}}">
+      <!--  <input ng-if="!navCtr.spinner" type="button" style="background-color: #212121" value="{{navCtr.userName}}"> -->
+        <button style="height: 100%;" ng-if="!navCtr.spinner"><i class="fa fa-user" aria-hidden="true"></i> {{navCtr.userName}}</button>
+        
         <button style="height: 100%;" ng-if="navCtr.spinner"><img src="img/spinner.gif" alt="spinner" ></button>
+      
         <input type="button" value="Queue" class="" onclick="openNav()">
         <input type="button" value="Log out" ng-click="navCtr.logOff()">
-       
+
+    </div>
+</div>
+
+<div class="modal fade" id="addSearch" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{navCtr.userName}}</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Proceed</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
 </div>

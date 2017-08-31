@@ -20,7 +20,7 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp'])
                 controllerAs: 'adduserprofileController',
                 templateUrl: "js/addUser/addUser.html",
                 url: '/adduserprofile',
-                controller: function ($scope, $state, session, $http, $anchorScroll) {
+                controller: function ($scope, $state, $http, $anchorScroll) {
 
                         $scope.genNumber = function(id){
 
@@ -37,7 +37,7 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp'])
                            
                         }
 
-                },
+                } /*,
                 resolve: {
                     session: function ($http) {
                         return $http.get('php/service.php?q=getSession')
@@ -45,6 +45,6 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp'])
                                 return response.data;
                             })
                     }
-                }
+                } */
             })
     })

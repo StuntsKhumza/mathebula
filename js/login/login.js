@@ -53,9 +53,9 @@ self.spinner = false;
                                     } else {
                                         //(obj, cookie_name, cookiesservice) {
                                         _writeCookie_object(res.data.roles, 'roles', $cookies);
-                                        
+                                        _writeCookie_object(res.data.userdata, 'userdata', $cookies);
                                         serviceSession.set_roles(res.data.roles);
-                                      
+                                     
                                         $cookies.put("m_userid", res.data.userid);
 
                                         $state.go('profiles');

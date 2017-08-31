@@ -119,7 +119,7 @@
                                             <td>{{result.FIRSTNAME +" " + result.LASTNAME}}</td>
                                               <td>{{result.CARDNUMBER}}</td>
                                             <td>
-                                                <input type="button" ng-if="profilesController.access.admin" value="open" class="btn btn-md btn-c-success" ng-click="setClient(result.ID)" name="{{'btnOpen_' + $index}}">
+                                                <input type="button" ng-disabled="!profilesController.access.admin" value="open" class="btn btn-md btn-c-success" ng-click="setClient(result.ID)" name="{{'btnOpen_' + $index}}">
                                                 <input type="button" value="queue" class="btn btn-md btn-c-success" ng-click="searchCtr.addToQue(result.ID)" onclick="openNav()">
                                             </td>
                                         </tr>

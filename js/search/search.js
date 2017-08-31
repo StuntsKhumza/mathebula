@@ -82,7 +82,7 @@ angular.module('search-app', ['session-app', 'ngCookies'])
 
                                     self.showmsg2 = "Showing results for " + searchV;
                                     $scope.results = res.data;
-                                    console.log(res.data);
+                                    
                                     writeCookie_object(res.data, 'dr_search_history');
 
                                     //var str = b64EncodeUnicode(JSON.stringify(res.data));

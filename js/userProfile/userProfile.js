@@ -2,7 +2,8 @@ angular.module('userProfile-app', ['comments-app',
 'profilePictureApp',
 'userProfile-General-app',
 'userProfile-Address-app',
-'userProfile-pastMedicalHistory-app'
+'userProfile-pastMedicalHistory-app',
+'save-app'
 ])
 
         .directive('userProfile', function () {

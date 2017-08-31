@@ -41,6 +41,7 @@ and open the template in the editor.
         <link href="css/user-profile.css" rel="stylesheet" type="text/css"/>
         <link href="css/waitinglist.css" rel="stylesheet" type="text/css"/>
         <link href="css/navbar.css" rel="stylesheet" type="text/css"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link rel="icon" href="img/1477676379_icon-57.png">
 
         <!--session-->
@@ -91,6 +92,7 @@ and open the template in the editor.
         </script>
         
         <script src="js/utils.js"></script>
+        <script src="js/directives/save/save.js"></script>
 
  <script>
         function isNumberKey(evt)
