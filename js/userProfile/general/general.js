@@ -5,9 +5,10 @@ angular.module('userProfile-General-app', [])
         return {
             restrict: "E",
             templateUrl: "js/userProfile/general/general.html",
-            controllerAs: function(){},
+            controllerAs: "generalTabCntr",
             controller: function ($scope) {
 
+            
 
             }
 

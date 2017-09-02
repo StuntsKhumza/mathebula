@@ -1,20 +1,33 @@
 <div class="">
-    <h3>{{userProfileController.setUser.FIRSTNAME}} {{userProfileController.setUser.LASTNAME}}</h3>
-    <hr class="colorgraph">
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>{{userProfileController.setUser.FIRSTNAME}} {{userProfileController.setUser.LASTNAME}}</h3>
+        </div>
+        <div class="col-md-6">
+            <div class="pull-right">
 
-    <div class="pull-right">
-        <input type="button" class="btn btn-default" value="search for other patient" ng-click="userProfileController.return_to_search()">
+                <input type="button" value="Generate Dr's Note" class="btn btn-success btn-sm">
+                <input type="button" value="Generate Referral Note" class="btn btn-success btn-sm">
+                <input type="button" class="btn btn-default btn-sm" value="Back to Search" ng-click="userProfileController.return_to_search()">
+            </div>
+        </div>
     </div>
 
-    <br><br><br>
+    <hr class="colorgraph">
+
+    <div class="pull-right" ng-if="false">
+        <input type="button" class="btn btn-default" value="search for other patient" ng-click="userProfileController.return_to_search()">
+    </div>
+<br>
     <div class="row">
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
 
             <profile-picture></profile-picture>
 
             <br>
-        </div>
-        <div class="col-md-9 ">
+        </div>  -->
+        <div class="col-md-12">
             <ul class="nav nav-tabs nav-user-profile" ng-show="false">
                 <li class="nav-item">
                     <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 1}" ng-click="userProfileController.setTab(1)">
@@ -23,87 +36,94 @@
                         <span class="nav-link-btn-text">General Information<span>
 
                                 </button>
-                                </li>
-                                <li class="nav-item">
-                                    <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 2}" ng-click="userProfileController.setTab(2)">
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 2}" ng-click="userProfileController.setTab(2)">
                                         <img src="img/icons/address/placeholder-26.png" height="40">
                                         <span class="nav-link-btn-text">Address<span></button>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 3}" ng-click="userProfileController.setTab(3)">
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" ng-class="{'active': userProfileController.activeTab == 3}" ng-click="userProfileController.setTab(3)">
                                                         <img src="img/icons/medical/folder.png" height="40">
                                                         <span class="nav-link-btn-text">Past Medical History<span></button>
-                                                                </li>
+                </li>
 
-                                                                </ul>
+            </ul>
 
-                                                                <ul class="nav nav-tabs" ng-init="tab_count = 1">
+            <ul class="nav nav-tabs" ng-init="tab_count = 1">
 
-                                                                    <li class="nav-item">
-                                                                        <input type="button" value="General" class="nav-link" ng-class="{'active': tab_count == 1}" ng-click="tab_count = 1">
+                <li class="nav-item">
+                    <input type="button" value="General" class="nav-link" ng-class="{'active': tab_count == 1}" ng-click="tab_count = 1">
 
-                                                                    </li>
-                                                                    <li class="nav-item">
+                </li>
+                <div ng-if="false">
+                    <li class="nav-item">
 
-                                                                        <input type="button" value="Address" class="nav-link" ng-class="{'active': tab_count == 2}" ng-click="tab_count = 2">
-                                                                    </li>
-                                                                    <li class="nav-item">
+                        <input type="button" value="Address" class="nav-link" ng-class="{'active': tab_count == 2}" ng-click="tab_count = 2">
+                    </li>
+                </div>
+                <li class="nav-item">
 
-                                                                        <input type="button" value="Medical History" class="nav-link"ng-class="{'active': tab_count == 3}" ng-click="tab_count = 3">
-                                                                    </li>
-                                                                    <li class="nav-item">
+                    <input type="button" value="Medical History" class="nav-link" ng-class="{'active': tab_count == 3}" ng-click="tab_count = 3">
+                </li>
+                <li class="nav-item">
 
-                                                                        <input type="button" value="Notes" class="nav-link"ng-class="{'active': tab_count == 4}" ng-click="tab_count = 4">
-                                                                    </li>
-                                                                </ul>
-                                                                <general-tab ng-if="tab_count == 1"></general-tab>
-                                                                <address-tab ng-if="tab_count == 2"></address-tab>
-                                                                <past-medical-history-tab ng-if="tab_count == 3"></past-medical-history-tab>
-                                                                <div ng-if="tab_count == 4">
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
+                    <input type="button" value="Clinical Examination" class="nav-link" ng-class="{'active': tab_count == 4}" ng-click="tab_count = 4">
+                </li>
+                <li class="nav-item">
 
-                                                                            <input type="button" value="Add Note" class="btn btn-primary ">
-                                                                        </div>
-                                                                    </div>  
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
+                    <input type="button" value="Notes" class="nav-link" ng-class="{'active': tab_count == 5}" ng-click="tab_count = 5">
+                </li>
+            </ul>
+            <general-tab ng-if="tab_count == 1"></general-tab>
+            <address-tab ng-if="false"></address-tab>
+            <past-medical-history-tab ng-if="tab_count ==3"></past-medical-history-tab>
+            <div ng-if="tab_count == 4">Clinical Examination</div>
+            <div ng-if="tab_count == 5">
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
 
-                                                                            <table class="table">
-                                                                                <thead>
-                                                                                <th>#</th>
-                                                                                <th>Date</th>
-                                                                                <th>Dr</th>
-                                                                                <th>Comment</th>
-                                                                                </thead>
-                                                                                <tr>
-                                                                                    <td>1.</td>
-                                                                                    <td>12/06/2017</td>
-                                                                                    <td>Dr A Gumede</td>
-                                                                                    <td>Patient showing signs of arthritis. Patient to come back after 12 days to fetch test results.</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>2.</td>
-                                                                                    <td>18/07/2017</td>
-                                                                                    <td>Dr P Khumalo</td>
-                                                                                    <td>Nkosinathi has chest pains. I have booked him for an x-ray</td>
-                                                                                </tr>
-                                                                                <tbody>
+                        <input type="button" value="Add Note" class="btn btn-primary ">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
 
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                    </div>  
-                                                                </div>
-                                                                </div>
-                                                                </div>
+                        <table class="table">
+                            <thead>
+                                <th>#</th>
+                                <th>Date</th>
+                                <th>Dr</th>
+                                <th>Comment</th>
+                            </thead>
+                            <tr>
+                                <td>1.</td>
+                                <td>12/06/2017</td>
+                                <td>Dr A Gumede</td>
+                                <td>Patient showing signs of arthritis. Patient to come back after 12 days to fetch test results.</td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>18/07/2017</td>
+                                <td>Dr P Khumalo</td>
+                                <td>Nkosinathi has chest pains. I have booked him for an x-ray</td>
+                            </tr>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-                                                                <br>
+    <br>
 
-                                                                <!-- 
+    <!-- 
                                                                     <div class="row">
                                                                             <div class="col-md-12">
                                                                                 <div class="thumb-container">
@@ -142,4 +162,4 @@
                                                                             </div>
                                                                         </div>
                                                                 -->
-                                                                </div>
+</div>

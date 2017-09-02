@@ -22,6 +22,7 @@ and open the template in the editor.
 
 
         <link rel="stylesheet" href="configs/bootstrap.min.css" >
+        <script src="js/utils.js"></script>
         <script src="configs/jquery.min.js"></script>
         <script src="configs/tether.min.js"></script>
         <script src="configs/bootstrap.min.js"></script>
@@ -41,7 +42,7 @@ and open the template in the editor.
         <link href="css/user-profile.css" rel="stylesheet" type="text/css"/>
         <link href="css/waitinglist.css" rel="stylesheet" type="text/css"/>
         <link href="css/navbar.css" rel="stylesheet" type="text/css"/>
-        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link rel="icon" href="img/1477676379_icon-57.png">
 
         <!--session-->
@@ -53,10 +54,13 @@ and open the template in the editor.
 
         <!--User profile-->
         <script src="js/profiles/profiles.js"></script>
+        
         <script src="js/userProfile/general/general.js"></script>
         <script src="js/userProfile/address/address.js"></script>
         <script src="js/userProfile/past medical history/pastMedicalHistory.js"></script>
-        
+        <!--queue-->
+        <script src="js/myQ/myQ.js"></script>
+
         <script src="js/nav/nav.js"></script> 
         <!--nav-->
 <script src="configs/navbar.js"></script>
@@ -91,8 +95,9 @@ and open the template in the editor.
 } */
         </script>
         
-        <script src="js/utils.js"></script>
+        
         <script src="js/directives/save/save.js"></script>
+        
 
  <script>
         function isNumberKey(evt)

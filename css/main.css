@@ -213,4 +213,8 @@ margin: 5px;
         width:100%;
     }
 
+    .add-padding {
+    padding: 8px;
+}
+
 }

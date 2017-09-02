@@ -1,7 +1,7 @@
 <?php
 
 session_start(); 
-sleep(5);
+sleep(0);
 require 'sql.php'; 
 $query = "";
 
@@ -28,9 +28,9 @@ $i = 0;
         echo $i;
     break;
 
-    case "authenticate":
+    case "getMyQueue":
         
-        echo $sql -> authenticate($_GET); 
+        echo $sql -> getMyQueue($_GET); 
         
         break; 
     

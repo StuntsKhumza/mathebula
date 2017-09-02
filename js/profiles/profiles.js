@@ -6,7 +6,7 @@ angular.module('profiles-app', [
     'session-app',
     'ngCookies',
     'nav-app',
-    'waitingList-app'
+    'waitingList-app', "myQ-app",
 ])
         .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -20,27 +20,23 @@ angular.module('profiles-app', [
                             var self = this;
                             self.activeuser = "";
                             self.activeuser_firstname = "";
-                            self.userRoles = serviceSession.get_roles();
                             self.spinner = true;
+
+                            self.userRoles = serviceSession.get_roles();
+
                             self.access = {
-                                admin: isMember('[admin]')
+
+                                admin: isMember('[admin]', self.userRoles),
+                                doctor: isMember('[doctor]', self.userRoles),
+
                             }
+                            
                             $scope.queue = {
+
                                 obj: []
+
                             };
                             
-                            function isMember(role){
-                               
-                                var str = JSON.stringify(self.userRoles);
-                               
-                                if (str.indexOf(role) > 0){
-
-                                    return true;
-                                    
-                                }
-                                
-                                return false;
-                            }
                             
                             var call = serviceSession.get_roles();
 

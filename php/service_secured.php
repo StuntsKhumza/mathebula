@@ -1,7 +1,7 @@
 <?php
 
 session_start(); 
-sleep(5);
+sleep(0);
 require 'sql.php'; 
 
 $query = "";
@@ -14,9 +14,11 @@ $query = $_POST['q'];
 
 switch ($query) {
 
-    case "test":
-       
-    break;
+    case "getMyQueue":
+        
+        echo $sql -> getMyQueue($_POST); 
+        
+        break; 
 
     case "authenticate":
         

@@ -1,4 +1,4 @@
-<link href="css/side-nav.css" rel="stylesheet" type="text/css" />
+
 <script src="js/side-nav.js" type="text/javascript"></script>
 <style>
     .nav-main {
@@ -8,11 +8,11 @@
         background-color: white;
         z-index: 1;
     }
-    
+
     .c-nav-link {
         color: #f8f8f8;
     }
-    
+
     navbar-light .navbar-nav .nav-link {
         color: #f8f8f8;
     }
@@ -20,29 +20,40 @@
 
 <div class="background-color-dark" style="position: fixed;width: 100%; z-index: 1">
     <div class="container">
-        <navigation-nav username="Nathi"></navigation-nav>
+        <navigation-nav></navigation-nav>
     </div>
 </div>
 
 <div id="main">
+
     <br>
 
-
     <div id="page-content-wrapper">
-       
-        <search ng-if="!userObj.clientSet"></search>
-        <div class="container">
- 
-            <div ng-if="userObj.clientSet">
+<br>
 
-                <div class="add-padding">
-                    <user-profile></user-profile>
+<my-q ng-if="profilesController.access.doctor"></my-q>
+        <div ng-if="profilesController.access.reception || profilesController.access.admin">
+
+            <search ng-if="!userObj.clientSet"></search>
+
+            <div class="container">
+
+                <div ng-if="userObj.clientSet">
+
+                    <div class="add-padding">
+
+                        <user-profile></user-profile>
+
+                    </div>
+
                 </div>
 
             </div>
+
         </div>
+
     </div>
 
 </div>
 
- <waiting-list listdt="queue"></waiting-list>
+<waiting-list listdt="queue"></waiting-list>

@@ -56,15 +56,28 @@ function _getCookie(cookie_name, cookieservice) {
 
     var cookie = cookieservice.get(cookie_name);
 
-    if (cookie !== null){
+    if (cookie !== null) {
 
         cookie = _decodeCookieObject(cookie);
 
     }
-   
+
 
     return cookie;
 
+}
+
+function isMember(role, userRoles) {
+
+    var str = JSON.stringify(userRoles);
+
+    if (str.indexOf(role) > 0) {
+
+        return true;
+
+    }
+
+    return false;
 }
 
 /*directives*/

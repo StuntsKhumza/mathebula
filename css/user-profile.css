@@ -52,6 +52,12 @@
     .nav-user-profile .nav-item button {
         background-color: red;
     }
+
+        .heading-s {
+        background: #ebebeb;
+        padding: 5px;
+        font-weight: bold;
+    }
     
     @media all and (max-width: 780px) {
         .nav-link-btn-text {

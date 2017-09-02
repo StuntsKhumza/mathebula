@@ -1,4 +1,4 @@
-angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp'])
+angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp',])
 
  /*       .directive('addUserProfile', function () {
 
@@ -21,6 +21,9 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp'])
                 templateUrl: "js/addUser/addUser.html",
                 url: '/adduserprofile',
                 controller: function ($scope, $state, $http, $anchorScroll) {
+
+                        var self = this;
+    
 
                         $scope.genNumber = function(id){
 

@@ -176,6 +176,13 @@ class sqlClass {
         return $stmt->rowCount();
     }
 
+    public function getMyQueue($data){
+
+        //$connect = $this->connectPDO();
+        return $this->searchProfile(array("search_key"=>'c-', "search_type"=>'card'));
+
+    }
+
     public function authenticate($data) {
 
         $connect = $this->connectPDO();
