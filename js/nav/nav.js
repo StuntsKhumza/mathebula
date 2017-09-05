@@ -6,7 +6,8 @@ angular.module('nav-app', ['ngCookies'])
             controllerAs: 'navCtr',
             scope: {
                 username: '=',
-                linksObj: '='
+                linksObj: '=',
+                roles:'='
             }
             ,
             controller: function ($state, $http, $cookies) {

@@ -67,6 +67,7 @@ angular.module('login-app', ['ui.router', 'session-app', 'ngCookies'])
                                 $state.go('profiles');
                                 self.spinner = false;
                             }
+                            console.log(res);
                             self.spinner = false;
                             self.searching = false;
 

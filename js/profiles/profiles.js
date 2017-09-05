@@ -28,6 +28,7 @@ angular.module('profiles-app', [
 
                                 admin: isMember('[admin]', self.userRoles),
                                 doctor: isMember('[doctor]', self.userRoles),
+                                reception: isMember('[reception]', self.userRoles)
 
                             }
                             
@@ -37,6 +38,7 @@ angular.module('profiles-app', [
 
                             };
                             
+                            self.test = function(){alert('test hello world');}
                             
                             var call = serviceSession.get_roles();
 
@@ -48,6 +50,10 @@ angular.module('profiles-app', [
 
                                 $state.go('login');
                                 return;
+                            }
+
+                            self.addToQueue = function(){
+                                
                             }
 
                             /*  var currentUser = serviceSession.getActiveProfile();

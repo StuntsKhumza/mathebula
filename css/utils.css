@@ -28,3 +28,5 @@
 .add-margin-sm {
     margin: 3px;
 }
+
+.ngRadiosBtns ul > li{list-style: none;}

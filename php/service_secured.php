@@ -18,7 +18,23 @@ switch ($query) {
         
         echo $sql -> getMyQueue($_POST); 
         
-        break; 
+        break;
+
+    case "loadWaitingList":
+    
+        echo $sql -> loadWaitingList($_POST); 
+
+        break;
+    
+     case "getUsersByType":
+        
+        echo $sql -> getUsersByType($_POST); 
+        
+        break;
+    
+    case "addToQueue":
+        echo $sql -> addToQueue($_POST); 
+        break;
 
     case "authenticate":
         

@@ -1,43 +1,64 @@
 <br>
 <div class="container">
-    <div class="row">
+    <div ng-if="!userObj.clientSet">
+        
+    
+    <div class="row" >
         <div class="col-md-12">
-             <div class="search-header">
-                    <h3>Patients in your queue:</h3>
-                    <hr class="colorgraph"><br>
-                </div>
+            <div class="search-header">
+                <h3>Patients in your queue:</h3>
+                <hr class="colorgraph"><br>
+            </div>
         </div>
     </div>
-      <div class="row" ng-if="myQController.spinner">
-                        <div class="col-md-12">
-                            <img src="img/Searching.gif" alt="searching gif"><br>
-                            <h4>...please wait</h4>
-                        </div>
-                    </div>
+        
+    <div class="row" ng-if="myQController.spinner">
+        <div class="col-md-12">
+            <img src="img/Searching.gif" alt="searching gif"><br>
+            <h4>...please wait</h4>
+        </div>
+    </div>
+        </div>
     <div class="row">
         <div class="col-md-12">
-            <table class="table" ng-if="!myQController.spinner">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Card #</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="table-hover">
-                    <tr ng-repeat="result in myQController.results">
-                        <td class="row-data-td">{{1 + $index}}</td>
-                        <td>{{result.FIRSTNAME +" " + result.LASTNAME}}</td>
-                        <td>{{result.CARDNUMBER}}</td>
-                        <td>
-                            <input type="button" value="open" class="btn btn-md btn-c-success" ng-click="setClient(result.ID)"
-                                name="{{'btnOpen_' + $index}}">
+            <div ng-if="myQController.results.length == 0">
+                <h5>Your queue is empty...</h5>
+            </div>
+            <div ng-if="!userObj.clientSet">
 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+                <table class="table" ng-if="!myQController.spinner && myQController.results.length > 0" >
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Card #</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-hover">
+                        <tr ng-repeat="result in myQController.results">
+                            <td class="row-data-td">{{1 + $index}}</td>
+                            <td>{{result.FIRSTNAME + " " + result.LASTNAME}}</td>
+                            <td>{{result.CARDNUMBER}}</td>
+                            <td>
+                                <input type="button" value="open" class="btn btn-md btn-c-success" ng-click="myQController.setClient(result.ID)"
+                                       name="{{'btnOpen_' + $index}}">
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div ng-if="userObj.clientSet">
+
+                <div class="add-padding">
+
+                    <user-profile></user-profile>
+
+                </div>
+
+            </div>
 
         </div>
     </div>

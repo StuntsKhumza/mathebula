@@ -8,7 +8,22 @@ angular.module('search-app', ['session-app', 'ngCookies'])
                         controller: function ($scope, $http, serviceSession, $cookies) {
 
                             $scope.searching = false;
+                            $scope.loadDrs = true;
                             var self = this;
+                            self.doctors = [];
+
+                            //getUsersByType
+                            var form = new FormData();
+                            form.append("q", "getUsersByType");
+                            form.append("type", "DOCTOR");
+
+                            serviceSession.callService(form)
+                                    .then(function (res) {
+
+                                        self.doctors = res.data;
+                                        $scope.loadDrs = false;
+                                    })
+
                             self.showQueue = false;
 
                             self.showmsg = "";
@@ -17,7 +32,11 @@ angular.module('search-app', ['session-app', 'ngCookies'])
                                 file_number: '',
                                 id_number: ''
                             }
-
+                            self.drcollection = [
+                                {name: 'nathi'},
+                                {name: 'kapu'},
+                                {name: 'zama'}
+                            ]
                             self.search_complete = false;
 
                             $scope.results = [];
@@ -30,11 +49,9 @@ angular.module('search-app', ['session-app', 'ngCookies'])
 
                             var dr_query = getCookie_object('dr_queue');//$scope.queue
 
-                            if (dr_query != null) {
-                                $scope.queue.obj = dr_query;
-                            }
-
-
+                            if (dr_query != null) {}//$scope.queue.obj = dr_query;}
+              
+              
                             self.show_queue = function () {
 
                                 if (self.showQueue) {
@@ -82,7 +99,7 @@ angular.module('search-app', ['session-app', 'ngCookies'])
 
                                     self.showmsg2 = "Showing results for " + searchV;
                                     $scope.results = res.data;
-                                    
+
                                     writeCookie_object(res.data, 'dr_search_history');
 
                                     //var str = b64EncodeUnicode(JSON.stringify(res.data));
@@ -93,12 +110,6 @@ angular.module('search-app', ['session-app', 'ngCookies'])
                                     self.search_complete = true;
                                     $scope.searching = false;
                                 });
-
-
-
-
-                                return;
-
 
                             }
 
@@ -166,7 +177,7 @@ angular.module('search-app', ['session-app', 'ngCookies'])
                                     $scope.search();
 
                             }
-
+                            self.selectedForQ = null;
                             self.addToQue = function (id) {
 
                                 //check if added
@@ -174,15 +185,18 @@ angular.module('search-app', ['session-app', 'ngCookies'])
 
                                 if (o == null) {
 
-
                                     var o = find_Item($scope.results, id);
 
                                     if (o != null) {
                                         $scope.queue.obj.push(o);
                                     }
+                                } else {
+
+                                    
+                                    self.selectedForQ = o;
                                 }
 
-                                writeCookie_object($scope.queue.obj, 'dr_queue');
+                                //writeCookie_object($scope.queue.obj, 'dr_queue');
 
                             }
 
@@ -226,6 +240,49 @@ angular.module('search-app', ['session-app', 'ngCookies'])
                                     return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
                                 }).join(''));
                             }
+                            
+                       
+                            self.assignToDr = function(ID){
+                                
+                                if(self.selectedForQ !== null){
+                                     $scope.loadDrs = true;
+                                    var formdata = new FormData();
+                                    formdata.append("q", "addToQueue");
+                                    formdata.append("DRID", ID);
+                                    formdata.append("PATIENTID", self.selectedForQ.ID);
+                                    formdata.append("STATUS", "WAITING");
+                                    
+                                    serviceSession.callService(formdata)
+
+                                            .then(function(res){
+                                                //profilesController.addToQueue();
+                                                //self.addToQue(ID);
+                                                self.loadWaitingList();
+                                                $scope.loadDrs = false;
+
+                                            })
+                                    
+                                }
+                                
+                            }
+
+                            self.loadWaitingList = function(){
+
+                                //queue.obj
+                                var formdata = new FormData();
+                                formdata.append("q", "loadWaitingList");
+                                formdata.append("type", "WAITING");
+                                
+                                serviceSession.callService(formdata)
+
+                                    .then(function(res){
+                                        $scope.queue.obj = res.data;
+                                        console.log(res);
+                                    })
+                                    
+                            }
+
+                            self.loadWaitingList();
 
                         }
 

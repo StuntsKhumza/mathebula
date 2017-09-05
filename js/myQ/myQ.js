@@ -6,52 +6,69 @@ angular.module('myQ-app', ['comments-app',
     'save-app'
 ])
 
-    .directive('myQ', function () {
+        .directive('myQ', function () {
 
-        return {
-            restrict: "E",
-            templateUrl: "js/myQ/myQ.html",
-            controllerAs: 'myQController',
-            controller: function ($scope, $http, serviceSession) {
+            return {
+                restrict: "E",
+                templateUrl: "js/myQ/myQ.html",
+                controllerAs: 'myQController',
+                controller: function ($scope, $http, serviceSession) {
 
-                var self = this;
+                    var self = this;
 
-                self.results = [];
-
-                self.spinner = true;
-
-                getMyList();
-
-                function getMyList(){
-
-                    self.btnText = "please wait...";
+                    self.results = [];
 
                     self.spinner = true;
 
-                    var formData = new FormData();
+                    getMyList();
 
-                    formData.append("q", "getMyQueue");
+                    function getMyList() {
 
-                    var data = serviceSession.callService(formData);
+                        self.btnText = "please wait...";
 
-                      data.then(function (res) {
+                        self.spinner = true;
 
-                        if (res.status > 200) {
+                        var formData = new FormData();
 
-                        } else {
+                        formData.append("q", "getMyQueue");
 
-                           self.results = res.data;
+                        var data = serviceSession.callService(formData);
 
+                        data.then(function (res) {
+
+                            if (res.status > 200) {
+
+                            } else {
+
+                                self.results = res.data;
+
+                            }
+
+                            self.spinner = false;
+                            self.searching = false;
+
+                        });
+                    }
+
+                    self.setClient = function (id) {
+                        
+                                        
+                        var o = _find_Item(self.results, id);
+
+                        //$scope.loginObj.clientSelected = true;
+
+                        if (o != null) {
+                            $scope.userObj.client = o;
+                            $scope.userObj.clientSet = true;
                         }
                         
-                        self.spinner = false;
-                        self.searching = false;
+                        console.log( $scope.userObj);
 
-                    });
+
+                    }
+
                 }
 
             }
 
-        }
-
-    })
+        })
