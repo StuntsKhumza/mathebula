@@ -11,22 +11,10 @@
             <file>file:/C:/wamp/www/mathebula/reset.php</file>
         </group>
         <group name="Current">
-            <file>file:/C:/wamp/www/mathebula/js/myQ/myQ.html</file>
-            <file>file:/C:/wamp/www/mathebula/js/search/search.html</file>
-            <file>file:/C:/wamp/www/mathebula/js/profiles/profiles.html</file>
-            <file>file:/C:/wamp/www/mathebula/js/search/search.js</file>
-            <file>file:/C:/wamp/www/mathebula/js/profiles/profiles.js</file>
-            <file>file:/C:/wamp/www/mathebula/js/waitinglist/waitinglist.html</file>
-            <file>file:/C:/wamp/www/mathebula/js/addUser/addUser.html</file>
+            <file>file:/C:/wamp/www/mathebula/index.php</file>
+            <file>file:/C:/wamp/www/mathebula/js/userProfile/general/general.html</file>
+            <file>file:/C:/wamp/www/mathebula/demo.html</file>
             <file>file:/C:/wamp/www/mathebula/js/userProfile/userProfile.html</file>
-            <file>file:/C:/wamp/www/mathebula/js/utils.js</file>
-            <file>file:/C:/wamp/www/mathebula/css/utils.css</file>
-            <file>file:/C:/wamp/www/mathebula/php/service.php</file>
-            <file>file:/C:/wamp/www/mathebula/js/session.js</file>
-            <file>file:/C:/wamp/www/mathebula/php/service_secured.php</file>
-            <file>file:/C:/wamp/www/mathebula/js/myQ/myQ.js</file>
-            <file>file:/C:/wamp/www/mathebula/js/nav/nav.html</file>
-            <file>file:/C:/wamp/www/mathebula/php/sql.php</file>
         </group>
     </open-files>
 </project-private>

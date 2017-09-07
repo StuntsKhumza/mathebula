@@ -17,7 +17,7 @@ angular.module('userProfile-app', ['comments-app',
                     var self = this;
                     self.activeTab = 1;
                     self.setUser = $scope.userObj.client;
-
+                    $scope.tab_count = 1;
                      
 
                     $scope.userDataObj = 

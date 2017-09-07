@@ -6,822 +6,143 @@
         padding: 5px;
         font-weight: bold;
     }
+    .btn-expanded{
+        width: 100%;
+    }
 </style>
 
 <div class="container">
 
 
     <br><br>
-    <div class="addClient-container">
-        <div class="addClient-header">
-            <h3>Add Client:</h3>
-            <hr class="colorgraph"><br>
-        </div>
-
-        <div class="addClient-body">
-            <div class="row" ng-if="searching">
-                <div class="col-md-12">
-                    <img src="img/Searching.gif" alt="searching gif">
-                    <h4>...please wait</h4>
-                </div>
-            </div>
-            <div class="row" ng-show="false">
-                <div class="col-md-12">
-                    <profile-picture></profile-picture>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <b>Please specify patient type:</b>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="radio" value="cash" ng-model="patientType" ng-click="genNumber(1)" name="patientType"> Cash <br>
-                            <input type="radio" value="medical" ng-model="patientType" ng-click="genNumber(2)" name="patientType"> Medical Aid
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6">
-                            Date captured:
-                        </div>
-                        <div class="col-md-6">
-                            27 August 2017 - 13:00
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-            <br>
-            <div ng-show="patientType == 'cash' || patientType == 'medical' ">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="heading-s">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    LANGUAGE PREFERENCE:
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control input-md simplebox remove-radius">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="heading-s">
-                            <div class="heading-s">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        COMPUTER NO:
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input type="text" data-ng-disabled="true" class="form-control input-sm simplebox remove-radius" value="{{filenumber}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="heading-s">
-                                    PATIENT DETAILS
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Full Name and Surname:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    I.D No:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Mr/Mrs/Miss:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="heading-s">
-                                    PERSON RESPONSIBLE FOR ACCOUNT
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Full Name and Surname:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Mr/Mrs/Miss
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Date of Birth:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    I.D. No:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Marital Status:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Home Address:
-                                </div>
-                                <div class="col-md-8">
-                                    <textarea class="form-control remove-radius simplebox"></textarea>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Tel:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Postal Address:
-                                </div>
-                                <div class="col-md-8">
-                                    <textarea class="form-control remove-radius simplebox"></textarea>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Code:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Tel. Husband:
-                                </div>
-                                <div class="col-md-8">
-                                    (w)<input class="form-control remove-radius simplebox"> (c)
-                                    <input class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Tel. Wife:
-                                </div>
-                                <div class="col-md-8">
-                                    (w)<input class="form-control remove-radius simplebox"> (c)
-                                    <input class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Name of Employer:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Occupation:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Address:
-                                </div>
-                                <div class="col-md-8">
-                                    <textarea class="form-control remove-radius simplebox"></textarea>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Tel:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-6">
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="heading-s">
-                                    NAME OF HOUSE DOCTOR (GENERAL PRACTITIONER)
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-12">
-                                    <textarea class="form-control simplebox remove-radius"></textarea>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="heading-s">
-                                    MEDICAL AID
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Name:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Plan:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Number:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Other: eg. Hospital Plan
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="heading-s">
-                                    NEAREST FAMILY FRIEND
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Name:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Relatitonship:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <input type="text" class="form-control remove-radius simplebox">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-4">
-
-                                    Address:
-                                </div>
-                                <div class="col-md-8">
-
-                                    <textarea class="form-control remove-radius simplebox"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="heading-s">
-                                    DEPENDENCE IN FAMILY ON MEDICAL AID
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="add-padding-all">
-                                <div class="col-md-12">
-                                    
-                                    
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSearch"> Add New</button>
-           
-                                    <br><br>    
-                                    <table class="table">
-                                        <thead>
-                                            <th>Name:</th>
-                                            <th>Sex:</th>
-                                            <th>Date of Birth:</th>
-                                            <th>Allergies:</th>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <br></br>
-
-
-
-
-            <div class="row" ng-show="FALSE">
-
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-12">
-
-                            <div class="thumb-container">
-                                <div class="thumb-header">
-                                    <div id="generalInfo">
-                                        <img src="img/icons/medical/stethoscope.png" height="50"><b> General Information:</b>
-                                    </div>
-                                </div>
-                                <div class="thumb-body">
-
-                                    <div class="row add-border-bottom add-margin-top">
-                                        <div class="col-md-6">
-                                            <label>Name:</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control input-md simplebox remove-radius">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="row add-border-bottom add-margin-top">
-                                        <div class="col-md-6">
-                                            <label>Surname:</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control simplebox remove-radius">
-                                        </div>
-                                    </div>
-
-                                    <div class="row add-border-bottom add-margin-top">
-                                        <div class="col-md-6">
-                                            <label>Date of birth:</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control simplebox remove-radius">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="thumb-footer">
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <br><br>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="thumb-container">
-                                <div class="thumb-header">
-                                    <div id="medicalHistory">
-                                        <img src="img/icons/address/pin-33.png" height="50"> <b> Address:</b>
-                                    </div>
-                                </div>
-                                <div class="thumb-body">
-                                    <div class="row add-border-bottom add-margin-top">
-                                        <div class="col-md-6">
-                                            <label>Line 1:</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <textarea class="form-control simplebox remove-radius"></textarea>
-                                        </div>
-
-                                    </div>
-                                    <div class="row add-border-bottom add-margin-top">
-                                        <div class="col-md-6">
-                                            <label>Line 2:</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <textarea class="form-control simplebox remove-radius"></textarea>
-                                        </div>
-
-                                    </div>
-                                    <div class="row add-border-bottom add-margin-top">
-                                        <div class="col-md-6">
-                                            <label>Line 3:</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <textarea class="form-control simplebox remove-radius"></textarea>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="thumb-footer">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br><br>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="thumb-container">
-                                <div class="thumb-header">
-                                    <div id="medicalHistory">
-                                        <img src="img/icons/medical/report.png" height="50"><b>Past Medical History:</b>
-                                    </div>
-                                </div>
-                                <div class="thumb-body">
-
-                                    <div class="row add-border-bottom add-margin-top">
-                                        <div class="col-md-6">
-                                            <div class="row">
-
-                                                <div class="col-md-6">
-                                                    <label>Previous Physician’s name:</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control simplebox remove-radius">
-                                                </div>
-                                            </div>
-
-                                            <div class="row add-border-bottom add-margin-top">
-                                                <div class="col-md-6">
-                                                    <label>Have you ever been hospitalized?:</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control simplebox remove-radius">
-                                                </div>
-                                            </div>
-
-                                            <div class="row add-border-bottom add-margin-top">
-                                                <div class="col-md-6">
-                                                    <label>Have you ever been tested for hepatitis A, B or C?:</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control simplebox remove-radius">
-                                                </div>
-                                            </div>
-
-                                            <div class="row add-border-bottom add-margin-top">
-                                                <div class="col-md-6">
-                                                    <label>Have you been vaccinated for hepatitis B?:</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control simplebox remove-radius">
-                                                </div>
-                                            </div>
-
-                                            <div class="row add-border-bottom add-margin-top">
-                                                <div class="col-md-6">
-                                                    <label>Have you been vaccinated for hepatitis A?:</label>
-                                                </div>
-                                                <div class="col-md-6">
-
-                                                </div>
-                                            </div>
-
-                                            <div class="row add-border-bottom add-margin-top">
-                                                <div class="col-md-6">
-                                                    <label>Last Tuberculosis (TB) Screening</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control simplebox remove-radius">
-                                                </div>
-                                            </div>
-
-                                            <div class="row add-border-bottom add-margin-top">
-                                                <div class="col-md-6">
-                                                    <label>If positive TB screen, date of last chest x-ray</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control simplebox remove-radius">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="row add-border-bottom add-margin-top">
-
-                                                <div class="col-md-6">
-                                                    <label>Date of last exam:</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control simplebox remove-radius">
-                                                </div>
-                                            </div>
-
-                                            <div class="row add-border-bottom add-margin-top">
-                                                <div class="col-md-6">
-                                                    <label>If yes, what for?:</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control simplebox remove-radius">
-                                                </div>
-                                            </div>
-
-                                            <div class="row add-border-bottom add-margin-top">
-                                                <div class="col-md-6">
-                                                    <label>Which hepatitis virus?:</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control simplebox remove-radius">
-                                                </div>
-                                            </div>
-
-                                            <div class="row add-border-bottom add-margin-top">
-                                                <div class="col-md-6">
-                                                    <label>If yes, date vaccine series completed?:</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control simplebox remove-radius">
-                                                </div>
-                                            </div>
-
-                                            <div class="row add-border-bottom add-margin-top">
-                                                <div class="col-md-6">
-                                                    <label>If yes, date vaccine series completed?:</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control simplebox remove-radius">
-                                                </div>
-                                            </div>
-
-                                            <div class="row add-border-bottom add-margin-top">
-                                                <div class="col-md-6">
-                                                    <label>Result of TB screening?:</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control simplebox remove-radius">
-                                                </div>
-                                            </div>
-
-                                            <div class="row add-border-bottom add-margin-top">
-                                                <div class="col-md-6">
-                                                    <label>Result of chest x-ray</label>
-                                                </div>
-                                                <div class="col-md-6">
-
-                                                    <input type="text" class="form-control simplebox remove-radius">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                </div>
-                                <div class="thumb-footer">
-                                    <hr>
-                                    <i>actions will be here</i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+    <p>
+        <button class="btn btn-primary btn-expanded" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+            aria-controls="collapseExample">
+               PATIENT DETAILS
+            </button>
+    </p>
+    <br>
+    <div class="collapse show" id="collapseExample">
+        <div class="card card-block">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident.
         </div>
     </div>
+    <br>
+    <p>
+        <button class="btn btn-primary btn-expanded" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+            aria-controls="collapseExample">
+              PERSON RESPONSIBLE FOR ACCOUNT
+            </button>
+    </p><br>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-block">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
+    </div>
+    <br>
+    <p>
+        <button class="btn btn-primary btn-expanded" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+            aria-controls="collapseExample">
+              NAME OF HOUSE DOCTOR (GENERAL PRACTITIONER)
+            </button>
+    </p><br>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-block">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
+    </div>
+    <br>
+    <p>
+        <button class="btn btn-primary btn-expanded" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+            aria-controls="collapseExample">
+               MEDICAL AID
+            </button>
+    </p><br>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-block">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
+    </div>
+    <br>
+    <p>
+        <button class="btn btn-primary btn-expanded" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+            aria-controls="collapseExample">
+             NEAREST FAMILY FRIEND
+            </button>
+    </p><br>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-block">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
+    </div><br>
+
+    <p>
+        <button class="btn btn-primary btn-expanded" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+            aria-controls="collapseExample">
+             DEPENDENCE IN FAMILY ON MEDICAL AID
+            </button>
+    </p><br>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-block">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
+    </div><br>
 </div>
 
 <div class="modal fade" id="addSearch" role="dialog">
-        <div class="modal-dialog modal-md">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">ADD DEPENDENT</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-3">
-                            Name:
-                        </div>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control">
-                        </div>
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">ADD DEPENDENT</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        Name:
                     </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-3">
-                            Sex:
-                        </div>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-3">
-                            Date of birth:
-                        </div>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-3">
-                            Allergies:
-                        </div>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control">
-                        </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control">
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Proceed</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <br>
+                <div class="row">
+                    <div class="col-md-3">
+                        Sex:
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control">
+                    </div>
                 </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-3">
+                        Date of birth:
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-3">
+                        Allergies:
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Proceed</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>

@@ -183,6 +183,8 @@ angular.module('search-app', ['session-app', 'ngCookies'])
                                 //check if added
                                 var o = find_Item($scope.queue.obj, id);
 
+                                self.selectedForQ = _find_Item($scope.results, id);                                
+
                                 if (o == null) {
 
                                     var o = find_Item($scope.results, id);
@@ -193,7 +195,7 @@ angular.module('search-app', ['session-app', 'ngCookies'])
                                 } else {
 
                                     
-                                    self.selectedForQ = o;
+                                   
                                 }
 
                                 //writeCookie_object($scope.queue.obj, 'dr_queue');
@@ -262,6 +264,8 @@ angular.module('search-app', ['session-app', 'ngCookies'])
 
                                             })
                                     
+                                } else {
+                                    console.log("its null");
                                 }
                                 
                             }

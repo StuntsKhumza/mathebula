@@ -119,7 +119,8 @@ class sqlClass {
 
             case "loadWaitingList":
 
-                $query = "SELECT * from users u RIGHT JOIN myq m on u.ID = m.PATIANTID WHERE STATUS =?";
+                //$query = "SELECT * from users u RIGHT JOIN myq m on u.ID = m.PATIANTID WHERE STATUS =?";
+                $query = "SELECT *,NULL AS PASSWORD, sysUsers.Name as DRNAME, sysUsers.SURNAME AS DIRSURNAME, sysUsers.ID AS DRID FROM users, myq, sysUsers WHERE users.ID = myq.PATIANTID AND sysUsers.ID = myq.DRID";
 
                 break;
         }
@@ -145,7 +146,7 @@ class sqlClass {
 
                 break;
               case "addToQueue":
-                $query = "INSERT INTO `myq`  VALUES (?,?,?,?)";
+                $query = "INSERT INTO `myq`  VALUES (?,?,?,?,?,?)";
 
                 break;
         }
@@ -193,14 +194,12 @@ class sqlClass {
 
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // $stmt = null;
-
         return $stmt->rowCount();
     }
 
     private function createID() {
-
-        return $id = md5(mt_rand(1101102, 1249647));
+        
+        return mt_rand(1101102, 1249647);
     }
 
     public function getMyQueue($data) {
@@ -364,15 +363,19 @@ class sqlClass {
 
                 $query = $this->query_insert('addToQueue');
                 $id = $this->createID();
+                $date = $this->get_Date(true, null);
+                $time = $this->get_time(true, null);
                 $stmt = $connect->prepare($query);
-
+                
                 $stmt->bindParam(1, $id, PDO::PARAM_INT);
                 $stmt->bindParam(2, $data['DRID'], PDO::PARAM_INT);
                 $stmt->bindParam(3, $data['PATIENTID'], PDO::PARAM_INT);
                 $stmt->bindParam(4, $data['STATUS'], PDO::PARAM_STR);
+                
+                $stmt->bindParam(5, $date, PDO::PARAM_STR);
+                $stmt->bindParam(6, $time, PDO::PARAM_STR);
 
                 $stmt->execute();
-
 
                 if ($stmt) {
 
@@ -384,8 +387,7 @@ class sqlClass {
             }
         } catch (PDOException $e) {
 
-
-            die($e->getMessage());
+            die(json_encode(array('status'=>500, 'message'=>$e->getMessage())));
         }
     }
 
@@ -415,7 +417,7 @@ class sqlClass {
         
                         //user not found
                         
-                        return json_encode(array('status' => 400, 'message' => 'users not found'));
+                        return json_encode(array('status' => 400, 'message' => 'Waiting list is empty'));
                     }
                 }
 
@@ -653,7 +655,39 @@ class sqlClass {
 
         return json_encode(array('status' => $status, 'statusMessage' => $statusMessage));
     }
+    
+        //CREATE DATE
+        private function get_Date($d, $dValue){
+            /*
+             *  $new_time = date('G:i', strtotime($data['bookedTime']));
+        $new_date = date('Y-m-d', strtotime(str_replace('/', '-', $data['bookedDate'])));
+             */
+            $newDate =  "";
+            
+            if ($d){
+               $newDate = date("Y-m-d");
+               
+            } else{
+                 $newDate = date('Y-m-d', strtotime(str_replace('/', '-', $dValue)));
+            }
+            return $newDate;
+            
+        }
+    //CREATE TIME
 
+         private function get_time($t, $tValue){
+  
+            $newDate = "";
+            
+            if ($t){
+                $newDate = date("h:i:s"); 
+            } else{
+                $newDate = date('G:i', strtotime($tValue));
+            }
+            return $newDate;
+            
+        }
+        
     private function clean($string) {
 
         $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.

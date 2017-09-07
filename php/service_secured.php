@@ -10,7 +10,19 @@ $sql = new sqlClass();
 
 $dspErrors = true; 
 
-$query = $_POST['q'];
+if(isset($_POST['q'])){
+
+    $query = $_POST['q'];
+    
+} else {
+    
+    die(json_encode(array(
+        'status'=>500,
+       'message'=>"Request type not defined",
+        'date'=>$_POST
+    )));
+    
+}
 
 switch ($query) {
 

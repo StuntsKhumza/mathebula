@@ -20,10 +20,14 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp',])
                 controllerAs: 'adduserprofileController',
                 templateUrl: "js/addUser/addUser.html",
                 url: '/adduserprofile',
-                controller: function ($scope, $state, $http, $anchorScroll) {
-
+                controller: function ($scope, $state, $http, $anchorScroll, getActiveSession) {
+                        
+                        if (getActiveSession.status == "false"){
+                                  $state.go("login");
+                                  return;
+                              }
+                    
                         var self = this;
-    
 
                         $scope.genNumber = function(id){
 
@@ -40,14 +44,14 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp',])
                            
                         }
 
-                } /*,
+                } ,
                 resolve: {
-                    session: function ($http) {
+                    getActiveSession: function ($http) {
                         return $http.get('php/service.php?q=getSession')
                             .then(function (response) {
                                 return response.data;
                             })
                     }
-                } */
+                } 
             })
     })

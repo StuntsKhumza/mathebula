@@ -21,20 +21,16 @@ and open the template in the editor.
 -->
 
 
-        <link rel="stylesheet" href="configs/bootstrap.min.css" >
+        
+        <link rel="stylesheet" href="css/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css">
         <script src="js/utils.js"></script>
         <script src="configs/jquery.min.js"></script>
         <script src="configs/tether.min.js"></script>
-        <script src="configs/bootstrap.min.js"></script>
-	    <script src="configs/angular.min.js"></script>
+        <script src="css/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js"></script>
+	<script src="configs/angular.min.js"></script>
         <script src="configs/angular-ui-router.js"></script>
         <script src="configs/angular-cookie.js"></script>
         <script src="configs/jquery.transit.min.js"></script>
-
-
-
-
-
 
         <script src="js/main.js" type="text/javascript"></script>
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
