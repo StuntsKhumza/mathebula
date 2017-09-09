@@ -28,6 +28,14 @@ angular.module('profiles-app', [
                                 self.activeuser_firstname = "";
                                 self.spinner = true;
 
+                                self.navbtns = {
+                                    active: 'HOME',
+                                    hide: {
+                                        bookings: false,
+                                        queu:false,
+                                    }
+                                }
+
                                 self.userRoles = serviceSession.get_roles();
 
                                 self.access = {

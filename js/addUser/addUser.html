@@ -1,148 +1,523 @@
-<style>
-    #search-client {}
-
-    .heading-s {
-        background: #ebebeb;
-        padding: 5px;
-        font-weight: bold;
-    }
-    .btn-expanded{
-        width: 100%;
-    }
-</style>
-
-<div class="container">
-
-
-    <br><br>
-    <p>
-        <button class="btn btn-primary btn-expanded" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
-            aria-controls="collapseExample">
-               PATIENT DETAILS
-            </button>
-    </p>
-    <br>
-    <div class="collapse show" id="collapseExample">
-        <div class="card card-block">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica,
-            craft beer labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
+<div class="background-color-dark" style="position: fixed;width: 100%; z-index: 1">
+    <div class="container">
+        <navigation-nav roles="adduserprofileController.access" bttsetting="adduserprofileController.navbtns"></navigation-nav>
     </div>
-    <br>
-    <p>
-        <button class="btn btn-primary btn-expanded" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
-            aria-controls="collapseExample">
-              PERSON RESPONSIBLE FOR ACCOUNT
-            </button>
-    </p><br>
-    <div class="collapse" id="collapseExample">
-        <div class="card card-block">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica,
-            craft beer labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
-    </div>
-    <br>
-    <p>
-        <button class="btn btn-primary btn-expanded" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
-            aria-controls="collapseExample">
-              NAME OF HOUSE DOCTOR (GENERAL PRACTITIONER)
-            </button>
-    </p><br>
-    <div class="collapse" id="collapseExample">
-        <div class="card card-block">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica,
-            craft beer labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
-    </div>
-    <br>
-    <p>
-        <button class="btn btn-primary btn-expanded" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
-            aria-controls="collapseExample">
-               MEDICAL AID
-            </button>
-    </p><br>
-    <div class="collapse" id="collapseExample">
-        <div class="card card-block">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica,
-            craft beer labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
-    </div>
-    <br>
-    <p>
-        <button class="btn btn-primary btn-expanded" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
-            aria-controls="collapseExample">
-             NEAREST FAMILY FRIEND
-            </button>
-    </p><br>
-    <div class="collapse" id="collapseExample">
-        <div class="card card-block">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica,
-            craft beer labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
-    </div><br>
-
-    <p>
-        <button class="btn btn-primary btn-expanded" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
-            aria-controls="collapseExample">
-             DEPENDENCE IN FAMILY ON MEDICAL AID
-            </button>
-    </p><br>
-    <div class="collapse" id="collapseExample">
-        <div class="card card-block">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica,
-            craft beer labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
-    </div><br>
 </div>
+<div id="alertMessage"></div>
+<br><br>
 
-<div class="modal fade" id="addSearch" role="dialog">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">ADD DEPENDENT</h4>
+<div class="container" >
+    <br>
+    <br>
+
+    <div class="row" >
+        <div class="col">
+            <div class="alert alert-danger" ng-show="adduserprofileController.showErrorMessage">{{adduserprofileController.message}}</div>
+            <div class="alert alert-success" ng-show="adduserprofileController.showSuccessMessage">{{adduserprofileController.message}}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <B>Patient Type:</B>
+        </div>
+        <div class="col-8">
+                <input type="radio" value="CASH" ng-model="adduserprofileController.patientobj.data.PATIENTTYPE" ng-change="adduserprofileController.genNumber()"> CASH <br>
+                <input type="radio" value="MEDICAL" ng-model="adduserprofileController.patientobj.data.PATIENTTYPE" ng-change="adduserprofileController.genNumber()"> MEDICAL
             </div>
-            <div class="modal-body">
+    </div>
+    <br>
+    <div ng-if="adduserprofileController.patientobj.data.PATIENTTYPE != ''">
+        <div class="row">
+            <div class="col-6">
+                <div class="heading-s">
+                    <div class="row">
+                        <div class="col-4">
+                            LANGUAGE PREFERENCE:
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control input simplebox remove-radius">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="heading-s">
+                    <div class="heading-s">
+                        <div class="row">
+                            <div class="col-4">
+                                COMPUTER NO:
+                            </div>
+                            <div class="col-8">
+                                
+                                {{adduserprofileController.patientobj.data.PATIENTCARDNUMBER}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-6">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col">
+                        <div class="heading-s">
+                            PERSON RESPONSIBLE FOR ACCOUNT
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
                         Name:
                     </div>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control">
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox" ng-model="adduserprofileController.patientobj.data.PATIENTNAME">
                     </div>
+
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-md-3">
-                        Sex:
+
+                    <div class="col-4">
+
+                       Surname:
                     </div>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control">
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox" ng-model="adduserprofileController.patientobj.data.PATIENTSURNAME">
                     </div>
+
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-md-3">
-                        Date of birth:
+
+                    <div class="col-4">
+
+                        Mr/Mrs/Miss
                     </div>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control">
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox" ng-model="adduserprofileController.patientobj.data.PATIENTTITLE">
                     </div>
+
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-md-3">
-                        Allergies:
+
+                    <div class="col-4">
+
+                        Date of Birth:
                     </div>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control">
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox" ng-model="adduserprofileController.patientobj.data.PATIENTDOB">
                     </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        I.D. No:
+                    </div>
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox"ng-model="adduserprofileController.patientobj.data.PATIENTIDNUMBER">
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Marital Status:
+                    </div>
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox"ng-model="adduserprofileController.patientobj.data.PATIENTMARITALSTATUS">
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Home Address:
+                    </div>
+                    <div class="col-8">
+                        
+                        <input type="text" class="form-control remove-radius simplebox"ng-model="adduserprofileController.patientobj.data.PATIENTHOMEADDRESS1"> <br>
+                        <input type="text" class="form-control remove-radius simplebox"ng-model="adduserprofileController.patientobj.data.PATIENTHOMEADDRESS2"> <br>
+                        <input type="text" class="form-control remove-radius simplebox"ng-model="adduserprofileController.patientobj.data.PATIENTHOMEADDRESS3">
+
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Tel:
+                    </div>
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox" ng-model="adduserprofileController.patientobj.data.PATIENTTELL">                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Postal Address:
+                    </div>
+                    <div class="col-8">
+                            <input type="text" class="form-control remove-radius simplebox"ng-model="adduserprofileController.patientobj.data.PATIENTPOSTALADDRESS1"> <br>
+                            <input type="text" class="form-control remove-radius simplebox"ng-model="adduserprofileController.patientobj.data.PATIENTPOSTALADDRESS2"> <br>
+                            <input type="text" class="form-control remove-radius simplebox"ng-model="adduserprofileController.patientobj.data.PATIENTPOSTALADDRESS3">
+
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Code:
+                    </div>
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox" ng-model="adduserprofileController.patientobj.data.PATIENTPOSTALADDRESSCODE">
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Tel. Husband:
+                    </div>
+                    <div class="col-8">
+                        (w)<input class="form-control remove-radius simplebox"  ng-model="adduserprofileController.patientobj.data.PATIENTSPOUSETELL"> (c)
+                        <input class="form-control remove-radius simplebox"  ng-model="adduserprofileController.patientobj.data.PATIENTSPOUSECELL">
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Tel. Wife:
+                    </div>
+                    <div class="col-8">
+                        (w)<input class="form-control remove-radius simplebox"  > (c)
+                        <input class="form-control remove-radius simplebox" >
+                    </div>
+
+                </div>
+
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Name of Employer:
+                    </div>
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox"  ng-model="adduserprofileController.patientobj.data.PATIENTEMPLOYER">
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Occupation:
+                    </div>
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox"  ng-model="adduserprofileController.patientobj.data.PATIENTOCCUPATION">
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Address:
+                    </div>
+                    <div class="col-8">
+                        
+                        <input type="text" class="form-control remove-radius simplebox"ng-model="adduserprofileController.patientobj.data.PATIENTOCCUPATIONADDRESS1"> <br>
+                        <input type="text" class="form-control remove-radius simplebox"ng-model="adduserprofileController.patientobj.data.PATIENTOCCUPATIONADDRESS2"> <br>
+                        <input type="text" class="form-control remove-radius simplebox"ng-model="adduserprofileController.patientobj.data.PATIENTOCCUPATIONADDRESS3">
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Tel:
+                    </div>
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox"  ng-model="adduserprofileController.patientobj.data.PATIENTOCCUPATIONTELL">
+                    </div>
+
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Proceed</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <div class="col-6">
+
+                <div ng-if="false">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="heading-s">
+                                PATIENT DETAILS
+                            </div>
+                        </div>
+
+                    </div>
+                    <BR>
+                    <div class="row">
+
+                        <div class="col-4">
+                            Full Name and Surname:
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control remove-radius simplebox"  >
+                        </div>
+
+                    </div>
+                    <BR>
+                    <div class="row">
+
+                        <div class="col-4">
+
+                            I.D No:
+                        </div>
+                        <div class="col-8">
+
+                            <input type="text" class="form-control remove-radius simplebox"  >
+                        </div>
+
+                    </div>
+                    <BR>
+                    <div class="row">
+
+                        <div class="col-4">
+
+                            Mr/Mrs/Miss:
+                        </div>
+                        <div class="col-8">
+
+                            <input type="text" class="form-control remove-radius simplebox"  >
+                        </div>
+
+                    </div>
+                    <BR>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="heading-s">
+                            NEAREST FAMILY FRIEND
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Name:
+                    </div>
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox" >
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Relationship:
+                    </div>
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox" >
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Address:
+                    </div>
+                    <div class="col-8">
+
+                        <textarea class="form-control remove-radius simplebox" ></textarea>
+                    </div>
+
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="heading-s">
+                            MEDICAL AID
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Name:
+                    </div>
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox"  ng-model="adduserprofileController.patientobj.data.PATIENTMEDICALAIDNAME">
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Plan:
+                    </div>
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox"  ng-model="adduserprofileController.patientobj.data.PATIENTMEDICALAIDPLAN">
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Number:
+                    </div>
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox"  ng-model="adduserprofileController.patientobj.data.PATIENTMEDICALAIDNUMBER">
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-4">
+
+                        Other: eg. Hospital Plan
+                    </div>
+                    <div class="col-8">
+
+                        <input type="text" class="form-control remove-radius simplebox"  ng-model="adduserprofileController.patientobj.data.PATIENTMEDICALAIOTHER">
+                    </div>
+
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="heading-s">
+                            NAME OF HOUSE DOCTOR (GENERAL PRACTITIONER)
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-12">
+                        <textarea class="form-control simplebox remove-radius"  ng-model="adduserprofileController.patientobj.data.PATIENTHOUSEDOCTOR"></textarea>
+                    </div>
+
+
+                </div>
+
+                <br>
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="heading-s">
+                            DEPENDENCE IN FAMILY ON MEDICAL AID
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-12">
+
+                        <br>
+
+                        <table class="table">
+                            <thead>
+                                <th>Name:</th>
+                                <th>Sex:</th>
+                                <th>Date of Birth:</th>
+                                <th>Allergies:</th>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+                <br>
+
+                <!--here-->
+
+
             </div>
         </div>
+
+        <br>
+
     </div>
+    <div ng-if="adduserprofileController.patientobj.data.PATIENTTYPE != ''">
+    <hr>
+    <div class="row">
+        <div class="col">
+            
+            <input type="button" class="btn btn-md btn-primary" value="Save" ng-click="adduserprofileController.savePatient()">
+            
+        </div>
+    </div>
+</div>
+    <br>
 </div>

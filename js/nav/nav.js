@@ -7,7 +7,8 @@ angular.module('nav-app', ['ngCookies'])
             scope: {
                 username: '=',
                 linksObj: '=',
-                roles:'='
+                roles:'=',
+                bttsetting : '='
             }
             ,
             controller: function ($state, $http, $cookies) {
@@ -33,6 +34,10 @@ angular.module('nav-app', ['ngCookies'])
 
                     }
 
+                }
+
+                self.goHome = function(){
+                    $state.go('profiles');
                 }
 
 

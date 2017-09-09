@@ -5,9 +5,9 @@
       </button>
 </div>
 <div class="topnav" id="myTopnav">
-    <input type="button" value="Home" class="active">
-    <input type="button" value="Bookings" ng-click="navCtr.openBookings()">
-    <input type="button" value="Add Patient" ng-if="roles.reception || roles.admin" ng-click="navCtr.addPatient()">
+    <input type="button" value="Home"ng-class="{'active':bttsetting.active=='HOME'}" ng-click="navCtr.goHome()">
+    <input type="button" value="Bookings" ng-click="navCtr.openBookings()" ng-hide="bttsetting.hide.bookings">
+    <input type="button" value="Add Patient" ng-if="roles.reception || roles.admin" ng-click="navCtr.addPatient()" ng-class="{'active':bttsetting.active=='ADDPATIENT'}">
 
     <div class="topNavRight">
       <!--  <input ng-if="!navCtr.spinner" type="button" style="background-color: #212121" value="{{navCtr.userName}}"> -->
@@ -15,7 +15,7 @@
         
         <button style="height: 100%;" ng-if="navCtr.spinner"><img src="img/spinner.gif" alt="spinner" ></button>
       
-        <input type="button" ng-if="roles.reception || roles.admin"  value="Queue" class="" onclick="openNav()">
+        <input type="button" ng-if="(roles.reception || roles.admin) && !bttsetting.hide.queu"  value="Queue" class="" onclick="openNav()">
         <input type="button" value="Log out" ng-click="navCtr.logOff()">
 
     </div>

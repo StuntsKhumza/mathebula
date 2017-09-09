@@ -4,7 +4,7 @@
         
     
     <div class="row" >
-        <div class="col-md-12">
+        <div class="col-12">
             <div class="search-header">
                 <h3>Patients in your queue:</h3>
                 <hr class="colorgraph"><br>
@@ -13,14 +13,14 @@
     </div>
         
     <div class="row" ng-if="myQController.spinner">
-        <div class="col-md-12">
+        <div class="col-12">
             <img src="img/Searching.gif" alt="searching gif"><br>
             <h4>...please wait</h4>
         </div>
     </div>
         </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-12">
             <div ng-if="myQController.results.length == 0">
                 <h5>Your queue is empty...</h5>
             </div>
@@ -39,10 +39,10 @@
                     <tbody class="table-hover">
                         <tr ng-repeat="result in myQController.results">
                             <td class="row-data-td">{{1 + $index}}</td>
-                            <td>{{result.FIRSTNAME + " " + result.LASTNAME}}</td>
-                            <td>{{result.CARDNUMBER}}</td>
+                            <td>{{result.PATIENTNAME + " " + result.PATIENTSURNAME}}</td>
+                            <td>{{result.PATIENTCARDNUMBER}}</td>
                             <td>
-                                <input type="button" value="open" class="btn btn-md btn-c-success" ng-click="myQController.setClient(result.ID)"
+                                <input type="button" value="open" class="btn btn-md btn-c-success" ng-click="myQController.setClient(result.PATIENTID)"
                                        name="{{'btnOpen_' + $index}}">
 
                             </td>

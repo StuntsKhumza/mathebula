@@ -95,32 +95,44 @@ class sqlClass {
 
             case "searchProfile_card":
 
-                $query = "SELECT * FROM `users` WHERE (CONVERT(`CARDNUMBER` USING utf8) LIKE ? " . " '%')";
+                $query = "SELECT * FROM `patients` WHERE (CONVERT(`PATIENTCARDNUMBER` USING utf8) LIKE ? " . " '%')";
 
                 break;
 
             case "searchProfile_id":
 
-                $query = "SELECT * FROM `users` WHERE (CONVERT(`IDNUMBER` USING utf8) LIKE ? " . " '%')";
+                $query = "SELECT * FROM `patients` WHERE (CONVERT(`PATIENTIDNUMBER` USING utf8) LIKE ? " . " '%')";
 
                 break;
 
             case "getMyQ":
 
-                $query = "SELECT * FROM users u right join myq q on u.ID = q.PATIANTID where q.DRID = ?";
+                $query = "SELECT * FROM patients u right join myq q on u.PATIENTID = q.PATIANTID where q.DRID = ?";
 
                 break;
 
             case "getUsersByType":
 
-                $query = "SELECT `ID`, `NAME`, `SURNAME` FROM `sysusers` WHERE `TYPE` = ?";
+                $query = "SELECT *, NULL AS `PASSWORD`,NULL AS `SESSIONID` FROM `sysusers` WHERE `TYPE` = ?";
 
                 break;
 
             case "loadWaitingList":
 
                 //$query = "SELECT * from users u RIGHT JOIN myq m on u.ID = m.PATIANTID WHERE STATUS =?";
-                $query = "SELECT *,NULL AS PASSWORD, sysUsers.Name as DRNAME, sysUsers.SURNAME AS DIRSURNAME, sysUsers.ID AS DRID FROM users, myq, sysUsers WHERE users.ID = myq.PATIANTID AND sysUsers.ID = myq.DRID";
+                $query = "SELECT *,NULL AS PASSWORD, sysUsers.Name as DRNAME, sysUsers.SURNAME AS DIRSURNAME, sysUsers.ID AS DRID FROM patients, myq, sysUsers WHERE patients.PATIENTID = myq.PATIANTID AND sysUsers.ID = myq.DRID";
+
+                break;
+
+            case "getPatientCount":
+                
+                $query = "SELECT COUNT(`PATIENTID`) AS TOTAL FROM drs.patients WHERE `PATIENTTYPE` = ?";
+
+                break;
+
+            case "":
+
+                $query = "";
 
                 break;
         }
@@ -423,6 +435,118 @@ class sqlClass {
 
     }
 
+    public function createPatient($data){
+        //createPatientId
+
+        $fileID = "";
+
+        $fileID = $this->createPatientId($data['PATIENTTYPE']);
+
+        try {
+            $connect = $this->connectPDO();
+
+            //check connection
+            if ($connect != null) {
+
+                $query = "INSERT INTO `patients` VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";//$this->query_insert('addPatient');
+                $id = $this->createID();
+                $cardid = $data['PATIENTTYPE'] . $this->createPatientId($data['PATIENTTYPE']);
+                $date = $this->get_Date(true, null);
+              //  $time = $this->get_time(true, null);
+                $stmt = $connect->prepare($query);
+                
+                $stmt->bindParam(1, $id, PDO::PARAM_INT);
+                $stmt->bindParam(2, $cardid, PDO::PARAM_STR);
+                $stmt->bindParam(3, $data["PATIENTNAME"], PDO::PARAM_STR);
+                $stmt->bindParam(4, $data["PATIENTSURNAME"], PDO::PARAM_STR);
+                $stmt->bindParam(5, $data["PATIENTTITLE"], PDO::PARAM_STR);
+                $stmt->bindParam(6, $data["PATIENTDOB"], PDO::PARAM_STR);
+                $stmt->bindParam(7, $data["PATIENTIDNUMBER"], PDO::PARAM_STR);
+                $stmt->bindParam(8, $data["PATIENTMARITALSTATUS"], PDO::PARAM_STR);
+                $stmt->bindParam(9, $data["PATIENTHOMEADDRESS1"], PDO::PARAM_STR);
+                $stmt->bindParam(10, $data["PATIENTHOMEADDRESS2"], PDO::PARAM_STR);
+                $stmt->bindParam(11, $data["PATIENTHOMEADDRESS3"], PDO::PARAM_STR);
+                $stmt->bindParam(12, $data["PATIENTHOMEADDRESSCODE"], PDO::PARAM_STR);
+                $stmt->bindParam(13, $data["PATIENTTELL"], PDO::PARAM_STR);
+                $stmt->bindParam(14, $data["PATIENTCELL"], PDO::PARAM_STR);
+                $stmt->bindParam(15, $data["PATIENTPOSTALADDRESS1"], PDO::PARAM_STR);
+                $stmt->bindParam(16, $data["PATIENTPOSTALADDRESS2"], PDO::PARAM_STR);
+                $stmt->bindParam(17, $data["PATIENTPOSTALADDRESS3"], PDO::PARAM_STR);
+                $stmt->bindParam(18, $data["PATIENTPOSTALADDRESSCODE"], PDO::PARAM_STR);
+                $stmt->bindParam(19, $data["PATIENTSPOUSETELL"], PDO::PARAM_STR);
+                $stmt->bindParam(20, $data["PATIENTSPOUSECELL"], PDO::PARAM_STR);
+                $stmt->bindParam(21, $data["PATIENTEMPLOYER"], PDO::PARAM_STR);
+                $stmt->bindParam(22, $data["PATIENTOCCUPATION"], PDO::PARAM_STR);
+                $stmt->bindParam(23, $data["PATIENTOCCUPATIONADDRESS1"], PDO::PARAM_STR);
+                $stmt->bindParam(24, $data["PATIENTOCCUPATIONADDRESS2"], PDO::PARAM_STR);
+                $stmt->bindParam(25, $data["PATIENTOCCUPATIONADDRESS3"], PDO::PARAM_STR);
+                $stmt->bindParam(26, $data["PATIENTOCCUPATIONTELL"], PDO::PARAM_STR);
+                $stmt->bindParam(27, $data["PATIENTHOUSEDOCTOR"], PDO::PARAM_STR);
+                $stmt->bindParam(28, $data["PATIENTMEDICALAID"], PDO::PARAM_STR);
+                $stmt->bindParam(29, $data["PATIENTMEDICALAIDNAME"], PDO::PARAM_STR);
+                $stmt->bindParam(30, $data["PATIENTMEDICALAIDPLAN"], PDO::PARAM_STR);
+                $stmt->bindParam(31, $data["PATIENTMEDICALAIDNUMBER"], PDO::PARAM_STR);
+                $stmt->bindParam(32, $data["PATIENTMEDICALAIOTHER"], PDO::PARAM_STR);
+                $stmt->bindParam(33, $data["PATIENTTYPE"], PDO::PARAM_STR);
+                $stmt->bindParam(34, $date, PDO::PARAM_STR);
+                
+
+                $stmt->execute();
+
+                if ($stmt) {
+
+                    return json_encode(array('status' => 200, 'message' => 'Added successfully'));
+                } else {
+                    //http_response_code(500);
+                    echo json_encode(array('status' => 500, 'message' => $stmt->errorInfo()));
+                }
+            }
+        } catch (PDOException $e) {
+
+            echo json_encode(array('status'=>500, 'message'=>$e->getMessage()));
+        }
+        
+    }
+
+    public function createPatientId($type){
+        
+        try{
+
+                        //getPatientCount
+        $connect = $this->connectPDO();
+                
+        //check connection
+        if ($connect != null) {
+                
+            $query =  $this->query_read('getPatientCount');
+                
+            $stmt = $connect->prepare($query);
+                
+            $stmt->bindParam(1, $type, PDO::PARAM_STR);
+                
+            $stmt->execute();
+                
+            if ($stmt->rowCount() > 0) {
+                
+            //USER FOUND
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                   //print_r($result)             ;
+            return  $result[0]['TOTAL']; //json_encode(array('status' => 200, 'message' => 'success', 'data' => $result));
+        
+            } else {
+                
+                //user not found
+                                
+                return json_encode(array('status' => 400, 'message' => 'Waiting list is empty'));
+            }
+        }
+    }
+    catch(Exception $ex){
+        return json_encode(array('status' => 500, 'message' => 'Waiting list is empty'));
+    }
+        
+    }
+
     public function reset_user_password($user_id) {
 
         try {
@@ -579,6 +703,7 @@ class sqlClass {
 
         echo (json_encode(array('status' => 200, 'data' => array('girls' => $data_girls, 'boys' => $data_boys, 'adults' => $data_adults))));
     }
+
 
     public function addProduct($file, $data) {
 

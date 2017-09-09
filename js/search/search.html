@@ -29,7 +29,7 @@
         <div class="row">
 
 
-            <div style="height: 100%" class="col-md-12">
+            <div style="height: 100%" class="col-12">
 
                 <div class="pull-right">
 
@@ -43,36 +43,41 @@
                 </div>
                 <div class="search-body">
                     <div class="row" ng-if="false">
-                        <div class="col-md-12">
+                        <div class="col-12">
                             <img src="img/Searching.gif" alt="searching gif"><br>
                             <h4>...please wait</h4>
                         </div>
                     </div>
                     <div>
-                        <div class="row add-padding" ng-if="!searchCtr.search_complete">
-                            <div class="alert alert-danger" ng-show="searchCtr.showmsg.length > 0">{{searchCtr.showmsg}}</div>
-                            <div class="col-md-6">
+                        <div class="row" ng-if="!searchCtr.search_complete" >
+                            <div class="col">
+                                    <div class="alert alert-danger" ng-show="searchCtr.showmsg.length > 0">{{searchCtr.showmsg}}</div>
+                            </div>
+                        </div>
+                        <div class="row " ng-if="!searchCtr.search_complete">
+                            
+                            <div class="col-6">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-4">
                                         <div class="">
                                             <label class="search-body-lable">File Number:</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-8">
                                         <input type="text" placeholder="file number" ng-disabled="searchCtr.searchObj.id_number.length > 0" class="form-control simplebox remove-radius"
                                             ng-model="searchCtr.searchObj.file_number" ng-keyup="searchCtr.search_key($event)"
                                             name="search_cardNo">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-6">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-4">
                                         <div class="">
                                             <label class="search-body-lable">ID Number:</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-8">
                                         <input type="text" placeholder="id number" onkeypress="return isNumberKey(event)" ng-disabled="searchCtr.searchObj.file_number.length > 0"
                                             class="form-control simplebox remove-radius" ng-model="searchCtr.searchObj.id_number"
                                             ng-keyup="searchCtr.search_key($event)" name="search_IDNo">
@@ -83,7 +88,7 @@
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-12">
 
                                 <div class="alert alert-success" name="searchResult" ng-show="searchCtr.showmsg2.length > 0">{{searchCtr.showmsg2}}
 
@@ -105,7 +110,7 @@
                             <h5>Search history: </h5>
                         </p>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-12">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -118,12 +123,12 @@
                                     <tbody class="table-hover">
                                         <tr ng-repeat="result in results">
                                             <td class="row-data-td">{{1 + $index}}</td>
-                                            <td>{{result.FIRSTNAME + " " + result.LASTNAME}}</td>
-                                            <td>{{result.CARDNUMBER}}</td>
+                                            <td>{{result.PATIENTNAME + " " + result.PATIENTSURNAME}}</td>
+                                            <td>{{result.PATIENTCARDNUMBER}}</td>
                                             <td>
-                                                <input type="button" ng-disabled="!profilesController.access.admin" value="open" class="btn btn-md btn-c-success" ng-click="setClient(result.ID)"
+                                                <input type="button" ng-disabled="!profilesController.access.admin" ng-if="false" value="open" class="btn btn-md btn-c-success" ng-click="setClient(result.PATIENTID)"
                                                     name="{{'btnOpen_' + $index}}">
-                                                <input type="button" value="queue" class="btn btn-md btn-c-success" ng-click="searchCtr.addToQue(result.ID)" data-toggle="modal"
+                                                <input type="button" value="queue" class="btn btn-md btn-c-success" ng-click="searchCtr.addToQue(result.PATIENTID)" data-toggle="modal"
                                                     data-target="#openQueModal">
                                                 <!--  <input type="button" value="queue" class="btn btn-md btn-c-success" ng-click="searchCtr.addToQue(result.ID)" data-toggle="modal" data-target="#openQueModal">-->
                                             </td>
@@ -148,7 +153,7 @@
 
     <!--onclick="openNav()"-->
     <div class="modal fade" id="openQueModal" role="dialog">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -163,14 +168,30 @@
                     </div>
                     <div ng-if="!loadDrs">
                         <div class="row">
-                            <div class="col-md-3">Doctor:</div>
-                            <div class="col-md-9">
-                                <table>
+                            
+                            <div class="col">
+                                <table class="table">
+                                    <thead>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Speciality</th>
+                                        <th>Action</th>
+                                    </thead>
                                     <tr ng-repeat="drs in searchCtr.doctors">
                                         <td>
-                                            <input type="button" class="btn btn-warning" style="width: 150px" ng-click="searchCtr.assignToDr(drs.ID)" value="{{drs.NAME}}"
+                                            {{$index + 1}}
+                                        </td>
+                                        <td>
+                                                {{drs.NAME}}
+                                        </td>
+                                        <td>
+                                                {{drs.SPECIALITY}}
+                                        </td>
+                                        <td>
+                                                <input type="button" class="btn btn-warning" style="width: 150px" ng-click="searchCtr.assignToDr(drs.ID)" value="Select"
                                                 data-dismiss="modal">
                                         </td>
+                                       
                                     </tr>
                                 </table>
 

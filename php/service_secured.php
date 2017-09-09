@@ -26,6 +26,16 @@ if(isset($_POST['q'])){
 
 switch ($query) {
 
+    case "getCardNumber":
+        $data = $sql -> createPatientId($_POST['TYPE']);
+        echo json_encode(array("status"=>200, "data"=> $data));     
+
+    break;
+
+    case "createPatient":
+    echo $sql -> createPatient($_POST); 
+    break;
+
     case "getMyQueue":
         
         echo $sql -> getMyQueue($_POST); 
@@ -82,11 +92,7 @@ switch ($query) {
 echo json_encode(array('status' => $result)); 
 
         break; 
-        case "logOn":
-
-            $_SESSION['active'] = 'true';
-            echo "Session set";
-        break;
+       
         case "logOff":
 
             $_SESSION['active'] = 'false';

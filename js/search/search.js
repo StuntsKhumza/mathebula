@@ -32,11 +32,7 @@ angular.module('search-app', ['session-app', 'ngCookies'])
                                 file_number: '',
                                 id_number: ''
                             }
-                            self.drcollection = [
-                                {name: 'nathi'},
-                                {name: 'kapu'},
-                                {name: 'zama'}
-                            ]
+                          
                             self.search_complete = false;
 
                             $scope.results = [];
@@ -183,21 +179,18 @@ angular.module('search-app', ['session-app', 'ngCookies'])
                                 //check if added
                                 var o = find_Item($scope.queue.obj, id);
 
-                                self.selectedForQ = _find_Item($scope.results, id);                                
-
                                 if (o == null) {
 
                                     var o = find_Item($scope.results, id);
 
                                     if (o != null) {
-                                        $scope.queue.obj.push(o);
+                                      //  $scope.queue.obj.push(o);
                                     }
-                                } else {
-
-                                    
-                                   
                                 }
 
+                              
+                                self.selectedForQ = find_Item($scope.results, id);
+                                console.log(self.selectedForQ );
                                 //writeCookie_object($scope.queue.obj, 'dr_queue');
 
                             }
@@ -205,7 +198,7 @@ angular.module('search-app', ['session-app', 'ngCookies'])
                             function find_Item(list, query) {
 
                                 var result = _.find(list, function (o) {
-                                    return o.ID == query;
+                                    return o.PATIENTID == query;
                                 });
 
                                 return result;
@@ -251,7 +244,7 @@ angular.module('search-app', ['session-app', 'ngCookies'])
                                     var formdata = new FormData();
                                     formdata.append("q", "addToQueue");
                                     formdata.append("DRID", ID);
-                                    formdata.append("PATIENTID", self.selectedForQ.ID);
+                                    formdata.append("PATIENTID", self.selectedForQ.PATIENTID);
                                     formdata.append("STATUS", "WAITING");
                                     
                                     serviceSession.callService(formdata)

@@ -67,6 +67,8 @@ function _getCookie(cookie_name, cookieservice) {
 
 }
 
+
+
 function isMember(role, userRoles) {
 
     var str = JSON.stringify(userRoles);
