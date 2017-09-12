@@ -41,7 +41,7 @@
                 <div ng-if="userObj.clientSet">
 
                     <div class="add-padding">
-
+                        
                         <user-profile></user-profile>
 
                     </div>
@@ -57,3 +57,113 @@
 </div>
 
 <waiting-list listdt="queue"></waiting-list>
+
+<div class="modal fade" id="openEditQueModal" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Please select Doctor:</h4>
+                </div>
+                <div class="modal-body">
+                    <div ng-if="profilesController.loadDrs">
+
+                        <img src="img/Searching.gif" alt="searching gif"><br>
+                        <h4>...please wait</h4>
+
+                    </div>
+                    <div ng-if="!profilesController.loadDrs">
+                        <div class="row">
+                            
+                            <div class="col">
+                                <table class="table">
+                                    
+                                    <thead>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Speciality</th>
+                                        <th>Action</th>
+                                    </thead>
+                                    <tr ng-repeat="drs in profilesController.doctors">
+                                        <td>
+                                            {{$index + 1}}
+                                        </td>
+                                        <td>
+                                                {{drs.NAME}}
+                                        </td>
+                                        <td>
+                                                {{drs.SPECIALITY}}
+                                        </td>
+                                        <td>
+                                                <input type="button" class="btn btn-warning" style="width: 150px" ng-click="profilesController.assignToDr(drs.ID)" value="Select"
+                                                data-dismiss="modal">
+                                        </td>
+                                       
+                                    </tr>
+                                </table>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modalViewProfile" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div ng-if="profilesController.loadDrs">
+    
+                            <img src="img/Searching.gif" alt="searching gif"><br>
+                            <h4>...please wait</h4>
+    
+                        </div>
+                        <div ng-if="!profilesController.loadDrs">
+                            <div class="row">
+                                
+                                <div class="col">
+                                    <table class="table">
+                                        
+                                        <thead>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Speciality</th>
+                                            <th>Action</th>
+                                        </thead>
+                                        <tr ng-repeat="drs in profilesController.doctors">
+                                            <td>
+                                                {{$index + 1}}
+                                            </td>
+                                            <td>
+                                                    {{drs.NAME}}
+                                            </td>
+                                            <td>
+                                                    {{drs.SPECIALITY}}
+                                            </td>
+                                            <td>
+                                                    <input type="button" class="btn btn-warning" style="width: 150px" ng-click="profilesController.assignToDr(drs.ID)" value="Select"
+                                                    data-dismiss="modal">
+                                            </td>
+                                           
+                                        </tr>
+                                    </table>
+    
+    
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+        </div>

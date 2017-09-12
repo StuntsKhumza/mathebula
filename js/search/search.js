@@ -10,10 +10,10 @@ angular.module('search-app', ['session-app', 'ngCookies'])
                             $scope.searching = false;
                             $scope.loadDrs = true;
                             var self = this;
-                            self.doctors = [];
+                            //self.doctors = [];
 
                             //getUsersByType
-                            var form = new FormData();
+                          /*  var form = new FormData();
                             form.append("q", "getUsersByType");
                             form.append("type", "DOCTOR");
 
@@ -23,7 +23,7 @@ angular.module('search-app', ['session-app', 'ngCookies'])
                                         self.doctors = res.data;
                                         $scope.loadDrs = false;
                                     })
-
+*/
                             self.showQueue = false;
 
                             self.showmsg = "";
@@ -173,11 +173,11 @@ angular.module('search-app', ['session-app', 'ngCookies'])
                                     $scope.search();
 
                             }
-                            self.selectedForQ = null;
-                            self.addToQue = function (id) {
+                            
+                            self.addToQue = function (patient) {
 
                                 //check if added
-                                var o = find_Item($scope.queue.obj, id);
+                                /*var o = find_Item($scope.queue.obj, id);
 
                                 if (o == null) {
 
@@ -187,12 +187,12 @@ angular.module('search-app', ['session-app', 'ngCookies'])
                                       //  $scope.queue.obj.push(o);
                                     }
                                 }
-
-                              
-                                self.selectedForQ = find_Item($scope.results, id);
-                                console.log(self.selectedForQ );
-                                //writeCookie_object($scope.queue.obj, 'dr_queue');
-
+                                */
+                                $('#openEditQueModal').modal('toggle');
+                                    
+                                $scope.selectedForQ.action = 'ADD';
+                                $scope.selectedForQ.patient = patient;//find_Item($scope.results, id);
+                            
                             }
 
                             function find_Item(list, query) {
@@ -235,51 +235,8 @@ angular.module('search-app', ['session-app', 'ngCookies'])
                                     return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
                                 }).join(''));
                             }
+                  
                             
-                       
-                            self.assignToDr = function(ID){
-                                
-                                if(self.selectedForQ !== null){
-                                     $scope.loadDrs = true;
-                                    var formdata = new FormData();
-                                    formdata.append("q", "addToQueue");
-                                    formdata.append("DRID", ID);
-                                    formdata.append("PATIENTID", self.selectedForQ.PATIENTID);
-                                    formdata.append("STATUS", "WAITING");
-                                    
-                                    serviceSession.callService(formdata)
-
-                                            .then(function(res){
-                                                //profilesController.addToQueue();
-                                                //self.addToQue(ID);
-                                                self.loadWaitingList();
-                                                $scope.loadDrs = false;
-
-                                            })
-                                    
-                                } else {
-                                    console.log("its null");
-                                }
-                                
-                            }
-
-                            self.loadWaitingList = function(){
-
-                                //queue.obj
-                                var formdata = new FormData();
-                                formdata.append("q", "loadWaitingList");
-                                formdata.append("type", "WAITING");
-                                
-                                serviceSession.callService(formdata)
-
-                                    .then(function(res){
-                                        $scope.queue.obj = res.data;
-                                        console.log(res);
-                                    })
-                                    
-                            }
-
-                            self.loadWaitingList();
 
                         }
 

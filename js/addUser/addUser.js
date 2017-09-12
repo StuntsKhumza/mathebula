@@ -1,4 +1,4 @@
-angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp', 'nav-app', 'session-app'])
+angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp', 'nav-app', 'session-app', "ngSearch-app"])
 
     /*       .directive('addUserProfile', function () {
    
@@ -30,6 +30,8 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp', 'nav-app
                     self.message = "";
                     self.showErrorMessage = false;
                     self.showSuccessMessage = false;
+                    self.searchResults = [];//searchResults
+                    $scope.searchResult = {};
                     self.patientobj = {
                         data : {
                             PATIENTNAME:"",
@@ -101,10 +103,11 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp', 'nav-app
 
 
                     }
-
+                    self.update = function(data){
+                        console.log(data);
+                        self.searchResults.push(data);
+                    }
                     self.savePatient = function(){
-
-                       
 
                         var data = self.patientobj.data;
 

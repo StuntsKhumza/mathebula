@@ -11,10 +11,10 @@
             <file>file:/C:/wamp/www/mathebula/reset.php</file>
         </group>
         <group name="Current">
-            <file>file:/C:/wamp/www/mathebula/index.php</file>
-            <file>file:/C:/wamp/www/mathebula/js/userProfile/general/general.html</file>
-            <file>file:/C:/wamp/www/mathebula/demo.html</file>
-            <file>file:/C:/wamp/www/mathebula/js/userProfile/userProfile.html</file>
+            <file>file:/C:/wamp/www/mathebula/js/profiles/profiles.js</file>
+            <file>file:/C:/wamp/www/mathebula/php/service.php</file>
+            <file>file:/C:/wamp/www/mathebula/php/service_secured.php</file>
+            <file>file:/C:/wamp/www/mathebula/php/sql.php</file>
         </group>
     </open-files>
 </project-private>

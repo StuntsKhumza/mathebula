@@ -75,6 +75,11 @@ switch ($query) {
         echo $sql -> getProfile(); 
         
         break; 
+    case "doSearch":
+
+        echo $sql -> doSearch($_POST); 
+
+    break;
 
     case "getSession":
 

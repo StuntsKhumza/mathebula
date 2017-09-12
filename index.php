@@ -85,6 +85,9 @@ and open the template in the editor.
         <script src="js/waitinglist/waitinglist.js"></script>
         
         <script src="configs/slideMenu.js"></script>
+
+        <script src="js/directives/ngSearch/ngSearch.js"></script>
+
         <script>
         /*    window.onbeforeunload = function(){
     return "You are about to leave leave/reload this page. This will log you out. \n";

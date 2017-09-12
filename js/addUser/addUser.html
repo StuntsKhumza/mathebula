@@ -481,7 +481,7 @@
                 <div class="row">
 
                     <div class="col-12">
-
+                            <ng-search result="adduserprofileController.searchResult" call-back="adduserprofileController.update()"></ng-search>
                         <br>
 
                         <table class="table">
@@ -491,7 +491,11 @@
                                 <th>Date of Birth:</th>
                                 <th>Allergies:</th>
                             </thead>
-                            <tbody>
+                            <tbody  ng-repeat="person in adduserprofileController.searchResults">
+                                <td>{{person.PATIENTNAME}}</td>
+                                <td></td>
+                                <td>{{person.PATIENTDOB}}</td>
+                                <td></td>
                             </tbody>
                         </table>
                     </div>

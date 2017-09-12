@@ -120,12 +120,12 @@ class sqlClass {
             case "loadWaitingList":
 
                 //$query = "SELECT * from users u RIGHT JOIN myq m on u.ID = m.PATIANTID WHERE STATUS =?";
-                $query = "SELECT *,NULL AS PASSWORD, sysUsers.Name as DRNAME, sysUsers.SURNAME AS DIRSURNAME, sysUsers.ID AS DRID FROM patients, myq, sysUsers WHERE patients.PATIENTID = myq.PATIANTID AND sysUsers.ID = myq.DRID";
+                $query = "SELECT *,NULL AS PASSWORD, sysUsers.Name as DRNAME, sysUsers.SURNAME AS DIRSURNAME, sysUsers.ID AS DRID, myq.ID QID FROM patients, myq, sysUsers WHERE patients.PATIENTID = myq.PATIANTID AND sysUsers.ID = myq.DRID ORDER BY `myq`.`DATE` AND `myq`.`DATE` ASC";
 
                 break;
 
             case "getPatientCount":
-                
+
                 $query = "SELECT COUNT(`PATIENTID`) AS TOTAL FROM drs.patients WHERE `PATIENTTYPE` = ?";
 
                 break;
@@ -139,7 +139,6 @@ class sqlClass {
 
 
         return $query;
-
     }
 
     private function query_insert($q) {
@@ -157,8 +156,17 @@ class sqlClass {
                 $query = "INSERT INTO `products_images`(`ID`, `IMG`, `PRODUCTID`, `TYPE`) VALUES (?,?,?,?)";
 
                 break;
-              case "addToQueue":
+
+            case "addToQueue":
                 $query = "INSERT INTO `myq`  VALUES (?,?,?,?,?,?)";
+
+                break;
+            case "updatesToQueue":
+                $query = "UPDATE MYQ SET DRID = ? WHERE ID = ?";
+
+                break;
+            case "deleteFromQueue":
+                $query = "DELETE FROM MYQ WHERE ID = ?";
 
                 break;
         }
@@ -210,7 +218,7 @@ class sqlClass {
     }
 
     private function createID() {
-        
+
         return mt_rand(1101102, 1249647);
     }
 
@@ -288,6 +296,7 @@ class sqlClass {
 
                     $_SESSION['roles'] = json_encode($role);
                     $_SESSION['username'] = $result[0]['SYS_USERNAME'];
+                    
                     $additionalData = array('name' => $result[0]['SYS_USERNAME']);
 
                     echo json_encode(array("status" => 200, 'message' => 'success', 'data' => array('userid' => base64_encode($result[0]['SYS_USERSESSION']), 'roles' => $role, 'userdata' => $additionalData)));
@@ -372,26 +381,56 @@ class sqlClass {
 
             //check connection
             if ($connect != null) {
+                
+                $status = "";
+                $stmt = "";
+                switch ($data['action']) {
 
-                $query = $this->query_insert('addToQueue');
-                $id = $this->createID();
-                $date = $this->get_Date(true, null);
-                $time = $this->get_time(true, null);
-                $stmt = $connect->prepare($query);
-                
-                $stmt->bindParam(1, $id, PDO::PARAM_INT);
-                $stmt->bindParam(2, $data['DRID'], PDO::PARAM_INT);
-                $stmt->bindParam(3, $data['PATIENTID'], PDO::PARAM_INT);
-                $stmt->bindParam(4, $data['STATUS'], PDO::PARAM_STR);
-                
-                $stmt->bindParam(5, $date, PDO::PARAM_STR);
-                $stmt->bindParam(6, $time, PDO::PARAM_STR);
+                    case "ADD":
+                        $query = $this->query_insert('addToQueue');
+
+                        $id = $this->createID();
+                        $date = $this->get_Date(true, null);
+                        $time = $this->get_time(true, null);
+                        $stmt = $connect->prepare($query);
+
+                        $stmt->bindParam(1, $id, PDO::PARAM_INT);
+                        $stmt->bindParam(2, $data['DRID'], PDO::PARAM_INT);
+                        $stmt->bindParam(3, $data['PATIENTID'], PDO::PARAM_INT);
+                        $stmt->bindParam(4, $data['STATUS'], PDO::PARAM_STR);
+
+                        $stmt->bindParam(5, $date, PDO::PARAM_STR);
+                        $stmt->bindParam(6, $time, PDO::PARAM_STR);
+                        
+                        $status = "Added successfully";
+                        
+                        break;
+                    case "UPDATE":
+                        $query = $this->query_insert('updatesToQueue');
+
+                        $stmt = $connect->prepare($query);
+
+                        $stmt->bindParam(1, $data['DRID'], PDO::PARAM_INT);
+                        $stmt->bindParam(2, $data['QID'], PDO::PARAM_INT);
+                        $status = "Updated successfully";
+                        break;
+                    case "DELETE":
+                        $status = "Deleted successfully";
+                        
+                        $query = $this->query_insert('deleteFromQueue');
+
+                        $stmt = $connect->prepare($query);
+
+                        $stmt->bindParam(1, $data['QID'], PDO::PARAM_INT);
+                        break;
+                }
+
 
                 $stmt->execute();
 
                 if ($stmt) {
 
-                    return json_encode(array('status' => 200, 'message' => 'Added successfully'));
+                    return json_encode(array('status' => 200, 'message' => $status));
                 } else {
                     http_response_code(500);
                     echo json_encode(array('status' => 500, 'message' => $stmt->errorInfo()));
@@ -399,22 +438,23 @@ class sqlClass {
             }
         } catch (PDOException $e) {
 
-            die(json_encode(array('status'=>500, 'message'=>$e->getMessage())));
+            die(json_encode(array('status' => 500, 'message' => $e->getMessage())));
         }
     }
 
-    public function loadWaitingList($data){
+    public function doSearch($data){
 
         $connect = $this->connectPDO();
         
                 //check connection
                 if ($connect != null) {
         
-                    $query =  $this->query_read('loadWaitingList');
+                    $query = "SELECT * FROM `PATIENTS` WHERE (CONVERT(`PATIENTSURNAME` USING utf8) LIKE ? " . " '%')"; //$this->query_read('loadWaitingList'); 
+                    // $query = "SELECT * FROM `patients` WHERE (CONVERT(`PATIENTIDNUMBER` USING utf8) LIKE ? " . " '%')";
         
                     $stmt = $connect->prepare($query);
         
-                    $stmt->bindParam(1, $data['type'], PDO::PARAM_STR);
+                    $stmt->bindParam(1, $data['query'], PDO::PARAM_STR);
         
                     $stmt->execute();
         
@@ -422,20 +462,49 @@ class sqlClass {
         
                         //USER FOUND
                         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        
-                        return json_encode(array('status' => 200, 'message' => 'users found', 'data' => $result, 'q'=>$data['q']));
-
+        
+                        return json_encode(array('status' => 200, 'message' => 'patients found', 'data' => $result));
                     } else {
         
                         //user not found
-                        
+        
                         return json_encode(array('status' => 400, 'message' => 'Waiting list is empty'));
                     }
                 }
 
     }
 
-    public function createPatient($data){
+    public function loadWaitingList($data) {
+
+        $connect = $this->connectPDO();
+
+        //check connection
+        if ($connect != null) {
+
+            $query = $this->query_read('loadWaitingList');
+
+            $stmt = $connect->prepare($query);
+
+            $stmt->bindParam(1, $data['type'], PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+
+                //USER FOUND
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                return json_encode(array('status' => 200, 'message' => 'users found', 'data' => $result, 'q' => $data['q']));
+            } else {
+
+                //user not found
+
+                return json_encode(array('status' => 400, 'message' => 'Waiting list is empty'));
+            }
+        }
+    }
+
+    public function createPatient($data) {
         //createPatientId
 
         $fileID = "";
@@ -448,13 +517,13 @@ class sqlClass {
             //check connection
             if ($connect != null) {
 
-                $query = "INSERT INTO `patients` VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";//$this->query_insert('addPatient');
+                $query = "INSERT INTO `patients` VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; //$this->query_insert('addPatient');
                 $id = $this->createID();
                 $cardid = $data['PATIENTTYPE'] . $this->createPatientId($data['PATIENTTYPE']);
                 $date = $this->get_Date(true, null);
-              //  $time = $this->get_time(true, null);
+                //  $time = $this->get_time(true, null);
                 $stmt = $connect->prepare($query);
-                
+
                 $stmt->bindParam(1, $id, PDO::PARAM_INT);
                 $stmt->bindParam(2, $cardid, PDO::PARAM_STR);
                 $stmt->bindParam(3, $data["PATIENTNAME"], PDO::PARAM_STR);
@@ -489,7 +558,7 @@ class sqlClass {
                 $stmt->bindParam(32, $data["PATIENTMEDICALAIOTHER"], PDO::PARAM_STR);
                 $stmt->bindParam(33, $data["PATIENTTYPE"], PDO::PARAM_STR);
                 $stmt->bindParam(34, $date, PDO::PARAM_STR);
-                
+
 
                 $stmt->execute();
 
@@ -503,48 +572,44 @@ class sqlClass {
             }
         } catch (PDOException $e) {
 
-            echo json_encode(array('status'=>500, 'message'=>$e->getMessage()));
+            echo json_encode(array('status' => 500, 'message' => $e->getMessage()));
         }
-        
     }
 
-    public function createPatientId($type){
-        
-        try{
+    public function createPatientId($type) {
 
-                        //getPatientCount
-        $connect = $this->connectPDO();
-                
-        //check connection
-        if ($connect != null) {
-                
-            $query =  $this->query_read('getPatientCount');
-                
-            $stmt = $connect->prepare($query);
-                
-            $stmt->bindParam(1, $type, PDO::PARAM_STR);
-                
-            $stmt->execute();
-                
-            if ($stmt->rowCount() > 0) {
-                
-            //USER FOUND
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                   //print_r($result)             ;
-            return  $result[0]['TOTAL']; //json_encode(array('status' => 200, 'message' => 'success', 'data' => $result));
-        
-            } else {
-                
-                //user not found
-                                
-                return json_encode(array('status' => 400, 'message' => 'Waiting list is empty'));
+        try {
+
+            //getPatientCount
+            $connect = $this->connectPDO();
+
+            //check connection
+            if ($connect != null) {
+
+                $query = $this->query_read('getPatientCount');
+
+                $stmt = $connect->prepare($query);
+
+                $stmt->bindParam(1, $type, PDO::PARAM_STR);
+
+                $stmt->execute();
+
+                if ($stmt->rowCount() > 0) {
+
+                    //USER FOUND
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    //print_r($result)             ;
+                    return $result[0]['TOTAL']; //json_encode(array('status' => 200, 'message' => 'success', 'data' => $result));
+                } else {
+
+                    //user not found
+
+                    return json_encode(array('status' => 400, 'message' => 'Waiting list is empty'));
+                }
             }
+        } catch (Exception $ex) {
+            return json_encode(array('status' => 500, 'message' => 'Waiting list is empty'));
         }
-    }
-    catch(Exception $ex){
-        return json_encode(array('status' => 500, 'message' => 'Waiting list is empty'));
-    }
-        
     }
 
     public function reset_user_password($user_id) {
@@ -704,7 +769,6 @@ class sqlClass {
         echo (json_encode(array('status' => 200, 'data' => array('girls' => $data_girls, 'boys' => $data_boys, 'adults' => $data_adults))));
     }
 
-
     public function addProduct($file, $data) {
 
         try {
@@ -780,39 +844,37 @@ class sqlClass {
 
         return json_encode(array('status' => $status, 'statusMessage' => $statusMessage));
     }
-    
-        //CREATE DATE
-        private function get_Date($d, $dValue){
-            /*
-             *  $new_time = date('G:i', strtotime($data['bookedTime']));
-        $new_date = date('Y-m-d', strtotime(str_replace('/', '-', $data['bookedDate'])));
-             */
-            $newDate =  "";
-            
-            if ($d){
-               $newDate = date("Y-m-d");
-               
-            } else{
-                 $newDate = date('Y-m-d', strtotime(str_replace('/', '-', $dValue)));
-            }
-            return $newDate;
-            
+
+    //CREATE DATE
+    private function get_Date($d, $dValue) {
+        /*
+         *  $new_time = date('G:i', strtotime($data['bookedTime']));
+          $new_date = date('Y-m-d', strtotime(str_replace('/', '-', $data['bookedDate'])));
+         */
+        $newDate = "";
+
+        if ($d) {
+            $newDate = date("Y-m-d");
+        } else {
+            $newDate = date('Y-m-d', strtotime(str_replace('/', '-', $dValue)));
         }
+        return $newDate;
+    }
+
     //CREATE TIME
 
-         private function get_time($t, $tValue){
-  
-            $newDate = "";
-            
-            if ($t){
-                $newDate = date("h:i:s"); 
-            } else{
-                $newDate = date('G:i', strtotime($tValue));
-            }
-            return $newDate;
-            
+    private function get_time($t, $tValue) {
+
+        $newDate = "";
+
+        if ($t) {
+            $newDate = date("h:i:s");
+        } else {
+            $newDate = date('G:i', strtotime($tValue));
         }
-        
+        return $newDate;
+    }
+
     private function clean($string) {
 
         $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.

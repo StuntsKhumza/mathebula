@@ -3,7 +3,7 @@
 
     <div class="list-group">
         <div class="container">
-            <h4>Waiting list:</h4>
+           
             <table class="table">
                 <thead>
 
@@ -12,10 +12,21 @@
                     <th>Action:</th>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="list in queue.obj">
-                        <td> {{list.PATIENTNAME}} {{list.PATIENTSURNAME}}</td>
-                        <td>{{list.DIRSURNAME}}</td>
-                        <td><i class="fa fa-trash"></i></td>
+                    <tr ng-repeat="list in queue.obj" >
+                        <td class="w-row"> {{list.PATIENTNAME}} {{list.PATIENTSURNAME}}</td>
+                        <td class="w-row">{{list.DIRSURNAME}}</td>
+                        <td class="w-row">
+                                <img src="img/spinner.gif" alt="spinner" ng-if="waitinglistController.spinner" > 
+                                <div ng-hide="waitinglistController.spinner">
+                                        <button ng-click="waitinglistController.updateDoctor(list)"><i class="fa fa-pencil"></i> </button>
+                                        <button ng-click="waitinglistController.removeFromQ(list)">
+                                                <i  class="fa fa-trash"  ></i>
+                                             </button>
+                                            
+                                </div>
+                           
+                        </td>
+ 
                     </tr>
                  
                 </tbody>
@@ -28,3 +39,9 @@
 
     </div>
 </div>
+
+<style>
+    .w-row {
+        border-bottom: 1px solid #212121;
+    }
+</style>
