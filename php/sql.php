@@ -442,6 +442,36 @@ class sqlClass {
         }
     }
 
+    public function getDependents($data){
+        $connect = $this->connectPDO();
+        
+                //check connection
+                if ($connect != null) {
+        
+                    $query = "SELECT * FROM patientsdependents JOIN PATIENTS ON PATIENTS.PATIENTID = patientsdependents.PDDEPENDENT WHERE patientsdependents.PDMAIN = ?";//$this->query_read('loadWaitingList');
+        
+                    $stmt = $connect->prepare($query);
+        
+                    $stmt->bindParam(1, $data['MAINID'], PDO::PARAM_INT);
+        
+                    $stmt->execute();
+        
+                    if ($stmt->rowCount() > 0) {
+        
+                        //USER FOUND
+                        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+                        return json_encode(array('status' => 200, 'message' => 'users found', 'data' => $result));
+                    } else {
+        
+                        //user not found
+        
+                        return json_encode(array('status' => 400, 'message' => 'no dependents'));
+                    }
+                }
+    }
+
+
     public function doSearch($data){
 
         $connect = $this->connectPDO();

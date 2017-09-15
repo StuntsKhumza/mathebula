@@ -1,5 +1,4 @@
-
-<button class="btn btn-primary btn-md" ng-click="ngSearchCntr.launchSearch()" ><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+<button class="btn btn-primary btn-md" ng-click="ngSearchCntr.launchSearch()"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
 
 <div class="modal" id="modalSearch" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -12,58 +11,62 @@
                 <div ng-if="ngSearchCntr.spinner">
 
                     <img src="img/Searching.gif" alt="searching gif"><br>
+
                     <h4>...please wait</h4>
 
                 </div>
+
                 <div ng-if="!ngSearchCntr.spinner">
                     <div class="row">
                         <div class="col-2">
-                            <b>Search for:</b>
+                            <b>Surname:</b>
                         </div>
                         <div class="col-8">
-                            <input class="form-control input-lg sandbox remove-radius" placeholder="search" ng-model="ngSearchCntr.searchbar">
+                            <input class="form-control input-lg sandbox remove-radius" ng-keyup="ngSearchCntr.kSearch($event)" placeholder="search" ng-model="ngSearchCntr.searchObj.name">
                         </div>
                         <div class="col-2">
-                                <input type="button" ng-click="ngSearchCntr.search()" class="btn btn-primary" value="search" ng-disabled="ngSearchCntr.searchbar.length == 0">
+                            <input type="button" ng-click="ngSearchCntr.search()" class="btn btn-primary" value="search" ng-disabled="ngSearchCntr.searchbar.length < 4">
                         </div>
                     </div>
-                   
-                        <hr>
-                        <div class="row">
-                                <div class="col">
-                                  
-                                    <table class="table" ng-show="ngSearchCntr.searchDone">
-                                        <thead>
-                                            <th>#</th>
-                                            <th>Name</th>
-                                            <th>Surname</th>
-                                            <th></th>
-                                        </thead>
-                                        <tbody>
-                                            <tr ng-repeat="person in ngSearchCntr.searchResults">
-                                                <td>
-                                                    {{$index + 1}}
-                                                </td>
-                                                <td>
-                                                    {{person.PATIENTNAME}}
-                                                </td>
-                                                <td>
-                                                        {{person.PATIENTSURNAME}}
-                                                    </td>
-                                                    <td>
-                                                            <input type="button" class="btn btn-sm btn-warning" value="select" ng-click="ngSearchCntr.setResult(person)">
-                                                        </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
 
-                                </div>
-                                
-                            </div>
+<br>            </div>
+
+                
+                <div class="row">
+                    <div class="col">
+
+                        <table class="table" ng-show="ngSearchCntr.searchDone">
+                            <thead>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Surname</th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="person in ngSearchCntr.searchResults">
+                                    <td>
+                                        {{$index + 1}}
+                                    </td>
+                                    <td>
+                                        {{person.PATIENTNAME}}
+                                    </td>
+                                    <td>
+                                        {{person.PATIENTSURNAME}}
+                                    </td>
+                                    <td>
+                                        <input type="button" class="btn btn-sm btn-warning" value="select" ng-click="ngSearchCntr.setResult(person)">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
                 </div>
-
             </div>
 
         </div>
+
     </div>
+</div>
 </div>

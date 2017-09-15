@@ -31,7 +31,7 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp', 'nav-app
                     self.showErrorMessage = false;
                     self.showSuccessMessage = false;
                     self.searchResults = [];//searchResults
-                    $scope.searchResult = {};
+                    $scope.searchResult = {person:""};
                     self.patientobj = {
                         data : {
                             PATIENTNAME:"",
@@ -103,9 +103,9 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp', 'nav-app
 
 
                     }
-                    self.update = function(data){
-                        console.log(data);
-                        self.searchResults.push(data);
+                    self.update = function(){
+                        
+                        self.searchResults.push($scope.searchResult.person);
                     }
                     self.savePatient = function(){
 

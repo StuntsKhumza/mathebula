@@ -3,7 +3,8 @@ angular.module('userProfile-app', ['comments-app',
 'userProfile-General-app',
 'userProfile-Address-app',
 'userProfile-pastMedicalHistory-app',
-'save-app'
+'save-app',
+'session-app'
 ])
 
         .directive('userProfile', function () {
@@ -12,14 +13,31 @@ angular.module('userProfile-app', ['comments-app',
                 restrict: "E",
                 templateUrl: "js/userProfile/userProfile.html",
                 controllerAs: 'userProfileController',
-                controller: function ($scope) {
+                controller: function ($scope,serviceSession) {
 
                     var self = this;
                     self.activeTab = 1;
                     self.setUser = $scope.userObj.client;
-                    console.log( self.setUser);
+                    self.setUser;
+                    self.dependents = [];
                     $scope.tab_count = 1;
-                     
+                   //  console.log(self.setUser);
+                   loadDependents();
+                    function loadDependents() {
+                        
+                        var formData = new FormData();
+
+                        formData.append("q","getDependents");
+                        formData.append("MAINID",self.setUser.PATIENTID);
+
+                        serviceSession.callService(formData)
+                        .then(function(res){
+                            self.dependents = res;
+                            console.log(self.dependents.data);
+                            console.log(self.dependents);
+                            
+                        })
+                    }
 
                     $scope.userDataObj = 
                         {

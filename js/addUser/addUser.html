@@ -481,9 +481,10 @@
                 <div class="row">
 
                     <div class="col-12">
-                            <ng-search result="adduserprofileController.searchResult" call-back="adduserprofileController.update()"></ng-search>
+                    
+                            <ng-search result="searchResult" call-back="adduserprofileController.update(adduserprofileController.searchResults)"></ng-search>
                         <br>
-
+<br>
                         <table class="table">
                             <thead>
                                 <th>Name:</th>

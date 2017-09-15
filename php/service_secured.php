@@ -32,6 +32,14 @@ switch ($query) {
 
     break;
 
+    //
+
+    case "getDependents":
+        $data = $sql->getDependents($_POST);
+        echo $data;     
+    break;
+
+
     case "createPatient":
     echo $sql -> createPatient($_POST); 
     break;

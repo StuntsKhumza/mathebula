@@ -9,7 +9,7 @@
                         LANGUAGE PREFERENCE:
                     </div>
                     <div class="col-8">
-                        <input type="text" class="form-control input simplebox remove-radius">
+                        
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                             COMPUTER NO:
                         </div>
                         <div class="col-8">
-                            <input type="text" data-ng-disabled="true" class="form-control input-sm simplebox remove-radius" value="{{filenumber}}">
+                            {{userProfileController.setUser.PATIENTCARDNUMBER}}
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,8 @@
                     Full Name and Surname:
                 </div>
                 <div class="col-8">
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.setUser.PATIENTNAME}} 
+                    {{userProfileController.setUser.PATIENTSURNAME}}
                 </div>
 
             </div>
@@ -62,7 +63,7 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.setUser.PATIENTIDNUMBER}}
                 </div>
 
             </div>
@@ -75,7 +76,7 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.setUser.PATIENTTITLE}}
                 </div>
 
             </div>
@@ -147,7 +148,7 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.setUser.PATIENTMEDICALAIDNAME}}
                 </div>
 
             </div>
@@ -159,8 +160,7 @@
                     Plan:
                 </div>
                 <div class="col-8">
-
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.setUser.PATIENTMEDICALAIDPLAN}}
                 </div>
 
             </div>
@@ -173,7 +173,7 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.setUser.PATIENTMEDICALAIDNUMBER}}
                 </div>
 
             </div>
@@ -186,7 +186,7 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.setUser.PATIENTMEDICALAIOTHER}}
                 </div>
 
             </div>
@@ -205,7 +205,7 @@
             <div class="row">
 
                 <div class="col-12">
-                    <textarea class="form-control simplebox remove-radius"></textarea>
+                    {{userProfileController.setUser.PATIENTHOUSEDOCTOR}}
                 </div>
 
 
@@ -237,6 +237,12 @@
                             <th>Allergies:</th>
                         </thead>
                         <tbody>
+                            <tr ng-repeat="people in userProfileController.dependents.data">
+                                <td>{{people.PATIENTNAME}} {{people.PATIENTSURNAME}}</td>
+                                <td></td>
+                                <td>{{people.PATIENTDOB}}</td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -264,7 +270,8 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.setUser.PATIENTNAME}} 
+                    {{userProfileController.setUser.PATIENTSURNAME}}
                 </div>
 
             </div>
@@ -277,7 +284,7 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.setUser.PATIENTTITLE}}
                 </div>
 
             </div>
@@ -290,7 +297,7 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.setUser.PATIENTDOB}}
                 </div>
 
             </div>
@@ -303,7 +310,7 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.setUser.PATIENTIDNUMBER}}
                 </div>
 
             </div>
@@ -316,7 +323,7 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.setUser.PATIENTMARITALSTATUS}}
                 </div>
 
             </div>
@@ -328,7 +335,10 @@
                     Home Address:
                 </div>
                 <div class="col-8">
-                    <textarea class="form-control remove-radius simplebox"></textarea>
+                    {{userProfileController.setUser.PATIENTHOMEADDRESS1}}<br>
+                    {{userProfileController.setUser.PATIENTHOMEADDRESS2}}<br>
+                    {{userProfileController.setUser.PATIENTHOMEADDRESS3}}<br>
+                    {{userProfileController.setUser.PATIENTHOMEADDRESSCODE}}
 
                 </div>
 
@@ -342,7 +352,8 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    c) {{userProfileController.setUser.PATIENTTELL}}<br>
+                    w) {{userProfileController.setUser.PATIENTCELL}}
                 </div>
 
             </div>
@@ -354,8 +365,10 @@
                     Postal Address:
                 </div>
                 <div class="col-8">
-                    <textarea class="form-control remove-radius simplebox"></textarea>
-
+                    {{userProfileController.setUser.PATIENTPOSTALADDRESS1}}<br>
+                    {{userProfileController.setUser.PATIENTPOSTALADDRESS2}}<br>
+                    {{userProfileController.setUser.PATIENTPOSTALADDRESS3}}<br>
+                    
                 </div>
 
             </div>
@@ -368,7 +381,7 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.setUser.PATIENTPOSTALADDRESSCODE}}
                 </div>
 
             </div>
@@ -380,8 +393,8 @@
                     Tel. Husband:
                 </div>
                 <div class="col-8">
-                    (w)<input class="form-control remove-radius simplebox"> (c)
-                    <input class="form-control remove-radius simplebox">
+                    t) {{userProfileController.setUser.PATIENTSPOUSETELL}}
+                    c) {{userProfileController.setUser.PATIENTSPOUSECELL}}
                 </div>
 
             </div>
@@ -408,7 +421,7 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.setUser.PATIENTEMPLOYER}}
                 </div>
 
             </div>
@@ -421,7 +434,7 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.setUser.PATIENTOCCUPATION}}
                 </div>
 
             </div>
@@ -433,7 +446,9 @@
                     Address:
                 </div>
                 <div class="col-8">
-                    <textarea class="form-control remove-radius simplebox"></textarea>
+                    {{userProfileController.setUser.PATIENTOCCUPATIONADDRESS1}}<br>
+                    {{userProfileController.setUser.PATIENTOCCUPATIONADDRESS2}}<br>
+                    {{userProfileController.setUser.PATIENTOCCUPATIONADDRESS3}}
 
                 </div>
 
@@ -447,7 +462,7 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.setUser.PATIENTOCCUPATIONTELL}}
                 </div>
 
             </div>
