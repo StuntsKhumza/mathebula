@@ -31,7 +31,9 @@
     <div id="page-content-wrapper">
 <br>
 
-<my-q ng-if="profilesController.access.doctor"></my-q>
+<my-q ng-if="profilesController.access.doctor">
+    
+</my-q>
         <div ng-if="profilesController.access.reception || profilesController.access.admin">
 
             <search ng-if="!userObj.clientSet"></search>

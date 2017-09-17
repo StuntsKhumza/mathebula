@@ -3,10 +3,12 @@
 session_start(); 
 sleep(0);
 require 'sql.php'; 
+//require 'template.php'; 
 
 $query = "";
 
 $sql = new sqlClass(); 
+//$template = new HTMLTemplates();
 
 $dspErrors = true; 
 
@@ -25,6 +27,14 @@ if(isset($_POST['q'])){
 }
 
 switch ($query) {
+
+    case "":
+
+    $template->doStrReplacement($_POST);
+
+    //mappers
+
+    break;
 
     case "getCardNumber":
         $data = $sql -> createPatientId($_POST['TYPE']);

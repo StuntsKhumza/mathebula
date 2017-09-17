@@ -12,7 +12,7 @@ angular.module('myQ-app', ['comments-app',
             restrict: "E",
             templateUrl: "js/myQ/myQ.html",
             controllerAs: 'myQController',
-            controller: function ($scope, $http, serviceSession) {
+            controller: function ($scope, $http, serviceSession, $window) {
 
                 var self = this;
 
@@ -50,6 +50,7 @@ angular.module('myQ-app', ['comments-app',
                     });
                 }
 
+            
                 self.setClient = function (id) {
 
 

@@ -19,9 +19,9 @@
         </div>
         <div class="col-6">
             <div class="pull-right">
-
-                <input type="button" value="Generate Dr's Note" class="btn btn-success btn-sm remove-radius">
-                <input type="button" value="Generate Referral Note" class="btn btn-success btn-sm remove-radius">
+                
+                <input type="button" value="Generate Dr's Note" class="btn btn-primary btn-sm remove-radius" ng-click="userProfileController.generateDrNote()">
+                <input type="button" value="Generate Referral Note" class="btn btn-primary btn-sm remove-radius" ng-click="userProfileController.generateDrRefNote()">
                 <input type="button" class="btn btn-default btn-sm remove-radius" value="Back to queue" ng-click="userProfileController.return_to_search()">
             </div>
         </div>
