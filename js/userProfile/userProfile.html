@@ -19,7 +19,7 @@
         </div>
         <div class="col-6">
             <div class="pull-right">
-                
+
                 <input type="button" value="Generate Dr's Note" class="btn btn-primary btn-sm remove-radius" ng-click="userProfileController.generateDrNote()">
                 <input type="button" value="Generate Referral Note" class="btn btn-primary btn-sm remove-radius" ng-click="userProfileController.generateDrRefNote()">
                 <input type="button" class="btn btn-default btn-sm remove-radius" value="Back to queue" ng-click="userProfileController.return_to_search()">
@@ -48,7 +48,8 @@
                         value="General" ng-click="tab_count = 1">
                 </li>
                 <li class="nav-item">
-                    <input type="button" class="nav-link active userprofileBtns" value="Address" ng-class="{'userprofileBtns-active': tab_count == 2}" ng-click="tab_count = 2">
+                    <input type="button" class="nav-link active userprofileBtns" value="Address" ng-class="{'userprofileBtns-active': tab_count == 2}"
+                        ng-click="tab_count = 2">
                 </li>
                 <li class="nav-item">
                     <input type="button" class="nav-link active userprofileBtns" value="Medical History" ng-class="{'userprofileBtns-active': tab_count == 3}"
@@ -59,7 +60,8 @@
                         ng-click="tab_count = 4">
                 </li>
                 <li class="nav-item">
-                    <input type="button" class="nav-link active userprofileBtns" ng-class="{'userprofileBtns-active': tab_count == 5}" value="Notes" ng-click="tab_count = 5">
+                    <input type="button" class="nav-link active userprofileBtns" ng-class="{'userprofileBtns-active': tab_count == 5}" value="Notes"
+                        ng-click="tab_count = 5">
                 </li>
             </ul>
 
@@ -90,9 +92,10 @@
                 </li>
             </ul>
             <general-tab ng-if="tab_count == 1"></general-tab>
-            <address-tab ng-if="false"></address-tab>
+            <address-tab ng-if="tab_count == 2"></address-tab>
             <past-medical-history-tab ng-if="tab_count == 3"></past-medical-history-tab>
-            <div ng-if="tab_count == 4">Clinical Examination</div>
+            <clinical-exam-tab ng-if="tab_count == 4"></clinical-exam-tab>
+           
             <div ng-if="tab_count == 5">
                 <br>
                 <div class="row">

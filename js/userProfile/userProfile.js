@@ -3,6 +3,7 @@ angular.module('userProfile-app', ['comments-app',
     'userProfile-General-app',
     'userProfile-Address-app',
     'userProfile-pastMedicalHistory-app',
+    'userProfile-ClinicalExam-app',
     'save-app',
     'session-app'
 ])

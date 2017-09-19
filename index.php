@@ -88,6 +88,9 @@ and open the template in the editor.
 
         <script src="js/directives/ngSearch/ngSearch.js"></script>
 
+        <!--clinical examination-->
+        <script src="js/userProfile/clinical examination/clinicalexam.js"></script>
+
         <script>
         /*    window.onbeforeunload = function(){
     return "You are about to leave leave/reload this page. This will log you out. \n";

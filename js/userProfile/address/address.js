@@ -5,9 +5,13 @@ angular.module('userProfile-Address-app', [])
         return {
             restrict: "E",
             templateUrl: "js/userProfile/address/address.html",
-            controllerAs: function(){},
+            controllerAs: 'addressCtr',
             controller: function ($scope) {
-
+                var self = this;
+                self.examining = "";
+                self.setClick = function(c){
+                    self.examining = c;
+                }
 
             }
 
