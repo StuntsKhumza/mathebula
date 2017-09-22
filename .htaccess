@@ -4,3 +4,4 @@ RewriteRule ^home$ index.php
 RewriteRule ^viewBookings$ bookings.php
 RewriteRule ^makebooking$ makebooking.php
 RewriteRule ^bookings$ bookings.php
+RewriteRule ^test$ demo.html

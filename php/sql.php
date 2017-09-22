@@ -129,10 +129,16 @@ class sqlClass {
                 $query = "SELECT COUNT(`PATIENTID`) AS TOTAL FROM drs.patients WHERE `PATIENTTYPE` = ?";
 
                 break;
+            
+            case "getfamilyfriend":
+                
+                $query = "SELECT * FROM `familyfriend`";
+                
+                break;
 
-            case "":
+            case "getFamilyMember":
 
-                $query = "";
+            $query = "SELECT * FROM `familyfriend` WHERE FFPATIENTID = ?";
 
                 break;
         }
@@ -169,6 +175,11 @@ class sqlClass {
                 $query = "DELETE FROM MYQ WHERE ID = ?";
 
                 break;
+            case "addFamilyMember":
+            
+                $query = "INSERT INTO `familyfriend` VALUES(?,?,?,?,?)";
+
+            break;
         }
 
 
@@ -629,7 +640,7 @@ class sqlClass {
                     //USER FOUND
                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     //print_r($result)             ;
-                    return $result[0]['TOTAL']; //json_encode(array('status' => 200, 'message' => 'success', 'data' => $result));
+                    return $this->getCount($result[0]['TOTAL'] ); //json_encode(array('status' => 200, 'message' => 'success', 'data' => $result));
                 } else {
 
                     //user not found
@@ -641,6 +652,105 @@ class sqlClass {
             return json_encode(array('status' => 500, 'message' => 'Waiting list is empty'));
         }
     }
+
+    public function addFamilyMember($data){
+
+        try {
+            
+                        //getPatientCount
+                $connect = $this->connectPDO();
+
+                $id = $this->createID();
+                        //check connection
+                if ($connect != null) {
+            
+                    $query = $this->query_insert('addFamilyMember');
+            
+                            $stmt = $connect->prepare($query);
+            
+                            $stmt->bindParam(1, $id, PDO::PARAM_INT);
+                            $stmt->bindParam(2, $data['NAME'], PDO::PARAM_STR);
+                            $stmt->bindParam(3, $data['PATIENTID'], PDO::PARAM_INT);
+                            $stmt->bindParam(4, $data['ADDRESS'], PDO::PARAM_STR);
+                            $stmt->bindParam(5, $data['RELATIONSHIP'], PDO::PARAM_STR);
+            
+                            $stmt->execute();
+            
+                            if ($stmt) {
+
+                                return json_encode(array('status' => 200, 'message' => 'Memeber added successfully', ));
+
+                            } else {
+            
+                                echo json_encode(array('status' => 501, 'message' => $stmt->errorInfo()));
+
+                            }
+                        }
+                    } catch (Exception $ex) {
+ 
+                        return json_encode(array('status' => 500, 'message' =>$ex->getMessage()));
+
+                    }
+        
+        
+        
+
+    }
+
+    public function getFamilyMember($data){
+
+        try {
+
+                $connect = $this->connectPDO();
+
+                $id = $this->createID();
+                        //check connection
+                if ($connect != null) {
+            
+                    $query = $this->query_read('getFamilyMember');
+            
+                            $stmt = $connect->prepare($query);
+            
+                            $stmt->bindParam(1, $data['PATIENTID'], PDO::PARAM_INT);
+            
+                            $stmt->execute();
+            
+                            if ($stmt) {
+
+                                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                return json_encode(array('status' => 200, 'message' => 'Memeber found successfully','data'=>$result[0] ));
+
+                            } else {
+            
+                                echo json_encode(array('status' => 501, 'message' => $stmt->errorInfo()));
+
+                            }
+                        }
+                    } catch (Exception $ex) {
+ 
+                        return json_encode(array('status' => 500, 'message' =>$ex->getMessage()));
+
+                    }
+        
+    }
+
+    private function getCount($ii){
+        $d = "00";
+        $dd = "000";
+        $ddd = "0000";
+        $dddd = "00000";
+        
+        if ($ii < 10)
+        {$i = $dddd . $ii; return $i;}
+        else if ($ii < 100)
+        {$i = $ddd . $ii; return $i;}
+        else if ($ii < 1000)
+        {$i = $dd . $ii; return $i;}
+        else if ($ii < 10000)
+        {$i = $d . $ii; return $i;}
+      
+      }
 
     public function reset_user_password($user_id) {
 

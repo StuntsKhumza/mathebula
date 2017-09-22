@@ -1,4 +1,3 @@
-<br>
 
 <div>
     <div class="row">
@@ -99,7 +98,7 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.familyfreind.FFNAME}}
                 </div>
 
             </div>
@@ -112,7 +111,7 @@
                 </div>
                 <div class="col-8">
 
-                    <input type="text" class="form-control remove-radius simplebox">
+                    {{userProfileController.familyfreind.FFRELATIONSHIP}}
                 </div>
 
             </div>
@@ -125,7 +124,8 @@
                 </div>
                 <div class="col-8">
 
-                    <textarea class="form-control remove-radius simplebox"></textarea>
+                    {{userProfileController.familyfreind.FFADDRESS1}}
+
                 </div>
 
             </div>
@@ -390,7 +390,7 @@
 
                 <div class="col-4">
 
-                    Tel. Husband:
+                    Tel. Spouse:
                 </div>
                 <div class="col-8">
                     t) {{userProfileController.setUser.PATIENTSPOUSETELL}}
@@ -399,7 +399,7 @@
 
             </div>
             <br>
-            <div class="row">
+            <div class="row" ng-if="false">
 
                 <div class="col-4">
 

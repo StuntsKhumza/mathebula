@@ -12,7 +12,7 @@
 </style>
 
 <div class="">
-    <br>
+    
     <div class="row">
         <div class="col-6">
             <h3>{{userProfileController.setUser.PATIENTNAME}} {{userProfileController.setUser.PATIENTSURNAME}}</h3>
@@ -47,7 +47,7 @@
                     <input type="button" class="nav-link active userprofileBtns userprofileBtns-active" ng-class="{'userprofileBtns-active': tab_count == 1}"
                         value="General" ng-click="tab_count = 1">
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" ng-if="false">
                     <input type="button" class="nav-link active userprofileBtns" value="Address" ng-class="{'userprofileBtns-active': tab_count == 2}"
                         ng-click="tab_count = 2">
                 </li>
@@ -91,6 +91,7 @@
                     <input type="button" value="Notes" class="nav-link" ng-class="{'active': tab_count == 5}" ng-click="tab_count = 5">
                 </li>
             </ul>
+            <br>
             <general-tab ng-if="tab_count == 1"></general-tab>
             <address-tab ng-if="tab_count == 2"></address-tab>
             <past-medical-history-tab ng-if="tab_count == 3"></past-medical-history-tab>

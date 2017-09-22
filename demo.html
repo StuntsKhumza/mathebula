@@ -6,96 +6,116 @@ and open the template in the editor.
 -->
 <html>
 
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css">
-        <script src="js/utils.js"></script>
-        <script src="configs/jquery.min.js"></script>
-        <script src="configs/tether.min.js"></script>
-        <script src="css/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js"></script>
-        <script src="configs/angular.min.js"></script>
-        <script src="configs/angular-ui-router.js"></script>
-        <script src="configs/angular-cookie.js"></script>
-        <script src="configs/jquery.transit.min.js"></script>
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css">
+    <script src="js/utils.js"></script>
+    <script src="configs/jquery.min.js"></script>
+    <script src="configs/tether.min.js"></script>
+    <script src="css/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js"></script>
+    <script src="configs/angular.min.js"></script>
+    <script src="configs/angular-ui-router.js"></script>
+    <script src="configs/angular-cookie.js"></script>
+    <script src="configs/jquery.transit.min.js"></script>
 
-        <script src="js/main.js" type="text/javascript"></script>
-        <link href="css/main.css" rel="stylesheet" type="text/css"/>
-        <link href="css/utils.css" rel="stylesheet" type="text/css"/>
-        <link href="css/user-profile.css" rel="stylesheet" type="text/css"/>
-        <link href="css/waitinglist.css" rel="stylesheet" type="text/css"/>
-        <link href="css/navbar.css" rel="stylesheet" type="text/css"/>
-        <link href="css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <link rel="icon" href="img/1477676379_icon-57.png">
+    <script src="js/main.js" type="text/javascript"></script>
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/utils.css" rel="stylesheet" type="text/css" />
+    <link href="css/user-profile.css" rel="stylesheet" type="text/css" />
+    <link href="css/waitinglist.css" rel="stylesheet" type="text/css" />
+    <link href="css/navbar.css" rel="stylesheet" type="text/css" />
+    <link href="css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="img/1477676379_icon-57.png">
 
 
-        <script>
-            angular.module('main', [])
-                    .directive('test', function () {
-                        return {
-                            template: "js/calendar/calendar.html",
-                        }
-                    })
+    <script>
+        angular.module('main', [])
+            .directive('test', function () {
+                return {
+                    template: "js/calendar/calendar.html",
+                }
+            })
+    </script>
+    <style>
+        .card-c {
 
-        </script>
-    </head>
 
-    <body ng-app="main">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="heading-s">
-                                PATIENT DETAILS
-                            </div>
-                        </div>
+            border-radius: 0px;
+        }
 
+        .card-c-header {
+
+            color: #FAFAFA;
+            font-size: 14pt;
+            text-align: center;
+            background: #546e7a;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .card-c-body {
+            padding: 5px;
+            background: #f8f8f8;
+        }
+    </style>
+</head>
+
+<body ng-app="main">
+
+
+    <br>
+    <div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h1>Your day...</h1>
+        </div>
+    </div>
+    </div>
+    <br>
+    
+    <div class="container" >
+        <div class="row">
+            <div class="col-6">
+                <div class="card-c">
+                    <div class="card-c-header">
+                        Queue
                     </div>
-                    <BR>
-                    <div class="row">
-
-                        <div class="col-4">
-                            Full Name and Surname:
-                        </div>
-                        <div class="col-8">
-                            <input type="text" class="form-control remove-radius simplebox">
-                        </div>
-
+                    <div class="card-c-body">
+                        <p>Value 1</p>
+                        <p>Value 1</p>
+                        <p>Value 1</p>
                     </div>
-                    <BR>
-                    <div class="row">
-
-                        <div class="col-4">
-
-                            I.D No:
-                        </div>
-                        <div class="col-8">
-
-                            <input type="text" class="form-control remove-radius simplebox">
-                        </div>
-
-                    </div>
-                    <BR>
-                    <div class="row">
-
-                        <div class="col-4">
-
-                            Mr/Mrs/Miss:
-                        </div>
-                        <div class="col-8">
-
-                            <input type="text" class="form-control remove-radius simplebox">
-                        </div>
-
-                    </div>
-                    <BR>
 
                 </div>
+            </div>
+            <div class="col-3">
+                <div class="card-c">
+                    <div class="card-c-header">
+                        Bookings
+                    </div>
+                    <div class="card-c-body">
+                        This is test
+                    </div>
 
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card-c">
+                    <div class="card-c-header">
+                        Card 3
+                    </div>
+                    <div class="card-c-body">
+                        content
+                    </div>
+
+                </div>
             </div>
         </div>
-    </body>
+    </div>
+
+
+</body>
 
 </html>

@@ -33,6 +33,7 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp', 'nav-app
                     self.searchResults = [];//searchResults
                     $scope.searchResult = {person:""};
                     self.patientobj = {
+                        q: '',
                         data : {
                             PATIENTNAME:"",
                             PATIENTSURNAME:"",
@@ -66,6 +67,15 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp', 'nav-app
                             PATIENTMEDICALAIOTHER:"",
                             PATIENTTYPE:"",
                             PATIENTCARDNUMBER:"",
+                        },
+                        dataFamilyMembers : {
+
+                            q: "",
+                            NAME: "",
+                            RELATIONSHIP: "",
+                            ADDRESS: "",
+                            PATIENTID: 1116945
+
                         }
                     }
                     self.userRoles = serviceSession.get_roles();
@@ -107,7 +117,12 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp', 'nav-app
                         
                         self.searchResults.push($scope.searchResult.person);
                     }
+
                     self.savePatient = function(){
+
+                        saveFamilyFriend();
+
+                        return;
 
                         var data = self.patientobj.data;
 
@@ -125,6 +140,7 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp', 'nav-app
                         $anchorScroll(); */
 
                         serviceSession.callService(formData).
+
                         then(function(res){
 
                             if(res.status == 200){
@@ -137,6 +153,27 @@ angular.module('addUserProfile-app', ['ui.router', 'profilePictureApp', 'nav-app
 
                         })
                         
+
+                    }
+
+                    function saveFamilyFriend(){
+
+                        
+                        self.patientobj.dataFamilyMembers.q = "addFamilyMember";
+                        
+                        serviceSession.callRest(self.patientobj.dataFamilyMembers).
+
+                        then(function(res){
+                            console.log(res);
+                            if(res.status == 200){
+
+                                showAlert("good", res.message);
+
+                            }else{
+                                showAlert("bad", res.message);
+                            }
+
+                        })
 
                     }
 

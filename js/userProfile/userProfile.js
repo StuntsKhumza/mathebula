@@ -21,9 +21,11 @@ angular.module('userProfile-app', ['comments-app',
                 self.setUser = $scope.userObj.client;
                 self.setUser;
                 self.dependents = [];
+                self.familyfreind = {};
                 $scope.tab_count = 1;
                 //  console.log(self.setUser);
                 loadDependents();
+                getFamilyFriend();
                 function loadDependents() {
 
                     var formData = new FormData();
@@ -41,7 +43,8 @@ angular.module('userProfile-app', ['comments-app',
 
                 self.generateDrNote = function () {
 
-                    var myd = {q:'drNote',
+                    var myd = {
+                        q: 'drNote',
                         mappers: {
                             __name__: self.setUser.PATIENTNAME + " " + self.setUser.PATIENTSURNAME,
                             __examfrom__: "15/09/2017",
@@ -64,11 +67,34 @@ angular.module('userProfile-app', ['comments-app',
 
                 }
 
+                function getFamilyFriend() {
+
+                    var data = {
+                            q   : 'getFamilyMember',
+                            PATIENTID: self.setUser.PATIENTID
+                    }
+
+                    serviceSession.callRest(data).
+
+                        then(function (res) {
+                            console.log("family friend");
+                            console.log(res);
+                            if (res.status == 200) {
+
+                                self.familyfreind = res.data;
+
+                            }
+
+                        })
+
+                }
+
                 self.generateDrRefNote = function () {
 
-                    var myd = {q:'drRefNote',
+                    var myd = {
+                        q: 'drRefNote',
                         mappers: {
-                           
+
                         }
                     }
 
@@ -82,29 +108,7 @@ angular.module('userProfile-app', ['comments-app',
 
                 }
 
-                $scope.userDataObj =
-                    {
-                        //general
-                        general: {
-                            txt_name: self.setUser.FIRSTNAME,
-                            txt_surname: self.setUser.LASTNAME,
-                            txt_dateofbirth: "1990/03/23",
-                        },
-
-                        address: {
-                            txt_line1: self.setUser.ADDRESS1,
-                            txt_line2: self.setUser.ADDRESS2,
-                            txt_line3: self.setUser.ADDRESS3
-                        },
-
-                        history: {
-                            txt_previusPhycName: "Dr T Shongwe",
-                            txt_hospitalizedBefore: "No",
-                            txt_testedForHapititsB: "No",
-                            txt_beenVaxinated: "Yes"
-                        }
-                    }
-
+               
                 self.return_to_search = function () {
                     $scope.userObj.client = null;
                     $scope.userObj.clientSet = false;

@@ -1,20 +1,25 @@
 <?php
-$ch = curl_init('https://textbelt.com/text');
 
-$data = array(
-  'phone' => '+27768368758',
-  'message' => 'Hello world',
-  'key' => '',
-);
-//3a7341b52e80995ac7a05546fb92ce61dcf0d110NE6GIyI1XHhcz4LpQiRZGRHJc
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$i = 0;//$_GET['i'];
+$ii = $_GET['i'];
+//
 
-$response = curl_exec($ch);
 
-curl_close($ch);
+echo getCount($ii);
 
-print_r($response);
+ function getCount($ii){
+  $d = "00";
+  $dd = "000";
+  $ddd = "0000";
+  $dddd = "00000";
+  
+  if ($ii < 10)
+  {$i = $dddd . $ii; return $i;}
+  else if ($ii < 100)
+  {$i = $ddd . $ii; return $i;}
+  else if ($ii < 1000)
+  {$i = $dd . $ii; return $i;}
+  else if ($ii < 10000)
+  {$i = $d . $ii; return $i;}
 
-echo "sent";
+}

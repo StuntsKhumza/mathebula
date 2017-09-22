@@ -1,25 +1,58 @@
+<style>
+    .card-c {
+
+
+        border-radius: 0px;
+    }
+
+    .card-c-header {
+
+        color: #FAFAFA;
+        font-size: 14pt;
+        text-align: center;
+        background: #3a4149;
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    .card-c-body {
+        padding: 5px;
+        background: #f8f8f8;
+    }
+
+    .card-c-number {
+        font-weight: bold;
+        font-size: 40pt;
+        color: #212121;
+        text-align: center;
+    }
+
+    .table-myq td {
+
+        border: 0px;
+    }
+
+</style>
 <br>
-<div class="container">
+<div class="container" ng-if="true">
     <div ng-if="!userObj.clientSet">
-        
-    
-    <div class="row" >
-        <div class="col-12">
-            <div class="search-header">
-                <h3>Patients in your queue:</h3>
-                
-                <hr class="colorgraph"><br>
+        <div class="row">
+            <div class="col-12">
+                <div class="search-header">
+                    <h3>Patients in your queue:</h3>
+
+                    <hr class="colorgraph"><br>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-if="myQController.spinner">
+            <div class="col-12">
+                <img src="img/Searching.gif" alt="searching gif"><br>
+                <h4>...please wait</h4>
             </div>
         </div>
     </div>
-        
-    <div class="row" ng-if="myQController.spinner">
-        <div class="col-12">
-            <img src="img/Searching.gif" alt="searching gif"><br>
-            <h4>...please wait</h4>
-        </div>
-    </div>
-        </div>
     <div class="row">
         <div class="col-12">
             <div ng-if="myQController.results.length == 0">
@@ -28,7 +61,7 @@
             <div ng-if="!userObj.clientSet">
 
 
-                <table class="table" ng-if="!myQController.spinner && myQController.results.length > 0" >
+                <table class="table table-myq" ng-if="!myQController.spinner && myQController.results.length > 0">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -43,8 +76,7 @@
                             <td>{{result.PATIENTNAME + " " + result.PATIENTSURNAME}}</td>
                             <td>{{result.PATIENTCARDNUMBER}}</td>
                             <td>
-                                <input type="button" value="open" class="btn btn-md btn-c-success" ng-click="myQController.setClient(result.PATIENTID)"
-                                       name="{{'btnOpen_' + $index}}">
+                                <input type="button" value="open" class="btn btn-md btn-c-success" ng-click="myQController.setClient(result.PATIENTID)" name="{{'btnOpen_' + $index}}">
 
                             </td>
                         </tr>
@@ -63,5 +95,85 @@
 
         </div>
     </div>
+
+</div>
+
+<div class="container" ng-if="false">
+    <div class="row" ng-if="myQController.spinner">
+        <div class="col-12">
+            <img src="img/Searching.gif" alt="searching gif"><br>
+            <h4>...please wait</h4>
+        </div>
+    </div>
+    <div ng-if="!myQController.spinner && !userObj.clientSet">
+        <div class="row">
+            <div class="col-8">
+                <h1>Your day...</h1>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="container" ng-if="!myQController.spinner">
+        <div ng-if="!userObj.clientSet"><div class="row">
+            <div class="col-9">
+                <div class="card-c">
+                    <div class="card-c-header">
+                        Queue
+                    </div>
+                    <div class="card-c-body">
+                        <table class="table table-myq" ng-if="!myQController.spinner && myQController.results.length > 0">
+
+                            <tbody class="table-hover">
+                                <tr ng-repeat="result in myQController.results">
+                                    <td class="row-data-td">{{1 + $index}}</td>
+                                    <td>{{result.PATIENTNAME + " " + result.PATIENTSURNAME}}</td>
+
+                                    <td>
+                                        <input type="button" value="open" class="btn btn-md btn-c-success" ng-click="myQController.setClient(result.PATIENTID)" name="{{'btnOpen_' + $index}}">
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card-c">
+                    <div class="card-c-header">
+                        Bookings
+                    </div>
+                    <div class="card-c-body">
+                        <div class="card-c-number">
+                            6
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--  <div class="col-3">
+                                <div class="card-c">
+                                    <div class="card-c-header">
+                                        Card 3
+                                    </div>
+                                    <div class="card-c-body">
+                                        content
+                                    </div>
+                
+                                </div> -->
+        </div></div>
+        <div ng-if="userObj.clientSet">
+                
+                                <div class="add-padding">
+                
+                                    <user-profile></user-profile>
+                
+                                </div>
+                
+                            </div>
+    </div>
+</div>
 
 </div>
