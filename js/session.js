@@ -53,7 +53,7 @@ angular.module('session-app', ['ngCookies'])
             return $http.post(this.restendpoint, data).
 
                 then(function (res) {
-
+consoel.log(res.data);
                     return res.data;
 
                 })

@@ -119,11 +119,14 @@ angular.module('profiles-app', [
                     self.loadWaitingList = function () {
 
                         //queue.obj
-                        var formdata = new FormData();
-                        formdata.append("q", "loadWaitingList");
-                        formdata.append("type", "WAITING");
+                        var formdata = {
 
-                        serviceSession.callService(formdata)
+                            q: "loadWaitingList",
+                            type: 'WAITING'
+
+                        }
+
+                        serviceSession.callRest(formdata)
 
                             .then(function (res) {
 

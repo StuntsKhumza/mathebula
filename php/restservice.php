@@ -28,7 +28,7 @@ switch ($q){
 
     case "addFamilyMember":
     
-        $response = $sql->addFamiliyMember($data);
+        $response = $sql->addFamilyMember($data);
 
         echo $response;
 
@@ -39,12 +39,18 @@ switch ($q){
         $response = $sql->getFamilyMember($data);
 
         echo $response;
+    
+    case "loadWaitingList":
+        
+            $response = $sql->loadWaitingList($data);
+    
+            echo $response;
 
     break;
 
     default:
 
-    die(json_encode(array('status'=>'error', 'message'=>'error processing request')));
+        die(json_encode(array('status'=>'error', 'message'=>'error processing request')));
 
     break;
 

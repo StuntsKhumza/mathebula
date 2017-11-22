@@ -90,8 +90,9 @@ and open the template in the editor.
 
         <!--clinical examination-->
         <script src="js/userProfile/clinical examination/clinicalexam.js"></script>
-
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <script>
+                
         /*    window.onbeforeunload = function(){
     return "You are about to leave leave/reload this page. This will log you out. \n";
 } */
@@ -99,8 +100,8 @@ and open the template in the editor.
         
         
         <script src="js/directives/save/save.js"></script>
+        <link href="css/apps.css"  rel="stylesheet" type="text/css">
         
-
  <script>
         function isNumberKey(evt)
        {

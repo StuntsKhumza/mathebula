@@ -10,7 +10,7 @@ if (isset($_GET['q'])){
 } else {
     die('Request not specified.');
 }
- 
+ sDf#@r32
 
 $sql = new sqlClass(); 
 

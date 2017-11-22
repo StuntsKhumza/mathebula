@@ -10,7 +10,7 @@
     <input type="button" value="Add Patient" ng-if="roles.reception || roles.admin" ng-click="navCtr.addPatient()" ng-class="{'active':bttsetting.active=='ADDPATIENT'}">
 
     <div class="topNavRight">
-      <!--  <input ng-if="!navCtr.spinner" type="button" style="background-color: #212121" value="{{navCtr.userName}}"> -->
+     
         <button style="height: 100%; background-color: #212121" ng-if="!navCtr.spinner"><i class="fa fa-user" aria-hidden="true"></i> {{navCtr.userName}}</button>
         
         <button style="height: 100%;" ng-if="navCtr.spinner"><img src="img/spinner.gif" alt="spinner" ></button>
@@ -21,4 +21,23 @@
     </div>
 </div>
 
- 
+
+
+<div id="appsSidenav" class="apps" ng-show="false">
+
+  <button  ng-click="navCtr.goHome()" ng-class="{'apps-button-active':bttsetting.active=='HOME'}" data-toggle="tooltip" data-placement="left" title="Home"><i class="fa fa-home" aria-hidden="true"></i></button><br>
+  <button ng-click="navCtr.openBookings()" data-toggle="tooltip" data-placement="left" title="Open Bookings"><i class="fa fa-book" aria-hidden="true"></i></button><br>
+  <button ng-click="navCtr.addPatient()" ng-if="roles.reception || roles.admin" ng-click="navCtr.addPatient()" ng-class="{'apps-button-active':bttsetting.active=='ADDPATIENT'}" data-toggle="tooltip" data-placement="left" title="Capture New Patient"><i class="fa fa-plus-circle" aria-hidden="true"></i></button><br>
+  <button ng-if="(roles.reception || roles.admin) && !bttsetting.hide.queu"  onclick="openNav()" ng-if="(roles.reception || roles.admin) && !bttsetting.hide.queu" data-toggle="tooltip" data-placement="left" title="Open waiting list"><i class="fa fa-list" aria-hidden="true"></i></button>
+  <div style="bottom:0; position:absolute; border-top:1px #212121 solid">
+    <button data-toggle="tooltip" data-placement="left" title="{{navCtr.userName}}"><i class="fa fa-user" aria-hidden="true"></i></button><br>
+    <button ng-click="navCtr.logOff()" data-toggle="tooltip" data-placement="left" title="Logoff"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+  </div>
+
+</div>
+
+<script>
+    $(function () {
+//$('[data-toggle="tooltip"]').tooltip()
+})
+</script>

@@ -107,7 +107,7 @@ class sqlClass {
 
             case "getMyQ":
 
-                $query = "SELECT * FROM patients u right join myq q on u.PATIENTID = q.PATIANTID where q.DRID = ?";
+                $query = "SELECT * FROM patients u right join myq q on u.PATIENTID = q.PATIANTID where q.DRID = ? AND DATE(q.DATE) = CURDATE()";
 
                 break;
 
@@ -120,7 +120,9 @@ class sqlClass {
             case "loadWaitingList":
 
                 //$query = "SELECT * from users u RIGHT JOIN myq m on u.ID = m.PATIANTID WHERE STATUS =?";
-                $query = "SELECT *,NULL AS PASSWORD, sysUsers.Name as DRNAME, sysUsers.SURNAME AS DIRSURNAME, sysUsers.ID AS DRID, myq.ID QID FROM patients, myq, sysUsers WHERE patients.PATIENTID = myq.PATIANTID AND sysUsers.ID = myq.DRID ORDER BY `myq`.`DATE` AND `myq`.`DATE` ASC";
+                $query = "SELECT *,NULL AS PASSWORD, sysUsers.Name as DRNAME, sysUsers.SURNAME AS DIRSURNAME, 
+                sysUsers.ID AS DRID, myq.ID QID FROM patients, myq, sysUsers 
+                WHERE patients.PATIENTID = myq.PATIANTID AND sysUsers.ID = myq.DRID AND DATE(`DATE`) = CURDATE() ORDER BY `myq`.`DATE` AND `myq`.`DATE` ASC";
 
                 break;
 

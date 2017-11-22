@@ -10,11 +10,6 @@
             <file>file:/C:/wamp/www/mathebula/makebooking.php</file>
             <file>file:/C:/wamp/www/mathebula/reset.php</file>
         </group>
-        <group name="Current">
-            <file>file:/C:/wamp/www/mathebula/js/profiles/profiles.js</file>
-            <file>file:/C:/wamp/www/mathebula/php/service.php</file>
-            <file>file:/C:/wamp/www/mathebula/php/service_secured.php</file>
-            <file>file:/C:/wamp/www/mathebula/php/sql.php</file>
-        </group>
+        <group name="Current"/>
     </open-files>
 </project-private>

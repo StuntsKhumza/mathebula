@@ -67,7 +67,7 @@ class bookingsSQL {
 
         //get all bookings from today going forward
         //$query = "SELECT * FROM `bookings` WHERE `DATE` = CURDATE() ORDER BY `DATE`, `TIME`";
-        $query = "SELECT * FROM `bookings` ";
+        $query = "SELECT * FROM `bookings` where DATE(`DATE`) = CURDATE() ";
 
         $stmt = $this->sqlConnection->prepare($query);
 
